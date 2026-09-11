@@ -1,0 +1,38 @@
+{
+  "name": "westvalley",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^3.10.0",
+    "@fontsource-variable/zalando-sans": "^5.3.0",
+    "@fontsource/instrument-serif": "^5.3.0",
+    "@hookform/resolvers": "^2.9.10",
+    "@types/node": "18.11.18",
+    "@types/react": "18.0.27",
+    "@types/react-dom": "18.0.10",
+    "classnames": "^2.3.2",
+    "eslint": "8.32.0",
+    "eslint-config-next": "16.3.4",
+    "next": "16.3.4",
+    "react": "18.2.0",
+    "react-compare-image": "^3.4.0",
+    "react-dom": "18.2.0",
+    "react-feather": "^2.0.10",
+    "react-hook-form": "^7.42.1",
+    "sweetalert2": "^11.7.1",
+    "swiper": "^8.4.6",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.4",
+    "typescript": "^5.9.3"
+  }
+}

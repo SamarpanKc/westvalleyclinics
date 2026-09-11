@@ -1,0 +1,465 @@
+/* Instrument Serif — regular 400 & italic 400 */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+
+@font-face {
+  font-family: 'Zalando Sans';
+  src: local('Zalando Sans Variable'), local('Zalando Sans');
+  font-weight: 200 900;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────────────────────────────
+   CSS Custom Properties — Brand Design Tokens
+   All semantic values in one place for easy future theming.
+   ───────────────────────────────────────────────────────────────────────── */
+:root {
+  /* Font families */
+  --font-primary: 'Zalando Sans Variable', 'Zalando Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-editorial: 'Instrument Serif', Georgia, Cambria, "Times New Roman", Times, serif;
+
+  /* Colour tokens */
+  --color-canvas:         #F7F7F2;
+  --color-surface:        #FFFFFF;
+  --color-primary:        #1D2C40;
+  --color-primary-hover:  #162130;
+  --color-ink:            #202C28;
+  --color-ink-muted:      #5B6861;
+  --color-sage:           #E8EEE7;
+  --color-border:         #D8DFD7;
+  --color-control-border: #7A8980;
+  --color-clay:           #B48B68;
+  --color-error:          #B42318;
+
+  /* Brand palette */
+  --color-brand-navy:  #1D2C40;
+  --color-brand-mist:  #ABC1D8;
+  --color-brand-brown: #5C4735;
+  --color-brand-sand:  #B48B68;
+
+  /* Spacing scale (4-base) */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-6:  24px;
+  --sp-8:  32px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-22: 88px;
+  --sp-26: 104px;
+
+  /* Container */
+  --container-max: 1200px;
+  --container-px-mobile:  20px;
+  --container-px-tablet:  32px;
+  --container-px-desktop: 48px;
+
+  /* Radius */
+  --radius-control: 8px;
+  --radius-panel:   12px;
+  --radius-card:    16px;
+
+  /* Transitions */
+  --duration-fast:   150ms;
+  --duration-normal: 200ms;
+  --ease-std: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Base layer overrides
+   ───────────────────────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    /* Smooth scrolling, unless user prefers reduced motion */
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  html, body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-primary);
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  /* HTML Headings: Zalando Sans as primary with weight variations */
+  h1 {
+    font-family: var(--font-primary);
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.05em;
+    color: var(--color-ink);
+  }
+
+  h2 {
+    font-family: var(--font-primary);
+    font-size: clamp(26px, 3.5vw, 36px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.05em;
+    color: var(--color-ink);
+  }
+
+  h3 {
+    font-family: var(--font-primary);
+    font-size: clamp(20px, 2.2vw, 24px);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.05em;
+    color: var(--color-ink);
+  }
+
+  h4 {
+    font-family: var(--font-primary);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.04em;
+    color: var(--color-ink);
+  }
+
+  p {
+    font-family: var(--font-primary);
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: -0.04em;
+  }
+
+  /* Focus-visible ring — consistent across all interactive elements */
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Remove default focus for mouse users */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  img, video {
+    max-width: 100%;
+    display: block;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Component layer — Semantic utility classes
+   ───────────────────────────────────────────────────────────────────────── */
+@layer components {
+
+  /* ── Layout ──────────────────────────────────────────────────────────── */
+
+  /* Shared max-width container with responsive padding */
+  .wv-container {
+    @apply w-full mx-auto px-5 md:px-8 lg:px-12;
+    max-width: var(--container-max);
+  }
+
+  /* Section vertical rhythm */
+  .wv-section {
+    @apply py-14 md:py-24;
+  }
+
+  /* ── Typography Tokens (85-90% Zalando Sans, 10-15% Instrument Serif Italic) ── */
+
+  /* H1: Zalando Sans Bold/SemiBold */
+  .wv-h1 {
+    font-family: var(--font-primary);
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+  }
+
+  /* H2: Zalando Sans SemiBold */
+  .wv-h2 {
+    font-family: var(--font-primary);
+    font-size: clamp(26px, 3.5vw, 36px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+  }
+
+  /* Heading Medium (H3): Zalando Sans | 24px / 1.5rem | 600 (SemiBold) | 1.3 (130%) | 0 */
+  .wv-h3 {
+    font-family: var(--font-primary);
+    font-size: clamp(20px, 2.2vw, 24px);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0;
+    color: var(--color-ink);
+  }
+
+  /* Heading Small (H4): Zalando Sans | 20px / 1.25rem | 600 (SemiBold) | 1.4 (140%) | 0 */
+  .wv-h4 {
+    font-family: var(--font-primary);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0;
+    color: var(--color-ink);
+  }
+
+  /* Subheading / Lead: Zalando Sans | 18px / 1.125rem | 400 (Regular) | 1.6 (160%) | +0.01em (+0.18px) */
+  .wv-lead,
+  .wv-subheading {
+    font-family: var(--font-primary);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    color: var(--color-ink-muted);
+  }
+
+  /* Body Paragraph: Zalando Sans | 16px / 1.0rem | 400 (Regular) | 1.6 (160%) | 0 */
+  .wv-body {
+    font-family: var(--font-primary);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0;
+    color: var(--color-ink);
+    max-width: 68ch;
+  }
+
+  /* Body Muted */
+  .wv-body-muted {
+    font-family: var(--font-primary);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0;
+    color: var(--color-ink-muted);
+    max-width: 68ch;
+  }
+
+  /* UI Labels / Small: Zalando Sans | 14px / 0.875rem | 500 (Medium) | 1.4 (140%) | +0.02em (+0.28px) */
+  .wv-label,
+  .wv-small {
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+  }
+
+  /* CTA / All-Caps: Zalando Sans | 14px / 0.875rem | 600 (SemiBold) | 1.2 (120%) | +0.06em (+0.84px) */
+  .wv-cta,
+  .wv-btn-label {
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Captions and meta text */
+  .wv-caption {
+    font-family: var(--font-primary);
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--color-ink-muted);
+  }
+
+  /* Editorial accent (10-15% aesthetic touch) — Instrument Serif Italic */
+  .wv-editorial,
+  .accent-serif {
+    font-family: var(--font-editorial);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+  }
+
+  /* Eyebrow / overline label */
+  .wv-eyebrow {
+    font-family: var(--font-primary);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-clay);
+  }
+
+  /* ── Buttons ─────────────────────────────────────────────────────────── */
+
+  /* Base button reset + shared properties */
+  .wv-btn {
+    @apply inline-flex items-center justify-center gap-2 font-medium cursor-pointer
+           transition-all select-none no-underline;
+    font-family: var(--font-primary, ui-sans-serif, system-ui, sans-serif);
+    font-size: 15px;
+    min-height: 48px;
+    padding: 12px 24px;
+    border-radius: var(--radius-control);
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-std);
+    border: 2px solid transparent;
+  }
+
+  /* Primary — dark navy, white text */
+  .wv-btn-primary {
+    @apply wv-btn bg-primary text-white border-primary;
+  }
+  .wv-btn-primary:hover:not(:disabled) {
+    background-color: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+  }
+  .wv-btn-primary:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+  .wv-btn-primary:disabled {
+    @apply opacity-40 cursor-not-allowed;
+  }
+
+  /* Secondary — outlined, transparent background */
+  .wv-btn-secondary {
+    @apply wv-btn bg-transparent text-primary border-primary;
+  }
+  .wv-btn-secondary:hover:not(:disabled) {
+    background-color: var(--color-primary);
+    color: #fff;
+  }
+  .wv-btn-secondary:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+  .wv-btn-secondary:disabled {
+    @apply opacity-40 cursor-not-allowed;
+  }
+
+  /* Ghost — for low-emphasis actions */
+  .wv-btn-ghost {
+    @apply wv-btn bg-transparent text-ink-muted border-transparent;
+  }
+  .wv-btn-ghost:hover:not(:disabled) {
+    background-color: var(--color-sage);
+    color: var(--color-ink);
+  }
+
+  /* Gradient Pill Button (Figma design system) */
+  .wv-btn-gradient {
+    @apply wv-btn rounded-full text-white border-transparent;
+    background: linear-gradient(90deg, #2B4764 0%, #6089AC 100%);
+    box-shadow: 0 2px 6px rgba(43, 71, 100, 0.18);
+  }
+  .wv-btn-gradient:hover:not(:disabled) {
+    box-shadow: 0 4px 12px rgba(43, 71, 100, 0.28);
+    filter: brightness(1.05);
+  }
+  .wv-btn-gradient:active:not(:disabled) {
+    transform: translateY(1px) scale(0.98);
+  }
+  .wv-btn-gradient:disabled {
+    @apply opacity-40 cursor-not-allowed;
+  }
+
+  /* ── Form elements ───────────────────────────────────────────────────── */
+
+  .wv-input {
+    @apply block w-full text-base text-ink bg-surface rounded-control
+           border border-control-border
+           placeholder:text-ink-muted/60
+           transition-colors;
+    min-height: 48px;
+    padding: 12px 14px;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-std);
+    outline: none;
+  }
+  .wv-input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(29, 44, 64, 0.12);
+  }
+  .wv-input[aria-invalid="true"],
+  .wv-input.is-error {
+    border-color: var(--color-error);
+    box-shadow: 0 0 0 3px rgba(180, 35, 24, 0.1);
+  }
+  .wv-input:disabled {
+    @apply opacity-50 cursor-not-allowed bg-sage;
+  }
+
+  .wv-textarea {
+    @apply wv-input;
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .wv-error-message {
+    @apply text-xs mt-1;
+    color: var(--color-error);
+  }
+
+  /* ── Text links ──────────────────────────────────────────────────────── */
+
+  .wv-link {
+    @apply text-primary font-medium underline-offset-2;
+    text-decoration: underline;
+    transition: color var(--duration-fast) var(--ease-std);
+  }
+  .wv-link:hover {
+    color: var(--color-primary-hover);
+  }
+
+  /* ── Legacy compatibility (kept for existing pages, deprecated) ───────── */
+
+  /* Kept temporarily — remove once all pages are migrated to wv-* classes */
+  .app-layout {
+    @apply wv-container;
+  }
+
+  .primary-btn {
+    @apply wv-btn-primary;
+  }
+
+  .secondary-btn {
+    @apply wv-btn-secondary;
+  }
+
+  .label {
+    @apply wv-label;
+  }
+
+  .input {
+    @apply wv-input;
+  }
+
+  .text-small {
+    @apply wv-caption;
+  }
+
+  .text-large {
+    @apply wv-h2;
+  }
+
+  .banner-container {
+    @apply pt-8 text-center md:pt-0 md:text-left md:flex md:justify-between md:items-center md:gap-8 bg-sage;
+  }
+}
