@@ -3,9 +3,17 @@
 function CardLeft({ img = "", title = "", description = "" }) {
   return (
     <div className="app-layout pt-10 bg-neutral-50">
-      <div className="p-8 lg:grid lg:grid-cols-2 border rounded-3xl">
+      <div className="p-8 lg:grid lg:grid-cols-2 gap-8 bg-white rounded-3xl">
         <div className="flex justify-center lg:block">
-          <img src={img} alt={title} />
+          <div
+            style={{
+              borderRadius: "16px 22px 22px 108px",
+              overflow: "hidden",
+              boxShadow: "0 4px 20px rgba(82,126,159,0.08)",
+            }}
+          >
+            <img src={img} alt={title} className="w-full h-full object-cover" />
+          </div>
         </div>
 
         <div className="mt-8 lg:mt-0">

@@ -153,7 +153,7 @@
     "@babel/helper-string-parser" "^7.29.7"
     "@babel/helper-validator-identifier" "^7.29.7"
 
-"@emailjs/browser@^3.10.0":
+"@emailjs/browser@^3.12.1":
   version "3.12.1"
   resolved "https://registry.npmjs.org/@emailjs/browser/-/browser-3.12.1.tgz"
   integrity sha512-C5nK07CgSCFx3onsuRt/ZaaMvIi0T3SHHanM7fKozjSvbZu+OjHHP9W608fYpic0OavF7yIlfy4+lRDO33JdbA==

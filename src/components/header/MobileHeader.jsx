@@ -1,14 +1,19 @@
 import { Menu } from "react-feather";
 import Link from "next/link";
 import Image from "next/image";
+import cn from "classnames";
 import NavigationDrawer from "./NavigationDrawer";
 
-function MobileHeader({ isOpen, closeDrawer, openDrawer }) {
+function MobileHeader({ isOpen, closeDrawer, openDrawer, isVisible = true }) {
   return (
     <>
       {/* ── Mobile header bar ──────────────────────────────────────────── */}
       <header
-        className="flex items-center justify-between lg:hidden sticky top-0 z-40 px-5 py-3 bg-surface/95 backdrop-blur-sm border-b border-border"
+        className={cn(
+          "flex items-center justify-between lg:hidden sticky top-0 z-40 px-5 py-3 bg-surface/95 backdrop-blur-sm",
+          "transition-transform duration-300 ease-in-out",
+          isVisible ? "translate-y-0 shadow-none" : "-translate-y-full shadow-none"
+        )}
         role="banner"
       >
         {/* Logo */}
@@ -43,4 +48,3 @@ function MobileHeader({ isOpen, closeDrawer, openDrawer }) {
 }
 
 export default MobileHeader;
-

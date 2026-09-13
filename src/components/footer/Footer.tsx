@@ -13,10 +13,10 @@ function Footer() {
             <Image
               src="/rebranding/logoSVGs/westvalleywhite_logo_nobg.svg"
               alt="West Valley Medical Clinic"
-              width={130}
-              height={44}
+              width={200}
+              height={64}
               priority
-              className="h-11 w-auto"
+              className="h-16 w-auto"
             />
           </Link>
           <p className="mt-4 text-sm text-white/70 leading-relaxed max-w-xs">
@@ -68,7 +68,7 @@ function Footer() {
           <ul className="flex flex-col gap-3">
             <li>
               <Link
-                href="https://www.facebook.com/wvmedico"
+                href="https://www.facebook.com/Westvalleyclinics"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors duration-[150ms]"
@@ -98,7 +98,7 @@ function Footer() {
           </p>
           <address className="not-italic flex flex-col gap-2">
             <p className="text-sm text-white/70">
-              Zero KM, Pokhara-Baglung Highway
+              Infront of Nagarpalika Office, New Road
             </p>
             <p className="text-sm text-white/70">Pokhara 33700</p>
             <a
@@ -121,7 +121,7 @@ function Footer() {
       <div className="border-t border-white/10">
         <div className="wv-container py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-white/50">
-            &copy; 2024 West Valley Medical Clinic. All rights reserved.
+            &copy; 2026/27 West Valley Medical Clinic. All rights reserved.
           </p>
           <Link
             href="/contact"

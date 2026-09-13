@@ -1,6 +1,6 @@
 function Services() {
   return (
-    <div className="mt-20">
+    <div className="m-20">
       <div className="app-layout">
         <h3 className="text-large text-center text-primary">
           Endocrine, Nutrition and Metabolism

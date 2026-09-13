@@ -13,7 +13,7 @@ function EndocrineAndNutrition() {
       <Head>
         <title>Endocrine and Nutrition in Pokhara | West Valley</title>
       </Head>
-      <main className="bg-neutral-50">
+      <main className="bg-[#fcfdff]">
         <Banner />
         <Services />
         <Testimonial testimonialContent={testimonialContent} />

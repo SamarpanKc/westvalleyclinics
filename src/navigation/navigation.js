@@ -4,8 +4,6 @@
  *
  * NOTE: The "Request a Consultation" CTA is rendered separately in the header
  * and is NOT included in this array.
- *
- * Dental Clinic has been removed per the redesign brief.
  */
 const navigation = [
   {
@@ -36,4 +34,5 @@ const navigation = [
 ];
 
 export default navigation;
+
 

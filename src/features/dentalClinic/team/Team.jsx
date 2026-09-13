@@ -1,6 +1,5 @@
 import { ChevronLeft, ChevronRight } from "react-feather";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper";
+
 
 function Team() {
   return (

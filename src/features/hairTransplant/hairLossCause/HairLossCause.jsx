@@ -101,30 +101,97 @@ function HairLossCause() {
         </div>
 
         {/* Cards grid */}
-        <div className="mx-auto mt-14 grid max-w-[1240px] grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-16 lg:grid-cols-6">
+        <div className="mx-auto mt-14 grid max-w-[1240px] grid-cols-1 gap-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-6">
           {causes.map((cause, index) => (
             <article
               key={cause.title}
               className={[
-                "rounded-2xl bg-[#F7F9FB] border border-[#E4EBF2] p-6 sm:p-7",
                 "lg:col-span-2",
                 index === 3 ? "lg:col-start-2" : "",
               ]
                 .filter(Boolean)
                 .join(" ")}
+              style={{
+                borderRadius: "16px 22px 22px 108px",
+                background: "linear-gradient(160deg, #EEF5FC 0%, #dae7f1ff 55%, #afd1ebff 100%)",
+                border: "1px solid rgba(255,255,255,0.70)",
+                padding: "28px 28px 26px 32px",
+                position: "relative",
+                overflow: "hidden",
+                transition: "transform 0.22s ease, box-shadow 0.22s ease",
+              }}
+              onMouseEnter={e => {
+                // e.currentTarget.style.transform = "translateY(-3px)";
+                e.currentTarget.style.boxShadow = "0 8px 28px 0 rgba(82,126,159,0.18), inset 0 1px 0 rgba(255,255,255,0.60)";
+              }}
+              onMouseLeave={e => {
+                // e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "0 2px 16px 0 rgba(82,126,159,0.10), inset 0 1px 0 rgba(255,255,255,0.55)";
+              }}
             >
-              {/* Top row: title left, icon right */}
-              <div className="flex items-start justify-between gap-4">
-                <h3 className="text-[17px] font-semibold tracking-[-0.02em] text-[#132335] leading-snug">
-                  {cause.title}
-                </h3>
-                <div className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-xl bg-white border border-[#D8E7F1] text-[#3E7298]">
+              {/* Gloss streak */}
+              <div style={{
+                position: "absolute",
+                top: 0, left: 0, right: 0,
+                height: "48%",
+                background: "linear-gradient(180deg, rgba(255,255,255,0.32) 0%, rgba(255,255,255,0) 100%)",
+                borderRadius: "16px 22px 0 0",
+                pointerEvents: "none",
+              }} />
+
+              {/* Top row: icon LEFT, title RIGHT */}
+              <div style={{ display: "flex", alignItems: "flex-start", gap: "14px" }}>
+
+                {/* Left: icon */}
+                <div style={{
+                  flexShrink: 0,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: "42px",
+                  width: "42px",
+                  borderRadius: "12px",
+                  color: "#2D6A94",
+                }}>
                   {cause.icon}
                 </div>
+
+                {/* Right: title */}
+                <h3 style={{
+                  flex: 1,
+                  fontSize: "17px",
+                  fontWeight: 650,
+                  letterSpacing: "-0.025em",
+                  color: "#0E2236",
+                  lineHeight: "1.3",
+                  margin: 0,
+                  paddingTop: "10px",
+                  display: "flex",
+                  alignItems: "flex-end",
+                  justifyContent: "flex-end",
+                  paddingRight: "10px",
+                }}>
+                  {cause.title}
+                </h3>
+
               </div>
 
-              {/* Description below */}
-              <p className="mt-4 text-[14px] leading-[1.7] text-[#687686]">
+              {/* Divider */}
+              {/* <div style={{
+                margin: "14px 0 11px",
+                height: "1px",
+                background: "rgba(255,255,255,0.55)",
+              }} /> */}
+
+              {/* Description — full width below */}
+              <p style={{
+                fontSize: "13.5px",
+                lineHeight: "1.72",
+                color: "#1C3A52",
+                margin: 0,
+                opacity: 0.88,
+                textAlign: "right",
+              }}>
                 {cause.description}
               </p>
             </article>

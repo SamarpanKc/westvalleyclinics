@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -10,9 +10,48 @@ import { scrollToContact } from "../../utils/scrollToContact";
 function Header() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   const closeDrawer = () => setIsOpen(false);
   const openDrawer  = () => setIsOpen(true);
+
+  useEffect(() => {
+    let lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
+
+    const handleScroll = () => {
+      // Keep navbar visible if mobile drawer is currently open
+      if (isOpen) {
+        setIsVisible(true);
+        return;
+      }
+
+      const currentScrollY = window.scrollY;
+
+      // Always show navbar near top of the page
+      if (currentScrollY <= 80) {
+        setIsVisible(true);
+        lastScrollY = currentScrollY;
+        return;
+      }
+
+      // Ignore jitter / small scroll amounts
+      if (Math.abs(currentScrollY - lastScrollY) < 10) {
+        return;
+      }
+
+      // Scroll down -> hide navbar; Scroll up -> show navbar
+      if (currentScrollY > lastScrollY) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isOpen]);
 
   return (
     <>
@@ -23,7 +62,8 @@ function Header() {
           "sticky top-0 z-40 w-full",
           "px-8 xl:px-14 2xl:px-20 py-4",
           "bg-white/90 backdrop-blur-md",
-          "transition-all duration-200"
+          "transition-transform duration-300 ease-in-out",
+          isVisible ? "translate-y-0 shadow-none" : "-translate-y-full shadow-none"
         )}
         role="banner"
       >
@@ -84,7 +124,7 @@ function Header() {
             )}
             id="header-cta-desktop"
           >
-            Book a Consultant
+            Book Free Consultant
           </button>
         </div>
       </header>
@@ -94,10 +134,10 @@ function Header() {
         isOpen={isOpen}
         closeDrawer={closeDrawer}
         openDrawer={openDrawer}
+        isVisible={isVisible}
       />
     </>
   );
 }
 
 export default Header;
-
