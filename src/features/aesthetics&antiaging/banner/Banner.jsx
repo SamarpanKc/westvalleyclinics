@@ -3,56 +3,37 @@ import { scrollToContact } from "../../../utils/scrollToContact";
 
 function Banner() {
   return (
-    <section
-      className="relative w-full bg-[#EEF4FB] overflow-hidden"
-      style={{ minHeight: "calc(100vh - 88px)" }}
-    >
-      {/* ── Background gradient ── */}
-      <div className="absolute inset-0 pointer-events-none select-none z-0">
-        <Image
-          src="/images/hairTransplant/clean_blue_gradient_background.png"
-          alt=""
-          fill
-          priority
-          quality={100}
-          className="object-cover object-center"
-        />
-      </div>
+    <section className="relative overflow-hidden bg-white">
+      {/* Subtle top divider to match Figma */}
+      <div className="w-full h-[1px] bg-[#EAECEF]" />
 
-      {/* ── Bottom fade blending into next section ── */}
-      <div className="absolute inset-x-0 bottom-0 h-20 sm:h-24 lg:h-28 bg-gradient-to-t from-white/70 to-transparent pointer-events-none z-20" />
-
-      {/* ═══════════════════════════════════════════
-          DESKTOP (lg+): Single flex row, max-width
-          capped and centered
-          ═══════════════════════════════════════════ */}
-      <div
-        className="hidden lg:flex items-center relative z-30 h-full"
-        style={{ minHeight: "calc(100vh - 88px)" }}
-      >
-        <div className="w-full max-w-[1600px] mx-auto flex items-center justify-between px-10 xl:px-16 2xl:px-20">
-
+      {/* Desktop (lg+) layout */}
+      <div className="hidden lg:block relative z-30 max-w-[1440px] mx-auto px-8 xl:px-12 pt-14 pb-0">
+        <div className="flex items-center justify-between min-h-[540px]">
+          
           {/* Text block */}
-          <div className="flex-1 max-w-[620px] xl:max-w-[680px] 2xl:max-w-[720px]">
+          <div className="flex-1 max-w-[620px] xl:max-w-[680px]">
             <h1
-              className="font-semibold text-[#0E1A2B] leading-[1.13] tracking-[-0.03em]"
+              className="font-semibold text-[#0E1A2B] leading-[1.12] tracking-[-0.03em]"
               style={{ fontSize: "clamp(32px, 2.6vw, 62px)" }}
             >
-              Enhance the{" "}
+              Natural Elegance &amp; Timeless Radiance
+              <br />
+              with advanced{" "}
               <span
                 className="font-editorial italic font-normal"
                 style={{ letterSpacing: "0.005em" }}
               >
-                Natural Beauty
+                Aesthetics &amp; Anti-Aging
               </span>{" "}
-              within you and Unveil the Best Version of Yourself
+              care.
             </h1>
 
-            {/* CTA — Book Your Consultant */}
+            {/* CTA — Book Your Consultant only */}
             <div className="mt-8">
               <button
                 onClick={scrollToContact}
-                id="skin-banner-book-appointment-btn"
+                id="aesthetics-banner-book-appointment-btn"
                 className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-[linear-gradient(135deg,#2D4F6F_0%,#6A97BC_100%)] text-white text-[15px] font-medium tracking-normal shadow-md hover:brightness-105 hover:shadow-lg active:scale-[0.98] transition-all duration-200 cursor-pointer"
               >
                 Book Your Consultant
@@ -63,8 +44,8 @@ function Banner() {
           {/* Image block */}
           <div className="flex-shrink-0 flex items-end justify-center pl-8">
             <Image
-              src="/images/skin&aethetics/banner.png"
-              alt="West Valley Skin Specialist"
+              src="/images/endocrine&nutrition/banner.png"
+              alt="West Valley Aesthetics & Anti-Aging Specialist"
               width={1086}
               height={1206}
               priority
@@ -81,30 +62,29 @@ function Banner() {
         </div>
       </div>
 
-      {/* ═══════════════════════════════════════════
-          TABLET + MOBILE (< lg):
-          Text centred → Image below
-          ═══════════════════════════════════════════ */}
+      {/* Tablet + Mobile (< lg) */}
       <div className="flex lg:hidden flex-col items-center relative z-30 pt-12 sm:pt-14 md:pt-16 pb-6 px-6 sm:px-10 md:px-16 text-center">
         <h1
           className="font-bold text-[#0E1A2B] leading-[1.15] tracking-[-0.03em]"
           style={{ fontSize: "clamp(28px, 6vw, 46px)" }}
         >
-          Enhance the{" "}
+          Natural Elegance &amp; Timeless Radiance
+          <br />
+          with advanced{" "}
           <span
             className="font-editorial italic font-normal"
             style={{ letterSpacing: "0.005em" }}
           >
-            Natural Beauty
+            Aesthetics &amp; Anti-Aging
           </span>{" "}
-          within you and Unveil the Best Version of Yourself
+          care.
         </h1>
 
-        {/* CTA — Book Your Consultant button */}
+        {/* CTA */}
         <div className="mt-6 sm:mt-7 flex flex-col items-center">
           <button
             onClick={scrollToContact}
-            id="skin-banner-book-appointment-btn-mobile"
+            id="aesthetics-banner-book-appointment-btn-mobile"
             className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-[linear-gradient(135deg,#2D4F6F_0%,#6A97BC_100%)] text-white text-[15px] font-medium tracking-normal shadow-md hover:brightness-105 active:scale-[0.98] transition-all duration-200 cursor-pointer"
           >
             Book Your Consultant
@@ -113,8 +93,8 @@ function Banner() {
 
         <div className="w-full max-w-[340px] sm:max-w-[420px] md:max-w-[520px] mt-6 sm:mt-4">
           <Image
-            src="/images/skin&aethetics/banner.png"
-            alt="West Valley Skin Specialist"
+            src="/images/endocrine&nutrition/banner.png"
+            alt="West Valley Aesthetics & Anti-Aging Specialist"
             width={1086}
             height={1206}
             priority

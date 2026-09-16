@@ -1,25 +1,30 @@
 /**
  * Primary site navigation links.
- * Order: Hair Restoration · Skin & Aesthetics · Endocrine & Nutrition · Our Team · Contact
+ * Order: Hair Transplant · Skin · Aesthetics & Antiaging · Pharmacy · Our Team · Contact
  *
- * NOTE: The "Request a Consultation" CTA is rendered separately in the header
+ * NOTE: The CTA button is rendered separately in the header
  * and is NOT included in this array.
  */
 const navigation = [
   {
     id: "hairTransplant",
-    name: "Hair Restoration",
+    name: "Hair Transplant",
     path: "/",
   },
   {
-    id: "skin&Aesthetics",
-    name: "Skin & Aesthetics",
-    path: "/skin&aesthetics",
+    id: "skin",
+    name: "Skin",
+    path: "/skin",
   },
   {
-    id: "endocrine&nutrition",
-    name: "Endocrine & Nutrition",
-    path: "/endocrine&nutrition",
+    id: "aesthetics&antiaging",
+    name: "Aesthetics & Antiaging",
+    path: "/aesthetics&antiaging",
+  },
+  {
+    id: "pharmacy",
+    name: "Pharmacy",
+    path: "/pharmacy",
   },
   {
     id: "our-team",
@@ -34,5 +39,3 @@ const navigation = [
 ];
 
 export default navigation;
-
-

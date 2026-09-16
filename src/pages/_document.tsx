@@ -6,13 +6,11 @@ export default function Document() {
       <Head>
         <meta
           name="description"
-          content="We provide the highest quality of Hair Transplant, Aesthetic & Skin Care, Dental, and Endocrine related services. Our experienced professionals will give you the best treatment and results. Come experience the difference."
+          content="We provide the highest quality Hair Transplant, Skin Care, and Aesthetics & Antiaging services in Pokhara at West Valley Medical Clinic. Our experienced professionals deliver exceptional, natural results."
         />
         <meta
           name="keywords"
-          content="best hair transplant in kathmandu, best hair transplant in pokhara, west valley, west valley medical clinic, endocrine clinic, endocrine clinic in pokhara, best dental clinic in pokhara, endocrinologist, hair transplant in pokhara,
-          dental clinic pokhara  
-          "
+          content="hair transplant in pokhara, best hair transplant in pokhara, skin clinic pokhara, aesthetics pokhara, antiaging clinic pokhara, west valley medical clinic, west valley pokhara"
         />
         <meta
           property="og:image"

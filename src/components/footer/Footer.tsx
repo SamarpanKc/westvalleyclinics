@@ -20,8 +20,8 @@ function Footer() {
             />
           </Link>
           <p className="mt-4 text-sm text-white/70 leading-relaxed max-w-xs">
-            West Valley Medical Clinic provides hair restoration, skin &amp;
-            aesthetics, and endocrine &amp; nutrition services in Pokhara.
+            West Valley Medical Clinic provides hair transplant, skin,
+            aesthetics &amp; antiaging, and pharmacy services in Pokhara.
             Our experienced team is here to help you understand your options
             and take the next step with confidence.
           </p>
@@ -38,23 +38,31 @@ function Footer() {
                 href="/"
                 className="text-sm text-white/70 hover:text-white transition-colors duration-[150ms]"
               >
-                Hair Restoration
+                Hair Transplant
               </Link>
             </li>
             <li>
               <Link
-                href="/skin&aesthetics"
+                href="/skin"
                 className="text-sm text-white/70 hover:text-white transition-colors duration-[150ms]"
               >
-                Skin &amp; Aesthetics
+                Skin
               </Link>
             </li>
             <li>
               <Link
-                href="/endocrine&nutrition"
+                href="/aesthetics&antiaging"
                 className="text-sm text-white/70 hover:text-white transition-colors duration-[150ms]"
               >
-                Endocrine &amp; Nutrition
+                Aesthetics &amp; Antiaging
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/pharmacy"
+                className="text-sm text-white/70 hover:text-white transition-colors duration-[150ms]"
+              >
+                Pharmacy
               </Link>
             </li>
           </ul>
@@ -98,7 +106,7 @@ function Footer() {
           </p>
           <address className="not-italic flex flex-col gap-2">
             <p className="text-sm text-white/70">
-              Infront of Nagarpalika Office, New Road
+              New Road (Infront of Nagarpalika Office)
             </p>
             <p className="text-sm text-white/70">Pokhara 33700</p>
             <a

@@ -29,8 +29,8 @@ const schema = yup
     patient_email: yup
       .string()
       .trim()
-      .required("Email address is required.")
-      .email("Please enter a valid email address."),
+      .email("Please enter a valid email address.")
+      .optional(),
     department: yup.string().required("Please select a department."),
     appointment_date: yup
       .string()
@@ -44,8 +44,8 @@ const schema = yup
 
 const departmentOptions = [
   { label: "Hair Transplant", value: "Hair Transplant" },
-  { label: "Skin & Aesthetics", value: "Skin & Aesthetics" },
-  { label: "Endocrine & Nutrition", value: "Endocrine & Nutrition" },
+  { label: "Skin", value: "Skin" },
+  { label: "Aesthetics & Antiaging", value: "Aesthetics & Antiaging" },
   { label: "General Consultation", value: "General Consultation" },
 ];
 
@@ -279,7 +279,7 @@ function BookAppointment() {
             className="font-semibold leading-[1.08] tracking-[-0.04em] text-[#0E1A2B]"
             style={{ fontSize: "clamp(28px, 4vw, 48px)" }}
           >
-            Book Your <span className="text-[#527E9F]">Appointment.</span>
+            Book Your <span className="text-[#527E9F]">Consultation</span>
           </h2>
           <p className="mx-auto mt-4 max-w-[540px] text-[15px] leading-7 text-[#536273] sm:text-[16px]">
             Schedule your consultation with West Valley experts{" "}
@@ -290,7 +290,7 @@ function BookAppointment() {
         {/* Form Container Card */}
         <div className="mx-auto mt-10 sm:mt-12 max-w-[740px]">
           <div
-            className="bg-white/10 backdrop-blur-xl p-6 sm:p-10 lg:p-12 rounded-2xl"
+            className="bg-none backdrop-blur-xl p-6 sm:p-10 lg:p-12 rounded-2xl"
             style={{ position: "relative" }}
           >
             <form
@@ -350,7 +350,7 @@ function BookAppointment() {
                     htmlFor="patient_email"
                     className="block text-[14px] font-semibold text-[#0E2236] mb-1.5"
                   >
-                    Email Address <span className="text-red-500">*</span>
+                    Email Address
                   </label>
                   <div className="relative">
                     <div className=" pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-[#527E9F]">
@@ -834,7 +834,7 @@ function BookAppointment() {
                       <span>Request Sent Successfully!</span>
                     </>
                   ) : (
-                    <span>Book Free Consultation</span>
+                    <span>Book Your Consultation</span>
                   )}
                 </button>
               </div>

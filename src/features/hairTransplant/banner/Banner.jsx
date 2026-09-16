@@ -54,17 +54,17 @@ function Banner() {
 
             {/* CTA — pill wrapper holding button + text together */}
             <div className="mt-8">
-              <div className="relative inline-flex items-center rounded-full bg-[#DCE6F0] p-1.5 pr-8">
+              <div className="relative inline-flex items-center rounded-full p-1.5 pr-8">
                 <button
                   onClick={scrollToContact}
                   id="banner-book-appointment-btn"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[linear-gradient(135deg,#2D4F6F_0%,#6A97BC_100%)] text-white text-[14px] font-medium tracking-normal shadow-md hover:brightness-105 hover:shadow-lg active:scale-[0.98] transition-all duration-200 cursor-pointer"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[linear-gradient(135deg,#2D4F6F_0%,#6A97BC_100%)] text-white text-[14px] font-medium tracking-normal  hover:brightness-105 transition-all duration-200 cursor-pointer"
                 >
-                  Book Your Appointment
+                  Book Free Hair Consultation
                 </button>
-                <span className="ml-4 text-[14px] font-semibold text-[#0E1A2B] whitespace-nowrap">
-                  Free hair fall consultation
-                </span>
+                {/* <span className="ml-4 text-[14px] font-semibold text-[#0E1A2B] whitespace-nowrap">
+                  Book Free Hair Consultation
+                </span> */}
               </div>
             </div>
           </div>
@@ -122,7 +122,7 @@ function Banner() {
             Book Your Appointment
           </button>
           <span className="text-[13px] font-medium text-[#0E1A2B] tracking-tight">
-            Free hair fall consultation
+            Book Free Hair Consultation
           </span>
         </div>
 

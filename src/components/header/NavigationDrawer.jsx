@@ -127,7 +127,7 @@ function NavigationDrawer({ isOpen, closeDrawer }) {
             id="mobile-nav-cta"
             className="w-full py-4 rounded-full bg-[#1D2C40] text-white text-[15px] font-medium tracking-normal hover:bg-[#162130] active:scale-[0.98] transition-all duration-200"
           >
-            Book a Consultant
+            Book Your Consultant
           </button>
         </div>
       </div>

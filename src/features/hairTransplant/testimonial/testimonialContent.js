@@ -47,7 +47,7 @@ export const testimonialContent = [
   {
     headline: "Trustworthy clinic & excellent results",
     review:
-      "I highly recommend West Valley Medical Clinic to anyone in need of medical care. Whether it's for hair transplant, dental treatment, or skin treatment, you can trust that you'll receive the best care.",
+      "I highly recommend West Valley Medical Clinic to anyone in need of medical care. Whether it's for hair transplant, aesthetic treatment, or skin treatment, you can trust that you'll receive the best care.",
     reviewUser: "Kriti Kafle",
     role: "Verified Patient",
     rating: 5,
@@ -56,7 +56,7 @@ export const testimonialContent = [
   {
     headline: "Doctor and staff extremely helpful",
     review:
-      "I have gone for hair treatment and found the doctor and staff extremely helpful and co-operative. I strongly recommend clinic for hair, skin and dental consultation.",
+      "I have gone for hair treatment and found the doctor and staff extremely helpful and co-operative. I strongly recommend clinic for hair, skin and aesthetics consultation.",
     reviewUser: "Sunil Neupane",
     role: "Hair Treatment Patient",
     rating: 5,
