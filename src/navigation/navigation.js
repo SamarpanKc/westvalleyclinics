@@ -1,6 +1,6 @@
 /**
  * Primary site navigation links.
- * Order: Hair Transplant · Skin · Aesthetics & Antiaging · Pharmacy · Our Team · Contact
+ * Order: Hair Transplant · Skin · Plastic Surgery · Aesthetics & Antiaging · Pharmacy · Our Team · Contact
  *
  * NOTE: The CTA button is rendered separately in the header
  * and is NOT included in this array.
@@ -15,6 +15,11 @@ const navigation = [
     id: "skin",
     name: "Skin",
     path: "/skin",
+  },
+  {
+    id: "plastic-surgery",
+    name: "Plastic Surgery",
+    path: "/plastic-surgery",
   },
   {
     id: "aesthetics&antiaging",

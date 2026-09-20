@@ -1,3 +1,12 @@
+import { scrollToContact } from "../../utils/scrollToContact";
+
+const treatments = [
+  "Hair transplant & restoration",
+  "Skin, nail & STD conditions",
+  "Advanced aesthetic & anti-ageing treatments",
+  "Plastic, cosmetic & reconstructive surgery",
+];
+
 function AboutUs() {
   return (
     <section className="bg-[#f7f9fc] py-16 sm:py-20 lg:py-24" id="aboutUs">
@@ -13,33 +22,62 @@ function AboutUs() {
           </h2>
         </div>
 
-        {/* Content Card with Signature Curve */}
+        {/* Content Card */}
         <div className="mx-auto mt-10 sm:mt-12 max-w-[960px]">
-          <div
-            style={{
-              padding: "36px 32px 40px 36px",
-              position: "relative",
-              overflow: "hidden",
-            }}
-          >
-
-            {/* Lead sentence from existing content */}
+          <div className=" p-7 sm:p-10">
+            
+            {/* Lead sentence */}
             <p
-              className="text-[#0E2236] font-medium leading-relaxed tracking-[-0.015em] text-justify"
-              style={{ fontSize: "clamp(17px, 2vw, 21px)" }}
+              className="text-[#0E2236] font-semibold leading-snug tracking-[-0.015em]"
+              style={{ fontSize: "clamp(18px, 2.2vw, 22px)" }}
             >
-              West Valley Medical Clinic endeavours to help you look and feel your best. Located in Pokhara, we offer unrivalled expertise in a variety of hair restoration, skin, aesthetic, and wellness services.
+              West Valley Clinic - Pokhara&apos;s trusted name in hair transplant, skin, and aesthetic care.
             </p>
 
-            {/* Subtle Divider */}
-            <div className="my-5 h-[1px] w-full bg-[#D8E7F1]" />
+            {/* Intro paragraph */}
+            <p className="mt-4 text-[15px] sm:text-[16px] leading-[1.8] text-[#536273]">
+              Located on New Road, Pokhara, we bring together experienced doctors, modern technology, and over 20 years of combined clinical expertise to treat you with the care you deserve.
+            </p>
 
-            {/* Body paragraphs from existing content */}
-            <div className="space-y-4 text-[15px] sm:text-[16px] leading-[1.8] text-[#536273] text-justify">
-              <p>
-                We offer a wide range of treatments and services, including hair transplants, advanced skin care, aesthetics and anti-aging treatments, hair recovery therapies, pharmacy services, and more. Our team is composed of highly skilled professionals with years of experience in their respective specialties. They are equipped with state-of-the-art technology to provide you with unparalleled services. Along with cutting-edge technology and professional guidance, we provide exquisite service to patients in order to ensure their safety, comfort, and the best results.
-              </p>
+            {/* What we treat list */}
+            <div className="mt-7">
+              <h3 className="text-[13px] font-semibold tracking-wider text-[#527E9F] uppercase">
+                What we treat
+              </h3>
+              <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {treatments.map((treatment) => (
+                  <div
+                    key={treatment}
+                    className="flex items-center gap-3 rounded-xl px-4 py-3"
+                  >
+                    <span className="flex h-2 w-2 rounded-full bg-[#527E9F] shrink-0" />
+                    <span className="text-[15px] font-medium text-[#0E2236]">
+                      {treatment}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
+
+            {/* Value & philosophy */}
+            <p className="mt-7 text-[15px] sm:text-[16px] leading-[1.8] text-[#536273]">
+              Every treatment plan is built around you - your goals, your condition, your comfort. Safety, privacy, and natural results come first, always.
+            </p>
+
+            {/* CTA row */}
+            <div className="mt-8 pt-6 border-t border-[#EAECEF] flex flex-col sm:flex-row items-center justify-between gap-4">
+              <p className="text-[15px] sm:text-[16px] font-medium text-[#0E2236] text-center sm:text-left">
+                Ready for a change?
+              </p>
+              <button
+                onClick={scrollToContact}
+                id="about-us-book-btn"
+                className="inline-flex items-center justify-center px-7 py-3 rounded-full bg-[linear-gradient(135deg,#2D4F6F_0%,#6A97BC_100%)] text-white text-[15px] font-medium tracking-normal shadow-md hover:brightness-105 active:scale-[0.98] transition-all duration-200 cursor-pointer"
+              >
+                Book your consultation today
+              </button>
+            </div>
+
           </div>
         </div>
 

@@ -20,13 +20,13 @@ const servicesData = [
     image: "/images/hairTransplant/gfc.png",
   },
   {
-    id: "smp",
-    tag: "Pigmentation",
-    code: "SMP",
-    title: "Scalp Micropigmentation (SMP)",
+    id: "exosome",
+    tag: "Biostimulation",
+    code: "EXOSOME",
+    title: "Exosome Hair Booster",
     description:
-      "Precision medical micro-pigmentation deposits specialized tones on the scalp to create the realistic illusion of full, dense hair follicles.",
-    image: "/images/hairTransplant/smp.png",
+      "Advanced non-surgical scalp biostimulation delivering biological signalling factors to revitalize hair follicles, reduce thinning, and promote denser, healthier hair.",
+    image: "/images/hairTransplant/exosomehairBooster.jpg",
   },
 ];
 

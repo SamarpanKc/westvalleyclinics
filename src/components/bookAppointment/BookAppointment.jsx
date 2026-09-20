@@ -350,7 +350,7 @@ function BookAppointment() {
                     htmlFor="patient_email"
                     className="block text-[14px] font-semibold text-[#0E2236] mb-1.5"
                   >
-                    Email Address
+                    Email 
                   </label>
                   <div className="relative">
                     <div className=" pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-[#527E9F]">

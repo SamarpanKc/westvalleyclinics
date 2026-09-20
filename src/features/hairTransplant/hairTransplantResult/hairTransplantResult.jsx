@@ -24,21 +24,21 @@ function HairTransplantResult() {
               <div className="flex items-center gap-3">
                 {/* <span className="inline-block h-2 w-2 rounded-full bg-[#527E9F]" /> */}
                 <p className="text-[16px] font-medium text-[#0E2236]">
-                  Case Severity: <span className="font-semibold text-[#2D6A94]">Grade 3</span>
+                  Case Severity: <span className="font-semibold text-[#2D6A94]">Grade 4</span>
                 </p>
               </div>
 
               <div className="flex items-center gap-3">
                 {/* <span className="inline-block h-2 w-2 rounded-full bg-[#527E9F]" /> */}
                 <p className="text-[16px] font-medium text-[#0E2236]">
-                  Grafts Transplanted: <span className="font-semibold text-[#2D6A94]">3,300 Grafts</span>
+                  Grafts Transplanted: <span className="font-semibold text-[#2D6A94]">5000 Grafts</span>
                 </p>
               </div>
 
               <div className="flex items-center gap-3">
                 {/* <span className="inline-block h-2 w-2 rounded-full bg-[#527E9F]" /> */}
                 <p className="text-[16px] font-medium text-[#0E2236]">
-                  Timeline: <span className="font-semibold text-[#2D6A94]">6 Month Result</span>
+                  Timeline: <span className="font-semibold text-[#2D6A94]">10 Month Result</span>
                 </p>
               </div>
             </div>
