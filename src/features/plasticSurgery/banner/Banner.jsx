@@ -49,10 +49,10 @@ function Banner() {
           {/* Image block */}
           <div className="flex-shrink-0 flex items-end justify-center pl-8">
             <Image
-              src="/images/plasticSurgery/banner.png"
+              src="/images/Plastic Surgery/Woman_with_surgical_markings_plo…_2K_20260921134514.png"
               alt="West Valley Plastic Surgery Specialist"
-              width={1086}
-              height={1206}
+              width={2400}
+              height={1792}
               priority
               className="select-none pointer-events-none"
               style={{
@@ -100,10 +100,10 @@ function Banner() {
 
         <div className="w-full max-w-[340px] sm:max-w-[420px] md:max-w-[520px] mt-6 sm:mt-4">
           <Image
-            src="/images/plasticSurgery/banner.png"
+            src="/images/Plastic Surgery/Woman_with_surgical_markings_plo…_2K_20260921134514.png"
             alt="West Valley Plastic Surgery Specialist"
-            width={1086}
-            height={1206}
+            width={2400}
+            height={1792}
             priority
             className="w-full h-auto object-contain object-top select-none pointer-events-none"
           />
