@@ -4,40 +4,51 @@ import { scrollToContact } from "../../../utils/scrollToContact";
 function Banner() {
   return (
     <section className="relative overflow-hidden bg-white">
-      {/* Subtle top divider to match Figma */}
+      {/* Top divider */}
       <div className="w-full h-[1px] bg-[#EAECEF]" />
 
-      {/* Desktop (lg+) layout */}
+      {/* Desktop (lg+) */}
       <div className="hidden lg:block relative z-30 max-w-[1440px] mx-auto px-8 xl:px-12 pt-14 pb-0">
         <div className="flex items-center justify-between min-h-[540px]">
-          
+
           {/* Text block */}
           <div className="flex-1 max-w-[620px] xl:max-w-[680px]">
             <h1
               className="font-semibold text-[#0E1A2B] leading-[1.12] tracking-[-0.03em]"
-              style={{ fontSize: "clamp(32px, 2.6vw, 62px)" }}
+              style={{ fontSize: "clamp(32px, 2.6vw, 58px)" }}
             >
-              Natural Elegance &amp; Timeless Radiance
+              Aesthetic &amp; Anti-Ageing
               <br />
-              with advanced{" "}
               <span
                 className="font-editorial italic font-normal"
                 style={{ letterSpacing: "0.005em" }}
               >
-                Aesthetics &amp; Anti-Aging
-              </span>{" "}
-              care.
+                Personalised for you.
+              </span>
             </h1>
 
-            {/* CTA — Book Your Consultant only */}
-            <div className="mt-8">
+            <p
+              className="mt-5 text-[#1D2C40]/65 leading-relaxed"
+              style={{ fontSize: "clamp(15px, 1.1vw, 17px)", maxWidth: "520px" }}
+            >
+              Treatments are designed around your individual skin and facial concerns — using advanced technologies and medically supervised injectable treatments to achieve natural results.
+            </p>
+
+            <div className="mt-8 flex items-center gap-4">
               <button
                 onClick={scrollToContact}
                 id="aesthetics-banner-book-appointment-btn"
-                className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-[linear-gradient(135deg,#2D4F6F_0%,#6A97BC_100%)] text-white text-[15px] font-medium tracking-normal shadow-md hover:brightness-105 hover:shadow-lg active:scale-[0.98] transition-all duration-200 cursor-pointer"
+                className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-[linear-gradient(135deg,#2D4F6F_0%,#6A97BC_100%)] text-white text-[15px] font-medium tracking-normal hover:brightness-105 active:scale-[0.98] transition-all duration-200 cursor-pointer"
               >
-                Book Your Consultant
+                Book a Consultation
               </button>
+
+              <a
+                href="#concerns"
+                className="text-[14px] font-semibold text-[#2D4F6F] hover:text-[#0E1A2B] transition-colors"
+              >
+                Explore by concern ↓
+              </a>
             </div>
           </div>
 
@@ -45,7 +56,7 @@ function Banner() {
           <div className="flex-shrink-0 flex items-end justify-center pl-8">
             <Image
               src="/images/endocrine&nutrition/banner.png"
-              alt="West Valley Aesthetics & Anti-Aging Specialist"
+              alt="West Valley Aesthetics & Anti-Ageing Specialist"
               width={1086}
               height={1206}
               priority
@@ -68,33 +79,40 @@ function Banner() {
           className="font-bold text-[#0E1A2B] leading-[1.15] tracking-[-0.03em]"
           style={{ fontSize: "clamp(28px, 6vw, 46px)" }}
         >
-          Natural Elegance &amp; Timeless Radiance
+          Aesthetic &amp; Anti-Ageing
           <br />
-          with advanced{" "}
           <span
             className="font-editorial italic font-normal"
             style={{ letterSpacing: "0.005em" }}
           >
-            Aesthetics &amp; Anti-Aging
-          </span>{" "}
-          care.
+            Personalised for you.
+          </span>
         </h1>
 
-        {/* CTA */}
-        <div className="mt-6 sm:mt-7 flex flex-col items-center">
+        <p className="mt-4 text-[#1D2C40]/65 leading-relaxed text-[14.5px] max-w-[480px]">
+          Advanced technologies and medically supervised treatments designed around your individual skin concerns and goals.
+        </p>
+
+        <div className="mt-6 sm:mt-7 flex flex-col sm:flex-row items-center gap-3">
           <button
             onClick={scrollToContact}
             id="aesthetics-banner-book-appointment-btn-mobile"
-            className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-[linear-gradient(135deg,#2D4F6F_0%,#6A97BC_100%)] text-white text-[15px] font-medium tracking-normal shadow-md hover:brightness-105 active:scale-[0.98] transition-all duration-200 cursor-pointer"
+            className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-[linear-gradient(135deg,#2D4F6F_0%,#6A97BC_100%)] text-white text-[14.5px] font-medium tracking-normal hover:brightness-105 active:scale-[0.98] transition-all duration-200 cursor-pointer"
           >
-            Book Your Consultant
+            Book a Consultation
           </button>
+          <a
+            href="#concerns"
+            className="text-[13.5px] font-semibold text-[#2D4F6F]"
+          >
+            Explore by concern ↓
+          </a>
         </div>
 
         <div className="w-full max-w-[340px] sm:max-w-[420px] md:max-w-[520px] mt-6 sm:mt-4">
           <Image
             src="/images/endocrine&nutrition/banner.png"
-            alt="West Valley Aesthetics & Anti-Aging Specialist"
+            alt="West Valley Aesthetics & Anti-Ageing Specialist"
             width={1086}
             height={1206}
             priority

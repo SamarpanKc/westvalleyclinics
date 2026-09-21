@@ -158,13 +158,6 @@
   resolved "https://registry.npmjs.org/@emailjs/browser/-/browser-3.12.1.tgz"
   integrity sha512-C5nK07CgSCFx3onsuRt/ZaaMvIi0T3SHHanM7fKozjSvbZu+OjHHP9W608fYpic0OavF7yIlfy4+lRDO33JdbA==
 
-"@emnapi/runtime@^1.11.3":
-  version "1.11.3"
-  resolved "https://registry.npmjs.org/@emnapi/runtime/-/runtime-1.11.3.tgz"
-  integrity sha512-Xz4Tpyki7XyrpbUK1jR1AhdAdaXyhhY4lZ3neLodmhpuWfy2PAQN5B46sAiU4liOXGLkHypn/qU+jvfWSCYYLA==
-  dependencies:
-    tslib "^2.4.0"
-
 "@eslint-community/eslint-utils@^4.9.1", "@eslint-community/eslint-utils@4.9.1":
   version "4.9.1"
   resolved "https://registry.npmjs.org/@eslint-community/eslint-utils/-/eslint-utils-4.9.1.tgz"
