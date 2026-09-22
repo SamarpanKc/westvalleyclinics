@@ -9,10 +9,10 @@ function CardLeft({
 }) {
   return (
     <div className="app-layout pt-10 bg-neutral-50">
-      <div className="p-8 lg:p-10 lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center bg-white rounded-3xl border border-[#EAECEF]">
+      <div className="p-8 lg:p-10 lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center bg-white rounded-3xl ">
         <div className="flex justify-center lg:block">
           <div
-            className="border border-[#EAECEF] w-full max-w-[500px] h-[280px] sm:h-[340px] lg:h-[360px]"
+            className="w-full max-w-[500px] h-[280px] sm:h-[340px] lg:h-[360px]"
             style={{
               borderRadius: "16px 22px 22px 108px",
               overflow: "hidden",

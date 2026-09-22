@@ -26,49 +26,49 @@ function PlasticSurgeryPage() {
 
         {/* 01 — Asian Eyelid Surgery */}
         <CardLeft
-          img="/images/plasticSurgery/asianEyelid.png"
+          img="/images/Plastic Surgery/Eyelid-Surgery-Nepal.webp"
           title="Asian Eyelid Surgery"
           description="Asian eyelid surgery is a specialised approach to upper-eyelid anatomy, with each procedure planned according to individual eyelid structure and facial proportions. Procedures include double eyelid surgery (incisional and non-incisional), epicanthoplasty, ptosis correction and eyelid revision. The goal is a natural-looking eyelid contour that preserves your individual facial characteristics."
         />
 
         {/* 02 — Blepharoplasty */}
         <CardRight
-          img="/images/plasticSurgery/blepharoplasty.png"
+          img="/images/Plastic Surgery/blepharoplastyPokharaNepal.jpg"
           title="Blepharoplasty"
           description="Blepharoplasty addresses excess skin, fat and tissue changes around the upper and lower eyelids. Options include upper blepharoplasty, lower blepharoplasty, combined upper and lower correction, under-eye fat repositioning and revision surgery. Treatment is personalised according to eyelid anatomy, skin quality and the degree of change present."
         />
 
         {/* 03 — Rhinoplasty */}
         <CardLeft
-          img="/images/plasticSurgery/rhinoplasty.png"
+          img="/images/Plastic Surgery/Rhinoplasty-PokharaNepal.jpg"
           title="Rhinoplasty"
           description="Rhinoplasty can address both aesthetic and structural concerns of the nose. Our approach focuses on creating a nose that is proportionate to the overall face while considering nasal function. Procedures range from primary and structural rhinoplasty to tip refinement, dorsal augmentation, alar reduction, hump reduction, deviated nose correction, functional rhinoplasty and revision rhinoplasty. Surgical planning is based on nasal structure, facial proportions, skin characteristics and your individual goals."
         />
 
         {/* 04 — Facelift */}
         <CardRight
-          img="/images/plasticSurgery/facelift.png"
+          img="/images/Plastic Surgery/FaceliftSurgeryWestvalleyPokharaNEpal.webp"
           title="Facelift Surgery"
           description="Facelift surgery addresses age-related changes such as facial laxity, jowling and loss of jawline definition. Procedures include facelift, mini facelift, lower face lift, neck lift, brow and forehead lift, and facial fat grafting. The aim is to restore facial contours and a refreshed appearance while maintaining natural facial expression and proportion."
         />
 
         {/* 05 — Breast Surgery */}
         <CardLeft
-          img="/images/plasticSurgery/breastSurgery.png"
+          img="/images/Plastic Surgery/BrestSurgeryNepalPokhara.jpg"
           title="Breast Surgery"
           description="Breast surgery is planned around individual body proportions, breast anatomy, skin quality and personal goals. Procedures include breast augmentation, breast reduction, breast lift and mastopexy, asymmetry correction, implant revision and gynecomastia surgery. A detailed consultation helps determine the most appropriate surgical approach for each patient."
         />
 
         {/* 06 — Body Contouring */}
         <CardRight
-          img="/images/plasticSurgery/bodyContouring.png"
+          img="/images/Plastic Surgery/Body-Contouring-in-NepalPokhara.jpg"
           title="Body Contouring"
           description="Body contouring surgery addresses localised fat, excess skin and changes in body shape associated with ageing, pregnancy or significant weight loss. Procedures include liposuction, abdominal liposuction, waist and flank contouring, arm and thigh contouring, abdominoplasty, post-weight-loss body contouring and male chest contouring. Treatment is selected according to body anatomy, skin elasticity and your goals."
         />
 
         {/* 07 — Reconstructive & Corrective Surgery */}
         <CardLeft
-          img="/images/plasticSurgery/reconstructive.png"
+          img="/images/Plastic Surgery/plastic-reconstructive-surgery.webp"
           title="Reconstructive & Corrective Surgery"
           description="Plastic surgery plays an important role in restoring appearance and function following injury, previous surgery, scarring or selected congenital conditions. Procedures include scar revision, post-trauma reconstruction, soft-tissue reconstruction, post-surgical correction, selected congenital deformity correction and corrective revision procedures. Each case requires individual assessment and a treatment plan specific to the patient's condition."
         />

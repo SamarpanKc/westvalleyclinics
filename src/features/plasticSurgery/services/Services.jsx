@@ -12,7 +12,7 @@ function Services() {
           and medical suitability.
         </p>
 
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 text-neutral-700">
+        {/* <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 text-neutral-700">
           {[
             {
               title: "Asian Eyelid Surgery",
@@ -54,7 +54,7 @@ function Services() {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );

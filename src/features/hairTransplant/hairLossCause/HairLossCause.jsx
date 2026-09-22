@@ -1,4 +1,5 @@
 import Image from "next/image";
+import hairLossCausesImg from "../../../../public/images/hairTransplant/hairLossCauses.png";
 
 function HairLossCause() {
   return (
@@ -24,10 +25,8 @@ function HairLossCause() {
         {/* Root Causes Graphic */}
         <div className="mx-auto mt-12 flex max-w-[1050px] items-center justify-center sm:mt-16">
           <Image
-            src="/images/hairTransplant/hairLossCauses.png"
+            src={hairLossCausesImg}
             alt="Hair loss has multiple root causes"
-            width={2332}
-            height={1302}
             priority
             className="h-auto w-full max-w-[950px] object-contain"
           />

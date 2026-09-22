@@ -12,7 +12,7 @@ function CardRight({
 }) {
   return (
     <div className="app-layout pt-10 bg-neutral-50">
-      <div className="p-8 lg:p-10 lg:grid lg:grid-cols-2 lg:gap-12 items-center bg-white rounded-3xl border border-[#EAECEF]">
+      <div className="p-8 lg:p-10 lg:grid lg:grid-cols-2 lg:gap-12 items-center bg-white rounded-3xl ">
         <div>
           {tag && (
             <div className="inline-block px-3 py-1 mb-3 rounded-full bg-[#EBF3F8] text-[#2D4F6F] text-[12px] font-semibold">
