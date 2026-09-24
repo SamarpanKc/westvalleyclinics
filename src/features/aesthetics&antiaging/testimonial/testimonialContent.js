@@ -1,20 +1,30 @@
 export const testimonialContent = [
   {
-    text:
-      "I had Botox and dermal fillers at West Valley and could not be happier with how refreshed and natural I look. The doctor listened attentively to my goals and delivered exceptional results!",
-    name: "Sunita Gurung",
-    role: "Aesthetic Patient",
+    review:
+      "Dealing with severe breakouts in my twenties left me with deep acne scars and uneven pigmentation. My self-confidence went down the drain, and I hated looking in the mirror. But the team here didn't just rush into a procedure; they did a proper assessment of my scar types and tailored a plan using a mix of Fractional CO₂ and Pico Lasers. The results have been fantastic, and my skin texture is finally smooth again!",
+    reviewUser: "Bishal Gurung",
+    role: "Acne Scar & Pigmentation Patient",
+    rating: 5,
   },
   {
-    text:
-      "The Thread Lift treatment exceeded all my expectations. The subtle lifting around my jawline and cheeks has taken years off my appearance without any downtime. Truly top-tier care in Pokhara.",
-    name: "Pooja Shrestha",
-    role: "Anti-Aging Patient",
+    review:
+      "I was starting to notice my skin sagging and deep fine lines around my eyes, which made me look tired all the time. The entire process was made stress-free from the initial consultation. They developed a personalized combination plan for me using Ultraformer III and Profhilo based on my exact facial anatomy and goals. The team was very professional and knowledgeable, and I honestly look and feel years younger. Thank you!",
+    reviewUser: "Saraswati Sharma",
+    role: "Overall Facial Rejuvenation Patient",
+    rating: 5,
   },
   {
-    text:
-      "I had PRP therapy for skin rejuvenation and my complexion is glowing and significantly firmer. The clinic's hygiene standards and professionalism are second to none.",
-    name: "Anjali Thapa",
-    role: "Skin & Aesthetics Patient",
+    review:
+      "Working long hours had left my skin looking completely dull, dehydrated, and my under-eyes were showing early signs of aging. The experts here explained everything so clearly and recommended a tailored treatment of HydraFacials and Skin Boosters. The best thing about getting treated here is the aftercare. I reached out several times with questions, and they answered every single time and reassured me. Now, my skin finally has a healthy, hydrated glow again.",
+    reviewUser: "Anisha Maharjan",
+    role: "Skin Quality & Under-Eye Patient",
+    rating: 5,
+  },
+  {
+    review:
+      "I had always felt self-conscious about losing volume in my cheeks and the lack of definition in my jawline as I got older. The clinic created a highly personalized facial contouring plan for me using Dermal Fillers. From the initial consultation to the actual procedure, everything was seamless. I am absolutely thrilled with the natural-looking structure and definition I've regained. The results were fantastic!",
+    reviewUser: "Rupesh Shrestha",
+    role: "Facial Contouring Patient",
+    rating: 5,
   },
 ];

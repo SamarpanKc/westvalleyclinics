@@ -1,221 +1,287 @@
+import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "react-feather";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
 import { scrollToContact } from "../../../utils/scrollToContact";
 
 const concerns = [
   {
     id: "fine-lines",
+    tag: "Wrinkle Softening",
     concern: "Fine Lines & Wrinkles",
     description:
-      "Develop naturally with ageing, facial movement and sun exposure. Treatment is selected based on wrinkle type and location.",
-    options: ["Botulinum Toxin", "Ultraformer III", "Skin Boosters", "Profhilo", "CO₂ Laser"],
+      "Targeted softening of dynamic and static lines while preserving natural facial expressions.",
+    options: ["Botulinum Toxin", "Ultraformer III", "Skin Boosters", "Fractional CO₂"],
   },
   {
     id: "skin-laxity",
+    tag: "Tissue Tightening",
     concern: "Skin Laxity & Sagging",
     description:
-      "Loss of collagen and elastin can lead to loose skin and reduced facial definition over time.",
-    options: ["Ultraformer III", "Profhilo", "Skin Boosters"],
+      "Deep ultrasound stimulation of collagen and elastin to firm loose skin and restore facial definition.",
+    options: ["Ultraformer III (HIFU)", "Profhilo", "Skin Boosters"],
   },
   {
     id: "pigmentation",
-    concern: "Pigmentation & Uneven Tone",
+    tag: "Pigment Correction",
+    concern: "Pigmentation & Melasma",
     description:
-      "May result from sun exposure, hormonal changes, acne or inflammation. Correct assessment is essential before treatment.",
-    options: ["Pico Laser", "Medical Skincare", "Combination Treatments"],
+      "Ultra-short picosecond laser energy breaks down stubborn sun spots, melasma, and uneven tone.",
+    options: ["Pico Laser", "Medical Skincare", "Targeted Peels"],
   },
   {
     id: "acne-scars",
+    tag: "Texture Remodeling",
     concern: "Acne Scars & Texture",
     description:
-      "Acne can leave behind scars, enlarged pores and uneven texture. Treatment is selected by scar type and depth.",
-    options: ["Fractional CO₂ Laser", "Pico Laser", "Combination Treatments"],
+      "Ablative micro-thermal zones stimulate rapid dermal renewal to smooth atrophic scars and roughness.",
+    options: ["Fractional CO₂ Laser", "Pico Laser", "Combination Protocols"],
   },
   {
     id: "enlarged-pores",
+    tag: "Pore Refinement",
     concern: "Enlarged Pores",
     description:
-      "Associated with excess sebum, acne and skin-texture changes. Treatment depends on the underlying cause.",
-    options: ["CO₂ Laser", "HydraFacial", "Skin Rejuvenation"],
+      "Deep vortex extraction combined with thermal laser resurfacing to clear and tighten pore structures.",
+    options: ["HydraFacial MD", "CO₂ Laser", "Carbon Rejuvenation"],
   },
   {
     id: "dull-skin",
+    tag: "Hydration & Glow",
     concern: "Dull & Dehydrated Skin",
     description:
-      "Dehydration and environmental exposure can make skin appear dull, rough or tired.",
-    options: ["HydraFacial", "Skin Boosters", "Profhilo", "PDRN", "Polynucleotides"],
+      "Direct intradermal infusion of hyaluronic acid, polynucleotides, and restorative antioxidants.",
+    options: ["HydraFacial MD", "Skin Boosters", "Profhilo", "PDRN"],
   },
   {
     id: "volume-loss",
+    tag: "Volume Restoration",
     concern: "Loss of Facial Volume",
     description:
-      "Ageing can lead to volume changes around the cheeks, lips, chin and other facial areas.",
-    options: ["Dermal Fillers", "Personalised Facial Contouring"],
+      "Replenishing deep structural volume in cheeks, temples, and under-eyes with biocompatible fillers.",
+    options: ["Dermal Fillers", "Facial Contouring", "Biostimulators"],
   },
   {
     id: "jawline",
-    concern: "Jawline & Facial Contouring",
+    tag: "Lower Face Sculpting",
+    concern: "Jawline & Contouring",
     description:
-      "Changes in skin laxity and volume can affect jawline definition and lower-face structure.",
-    options: ["Ultraformer III", "Dermal Fillers", "Personalised Contouring"],
+      "Sharpening the mandibular border and reducing submental fullness for balanced lower-face structure.",
+    options: ["Ultraformer III", "Dermal Fillers", "Submental Contouring"],
   },
   {
     id: "under-eye",
+    tag: "Periorbital Care",
     concern: "Under-Eye Concerns",
     description:
-      "The under-eye area can develop fine lines and skin-quality changes as part of the ageing process.",
-    options: ["Skin Boosters", "PDRN", "Polynucleotides", "Personalised Treatment"],
+      "Revitalizing delicate periorbital tissue, softening dark hollows, and improving fine skin quality.",
+    options: ["Polynucleotides (PDRN)", "Skin Boosters", "Light Fillers"],
   },
   {
     id: "neck",
-    concern: "Neck Lines & Ageing",
+    tag: "Neck Rejuvenation",
+    concern: "Neck Lines & Laxity",
     description:
-      "The neck can develop fine lines, reduced firmness and other age-related changes over time.",
-    options: ["Ultraformer III", "Profhilo", "Skin Boosters"],
+      "Firming neck crepiness, softening horizontal bands, and restoring smooth jawline-to-neck continuity.",
+    options: ["Ultraformer III", "Profhilo Neck", "Skin Boosters"],
   },
   {
     id: "sun-damage",
+    tag: "Photorejuvenation",
     concern: "Sun-Damaged Skin",
     description:
-      "Long-term sun exposure can contribute to pigmentation, uneven tone, rough texture and visible ageing.",
+      "Reversing photo-induced pigmentation, texture damage, and cellular sluggishness for renewed radiance.",
     options: ["Pico Laser", "CO₂ Laser", "Skin Rejuvenation"],
   },
   {
-    id: "early-ageing",
-    concern: "Early Ageing & Skin Quality",
-    description:
-      "Early signs may include dehydration, fine lines, reduced elasticity and loss of radiance.",
-    options: ["Skin Boosters", "Profhilo", "PDRN", "Polynucleotides", "HydraFacial"],
-  },
-  {
     id: "hair-removal",
-    concern: "Unwanted Facial & Body Hair",
+    tag: "Permanent Reduction",
+    concern: "Unwanted Hair",
     description:
-      "Laser hair removal targets follicles to progressively reduce unwanted hair over a course of treatments.",
-    options: ["Laser Hair Removal"],
+      "Precision follicle deactivation with advanced contact cooling for comfortable, progressive hair reduction.",
+    options: ["Laser Hair Removal", "Contact Cooling Technology"],
   },
   {
     id: "rejuvenation",
+    tag: "Comprehensive Care",
     concern: "Overall Facial Rejuvenation",
     description:
-      "For multiple concerns — wrinkles, pigmentation, laxity, dehydration — a personalised combination plan is developed based on your facial anatomy and goals.",
-    options: [
-      "Ultraformer III",
-      "Pico Laser",
-      "CO₂ Laser",
-      "HydraFacial",
-      "Skin Boosters",
-      "Profhilo",
-      "Botulinum Toxin",
-      "Dermal Fillers",
-    ],
-  },
-];
-
-const technologies = [
-  {
-    name: "Ultraformer III",
-    label: "HIFU & MMFU",
-    detail: "Focused ultrasound for skin tightening and facial contouring.",
-  },
-  {
-    name: "Pico Laser",
-    label: "Pigmentation & Rejuvenation",
-    detail: "Selected pigmentation and skin-rejuvenation indications.",
-  },
-  {
-    name: "Fractional CO₂ Laser",
-    label: "Resurfacing",
-    detail: "Skin resurfacing, acne scars and texture treatments.",
-  },
-  {
-    name: "HydraFacial",
-    label: "Cleanse & Hydrate",
-    detail: "Cleansing, exfoliation, extraction and deep hydration.",
-  },
-  {
-    name: "Laser Hair Removal",
-    label: "Unwanted Hair",
-    detail: "Progressive reduction of unwanted facial and body hair.",
-  },
-  {
-    name: "Injectable Treatments",
-    label: "Volume & Quality",
-    detail:
-      "Botulinum toxin, dermal fillers, skin boosters, Profhilo, PDRN, polynucleotides and exosome-based treatments.",
+      "A harmonious multi-modality plan addressing laxity, texture, tone, and volume in staged sessions.",
+    options: ["Ultraformer III", "Pico Laser", "Profhilo", "Dermal Fillers"],
   },
 ];
 
 function Services() {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   return (
     <>
       {/* ── Concern-Led Treatment Section ── */}
       <section className="bg-white py-16 sm:py-20 lg:py-24" id="concerns">
         <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-16 xl:px-20">
 
-          {/* Section heading */}
-          <div className="mx-auto max-w-[760px] text-center">
-            <span className="text-[13px] font-semibold uppercase tracking-wider text-[#527E9F]">
-              Concern-Led Care
-            </span>
-            <h2
-              className="mt-3 font-semibold leading-[1.08] tracking-[-0.04em] text-[#0E1A2B]"
-              style={{ fontSize: "clamp(28px, 4vw, 46px)" }}
-            >
-              Explore by <span className="text-[#527E9F]">Concern.</span>
-            </h2>
-            <p className="mx-auto mt-4 max-w-[600px] text-[15px] leading-7 text-[#536273] sm:text-[16px]">
-              Using advanced technologies and medically supervised injectable treatments, we develop personalised plans based on your skin condition, facial anatomy and goals.
-            </p>
+          {/* Section heading + carousel navigation controls */}
+          <div className="mx-auto max-w-[1240px] flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div className="max-w-[700px]">
+              <span className="text-[13px] font-semibold uppercase tracking-wider text-[#527E9F]">
+                Concern-Led Care
+              </span>
+              <h2
+                className="mt-3 font-semibold leading-[1.08] tracking-[-0.04em] text-[#0E1A2B]"
+                style={{ fontSize: "clamp(28px, 4vw, 46px)" }}
+              >
+                Explore by <span className="text-[#527E9F]">Concern.</span>
+              </h2>
+              <p className="mt-4 text-[15px] leading-7 text-[#536273] sm:text-[16px]">
+                Using advanced technologies and medically supervised injectable treatments, we develop personalised plans based on your skin condition, facial anatomy and goals.
+              </p>
+            </div>
+
+            {/* Carousel navigation arrows */}
+            <div className="flex items-center gap-2.5 self-start md:self-end">
+              <button
+                aria-label="Previous concern"
+                className="concerns-prev-btn flex h-10 w-10 md:h-11 md:w-11 items-center justify-center rounded-full bg-white border border-[#D8E7F1] text-[#2D4F6F] shadow-xs transition-all duration-200 hover:bg-[#EBF3F8] hover:border-[#527E9F] active:scale-95 cursor-pointer"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              <button
+                aria-label="Next concern"
+                className="concerns-next-btn flex h-10 w-10 md:h-11 md:w-11 items-center justify-center rounded-full bg-white border border-[#D8E7F1] text-[#2D4F6F] shadow-xs transition-all duration-200 hover:bg-[#EBF3F8] hover:border-[#527E9F] active:scale-95 cursor-pointer"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
           </div>
 
-          {/* Concern cards grid */}
-          <div className="mx-auto mt-12 max-w-[1240px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {concerns.map((item, i) => (
-              <article
-                key={item.id}
-                className="flex flex-col rounded-2xl bg-[#FAFCFE] p-6 border border-[#EAECEF]"
+          {/* Concern Carousel */}
+          <div className="mx-auto mt-10 sm:mt-12 max-w-[1240px]">
+            {isMounted ? (
+              <Swiper
+                modules={[Navigation, Autoplay]}
+                navigation={{
+                  prevEl: ".concerns-prev-btn",
+                  nextEl: ".concerns-next-btn",
+                }}
+                autoplay={{
+                  delay: 4500,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true,
+                }}
+                loop={concerns.length > 3}
+                spaceBetween={20}
+                slidesPerView={1}
+                breakpoints={{
+                  640: {
+                    slidesPerView: 1.4,
+                    spaceBetween: 20,
+                  },
+                  768: {
+                    slidesPerView: 2.2,
+                    spaceBetween: 22,
+                  },
+                  1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 24,
+                  },
+                  1280: {
+                    slidesPerView: 3.2,
+                    spaceBetween: 24,
+                  },
+                }}
+                className="!pb-6 !pt-2"
               >
-                {/* Number & concern */}
-                <div className="flex items-center gap-2.5 mb-3">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#527E9F]">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="h-px flex-1 bg-[#D8E7F1]" />
-                </div>
+                {concerns.map((item, i) => (
+                  <SwiperSlide key={item.id} className="!h-auto flex">
+                    <article className="h-full w-full flex flex-col justify-between rounded-[22px] bg-white p-6 sm:p-7 border border-[#EAECEF] transition-all duration-300 group select-none">
+                      {/* Top row: Number and category tag */}
+                      <div>
+                        <div className="flex items-center justify-between gap-3 mb-4">
+                          <span className="flex items-center justify-center h-6 w-6 rounded-full bg-[#EBF3F8]/40 text-[11px] font-bold text-[#2D4F6F] tracking-wider">
+                            {String(i + 1).padStart(2, "0")}
+                          </span>
+                          <span className="text-[11px] font-semibold uppercase tracking-wider text-[#527E9F] bg-[#F0F5FA]/50 px-2.5 py-0.5 rounded-full">
+                            {item.tag}
+                          </span>
+                        </div>
 
-                <h3 className="text-[17px] font-semibold text-[#0E2236] tracking-[-0.02em] leading-snug">
-                  {item.concern}
-                </h3>
+                        {/* Title & condensed description */}
+                        <h3 className="text-[18px] sm:text-[19px] font-semibold text-[#0E2236] tracking-[-0.02em] leading-snug group-hover:text-[#2D4F6F] transition-colors">
+                          {item.concern}
+                        </h3>
 
-                <p className="mt-2 text-[13.5px] text-[#536273] leading-[1.7] flex-1">
-                  {item.description}
-                </p>
+                        <p className="mt-2.5 text-[13.5px] text-[#536273] leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
 
-                {/* Treatment options */}
-                <div className="mt-4 flex flex-wrap gap-1.5">
-                  {item.options.map((opt) => (
-                    <span
-                      key={opt}
-                      className="inline-block px-2.5 py-1 text-[11.5px] font-medium text-[#2D4F6F] bg-[#EBF3F8] rounded-full"
-                    >
-                      {opt}
-                    </span>
-                  ))}
-                </div>
-              </article>
-            ))}
+                      {/* Bottom row: Divider + Modalities + Quick CTA */}
+                      <div>
+                        <div className="mt-5 pt-4 border-t border-[#EDF2F7]">
+                          <span className="text-[11px] font-semibold uppercase tracking-wider text-[#8A9BA8] block mb-2">
+                            Treatment Options:
+                          </span>
+                          <div className="flex flex-wrap gap-1.5">
+                            {item.options.map((opt) => (
+                              <span
+                                key={opt}
+                                className="inline-block px-2.5 py-1 text-[11.5px] font-medium text-[#2D4F6F] bg-[#F7F9FC] border border-[#EAECEF] rounded-full"
+                              >
+                                {opt}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {concerns.slice(0, 3).map((item, i) => (
+                  <article
+                    key={item.id}
+                    className="flex flex-col justify-between rounded-[22px] bg-white p-6 sm:p-7 border border-[#EAECEF]"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-3 mb-4">
+                        <span className="flex items-center justify-center h-6 w-6 rounded-full bg-[#EBF3F8] text-[11px] font-bold text-[#2D4F6F]">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span className="text-[11px] font-semibold uppercase tracking-wider text-[#527E9F] bg-[#F0F5FA] border border-[#DCE8F1] px-2.5 py-0.5 rounded-full">
+                          {item.tag}
+                        </span>
+                      </div>
+                      <h3 className="text-[18px] font-semibold text-[#0E2236]">
+                        {item.concern}
+                      </h3>
+                      <p className="mt-2.5 text-[13.5px] text-[#536273]">
+                        {item.description}
+                      </p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>
 
-      {/* ── Technology Section ── */}
-      <section className="bg-neutral-50 py-16 sm:py-20 lg:py-24" id="technology">
+      {/* ── Technology Section Header ── */}
+      <section className="bg-neutral-50 pt-16 sm:pt-20 lg:pt-24 pb-4" id="technology">
         <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-16 xl:px-20">
-
           <div className="mx-auto max-w-[1240px]">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
-              {/* Left: heading + philosophy */}
-              <div className="lg:col-span-5">
+              {/* Left: heading + intro */}
+              <div className="lg:col-span-6">
                 <span className="text-[13px] font-semibold uppercase tracking-wider text-[#527E9F]">
                   Advanced Technology
                 </span>
@@ -224,7 +290,7 @@ function Services() {
                   style={{ fontSize: "clamp(24px, 3vw, 38px)" }}
                 >
                   Technology at{" "}
-                  <span className="font-editorial italic font-normal text-[#2D4F6F]">
+                  <span className="text-[#527E9F]">
                     West Valley.
                   </span>
                 </h2>
@@ -234,18 +300,16 @@ function Services() {
                 <p className="text-[15px] leading-[1.78] text-[#536273]">
                   Our concern-led approach is supported by advanced aesthetic technology and injectable treatments, selected based on what is appropriate for your individual skin condition and goals.
                 </p>
+              </div>
 
-                {/* Philosophy callout */}
-                <div className="mt-8 rounded-2xl bg-white p-6 border border-[#EAECEF]">
-                  <p className="text-[13px] font-semibold uppercase tracking-wider text-[#527E9F] mb-3">
+              {/* Right: Philosophy callout */}
+              <div className="lg:col-span-6">
+                <div className="rounded-2xl bg-white p-6 sm:p-7">
+                  <p className="text-[13px] font-semibold uppercase tracking-wider text-[#527E9F] mb-2.5">
                     Our Philosophy
                   </p>
                   <p className="text-[16px] font-semibold text-[#0E2236] leading-snug tracking-[-0.02em]">
-                    Assess first.{" "}
-                    <span className="font-editorial italic font-normal text-[#2D4F6F]">
-                      Treat appropriately.
-                    </span>{" "}
-                    Enhance naturally.
+                    Assess first. Treat appropriately. Enhance naturally.
                   </p>
                   <p className="mt-3 text-[13.5px] text-[#536273] leading-relaxed">
                     Every face and every skin type is different. During your consultation, our dermatology and aesthetic team will assess your concerns and discuss the most suitable options.
@@ -260,30 +324,6 @@ function Services() {
                 </div>
               </div>
 
-              {/* Right: Technology list */}
-              <div className="lg:col-span-7 space-y-3">
-                {technologies.map((tech) => (
-                  <div
-                    key={tech.name}
-                    className="flex items-start gap-4 rounded-xl bg-white p-5 border border-[#EAECEF]"
-                  >
-                    <span className="mt-0.5 flex h-2 w-2 rounded-full bg-[#527E9F] shrink-0" />
-                    <div>
-                      <div className="flex items-baseline gap-2 flex-wrap">
-                        <span className="text-[15px] font-semibold text-[#0E2236]">
-                          {tech.name}
-                        </span>
-                        <span className="inline-block px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-[#527E9F] bg-[#EBF3F8] rounded-full">
-                          {tech.label}
-                        </span>
-                      </div>
-                      <p className="mt-1 text-[13.5px] text-[#536273] leading-relaxed">
-                        {tech.detail}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </div>
