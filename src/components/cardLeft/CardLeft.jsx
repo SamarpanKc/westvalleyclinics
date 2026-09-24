@@ -6,28 +6,31 @@ function CardLeft({
   tag = "",
   description = "",
   options = [],
+  optionsTitle = "Treatment Options:",
 }) {
   return (
     <div className="app-layout pt-10 bg-neutral-50">
       <div className="p-8 lg:p-10 lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center bg-white rounded-3xl ">
         <div className="flex justify-center lg:block">
           <div
-            className="w-full max-w-[500px] h-[280px] sm:h-[340px] lg:h-[360px]"
+            className="relative w-full max-w-[500px] h-[280px] sm:h-[340px] lg:h-[360px]"
             style={{
               borderRadius: "16px 22px 22px 108px",
               overflow: "hidden",
             }}
           >
             <img src={img} alt={title} className="w-full h-full object-cover" />
+            {tag && (
+              <div className="absolute top-0 right-0 z-10">
+                <span className="inline-flex items-center bg-[#527E9F] px-3.5 py-1 text-[12px] font-semibold tracking-wide text-[#ffffff] rounded-bl-2xl">
+                  {tag}
+                </span>
+              </div>
+            )}
           </div>
         </div>
 
         <div className="mt-8 lg:mt-0">
-          {tag && (
-            <div className="inline-block px-3 py-1 mb-3 rounded-full bg-[#EBF3F8] text-[#2D4F6F] text-[12px] font-semibold">
-              {tag}
-            </div>
-          )}
           <h3 className="text-[24px] sm:text-[26px] font-semibold text-[#0E1A2B] tracking-[-0.02em]">
             {title}
           </h3>
@@ -38,15 +41,14 @@ function CardLeft({
           {options && options.length > 0 && (
             <div className="mt-5">
               <p className="text-[12px] font-semibold uppercase tracking-wider text-[#8A9BA8] mb-2.5">
-                Treatment Options:
+                {optionsTitle}
               </p>
               <div className="flex flex-wrap gap-2">
                 {options.map((opt) => (
                   <span
                     key={opt}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F7F9FC] border border-[#EAECEF] text-[12.5px] font-medium text-[#0E2236]"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#F7F9FC] border border-[#EAECEF] text-[12.5px] font-medium text-[#0E2236]"
                   >
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#527E9F] shrink-0" />
                     {opt}
                   </span>
                 ))}

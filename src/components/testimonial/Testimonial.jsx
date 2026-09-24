@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "react-feather";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper";
+import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import TestimonialCard from "./TestimonialCard";
@@ -162,8 +162,8 @@ function Testimonial({ testimonialContent = [] }) {
                 {testimonialContent.map((item, idx) => (
                   <SwiperSlide key={idx} className="!h-auto flex">
                     <TestimonialCard
-                      review={item.review}
-                      reviewUser={item.reviewUser}
+                      review={item.review || item.text}
+                      reviewUser={item.reviewUser || item.name}
                       role={item.role}
                       rating={item.rating}
                     />
@@ -175,8 +175,8 @@ function Testimonial({ testimonialContent = [] }) {
                 {testimonialContent.slice(0, 3).map((item, idx) => (
                   <TestimonialCard
                     key={idx}
-                    review={item.review}
-                    reviewUser={item.reviewUser}
+                    review={item.review || item.text}
+                    reviewUser={item.reviewUser || item.name}
                     role={item.role}
                     rating={item.rating}
                   />

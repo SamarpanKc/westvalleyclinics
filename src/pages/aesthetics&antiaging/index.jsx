@@ -24,76 +24,100 @@ function AestheticsAndAntiaging() {
         <Banner />
         <Services />
 
-        {/* 01 — Fine Lines & Wrinkles */}
+        {/* 01 — Ultraformer III */}
         <CardLeft
-          img="/images/skin&aethetics/botox.png"
-          tag="Wrinkle Relaxation &amp; Prevention"
-          title="Fine Lines &amp; Wrinkles"
-          description="Fine lines and wrinkles develop naturally with ageing, repeated facial movement, sun exposure and changes in skin quality. Depending on the type and depth of wrinkles, treatments are customised to soften lines while preserving natural facial expression."
-          options={["Botulinum Toxin", "Ultraformer III", "Skin Boosters", "Profhilo", "CO₂ Laser"]}
-        />
-
-        {/* 02 — Skin Laxity & Sagging */}
-        <CardRight
           img="/images/skin&aethetics/threadLift.png"
-          tag="Non-Surgical Tightening"
-          title="Skin Laxity &amp; Sagging"
-          description="Loss of collagen and elastin can gradually lead to loose skin and reduced facial definition. Ultraformer III uses focused ultrasound technology for selected skin-tightening and facial-contouring indications, stimulating deep dermal collagen production."
-          options={["Ultraformer III (HIFU)", "Profhilo Bioremodelling", "Skin Boosters"]}
+          tag="HIFU &amp; MMFU Technology"
+          title="Ultraformer III"
+          description="Ultraformer III is an advanced High-Intensity Focused Ultrasound (HIFU) and Micro &amp; Macro Focused Ultrasound (MMFU) system engineered for non-invasive skin tightening and precise facial contouring. By delivering targeted ultrasound thermal energy into deep dermal and SMAS layers, it stimulates natural neocollagenesis and tissue contraction without downtime."
+          optionsTitle="Technology Treatment:"
+          options={[
+            "Skin Laxity & Sagging",
+            "Non-Surgical Face & Neck Tightening",
+            "Jawline & Facial Contouring",
+            "Fine Lines & Wrinkle Reduction",
+            "Submental / Double Chin Contouring",
+          ]}
         />
 
-        {/* 03 — Loss of Facial Volume */}
-        <CardLeft
-          img="/images/skin&aethetics/fillers.png"
-          tag="Volume Restoration &amp; Contouring"
-          title="Loss of Facial Volume"
-          description="Ageing is often accompanied by the resorption of deep fat pads and structural support, leading to volume loss in the cheeks, temples, under-eyes, lips and jawline. Biocompatible hyaluronic acid dermal fillers provide targeted structural restoration and natural contouring."
-          options={["Dermal Fillers", "Cheek & Lip Contouring", "Jawline Definition"]}
-        />
-
-        {/* 04 — Skin Boosters & Bioremodelling */}
+        {/* 02 — Pico Laser */}
         <CardRight
-          img="/images/skin&aethetics/prp.png"
-          tag="Bioremodelling &amp; Cellular Hydration"
-          title="Skin Boosters, Profhilo &amp; PDRN"
-          description="When skin loses its natural hydration and resilience, topical moisturizers alone may not suffice. Injectable skin boosters, high-concentration Profhilo hyaluronic acid, and PDRN polynucleotides deliver intense hydration directly into the dermis to enhance elasticity, firmness, and natural radiance."
-          options={["Profhilo", "PDRN Polynucleotides", "Skin Boosters", "Exosome Therapy"]}
-        />
-
-        {/* 05 — Pigmentation & Uneven Tone */}
-        <CardLeft
           img="/images/skin&aethetics/carbonPeel.png"
-          tag="Targeted Pigment Correction"
-          title="Pigmentation &amp; Uneven Tone"
-          description="Pigmentation concerns such as melasma, sun spots, freckles and post-inflammatory hyperpigmentation (PIH) require careful diagnostic assessment. Advanced Pico Laser technology breaks down pigment clusters into microscopic particles with minimal thermal impact to surrounding tissue."
-          options={["Pico Laser", "Medical Skincare Protocols", "Combination Laser Therapy"]}
+          tag="Picosecond Laser System"
+          title="Pico Laser"
+          description="Pico Laser operates with ultra-short picosecond pulses to produce a photomechanical shockwave effect, disintegrating stubborn pigment clusters and melanin into microscopic dust-like particles that are cleared naturally by the body. It delivers notable improvement in pigmentation and skin clarity with minimal thermal impact to surrounding tissue."
+          optionsTitle="Technology Treatment:"
+          options={[
+            "Pigmentation & Uneven Tone",
+            "Melasma & Sun Spots",
+            "Post-Inflammatory Hyperpigmentation (PIH)",
+            "Freckles & Blemishes",
+            "Tone Clarification & Rejuvenation",
+          ]}
         />
 
-        {/* 06 — Acne Scars & Texture */}
-        <CardRight
-          img="/images/skin&aethetics/scars.png"
-          tag="Resurfacing &amp; Texture Refinement"
-          title="Acne Scars &amp; Texture"
-          description="Acne can leave behind atrophic scars (icepick, boxcar, rolling), enlarged pores and uneven skin texture. Fractional CO₂ Laser creates controlled micro-thermal treatment zones to prompt rapid re-epithelialization and vigorous deep collagen remodeling."
-          options={["Fractional CO₂ Laser", "Pico Laser", "HydraFacial Exfoliation"]}
-        />
-
-        {/* 07 — HydraFacial MD */}
+        {/* 03 — Fractional CO₂ Laser */}
         <CardLeft
-          img="/images/skin&aethetics/hydroFacial.png"
-          tag="Clinical Cleanse &amp; Infusion"
-          title="HydraFacial MD"
-          description="HydraFacial delivers comprehensive skin rejuvenation through a non-invasive multi-step treatment: deep cleansing, painless vortex extraction of congested pores, and concentrated infusion of nourishing antioxidants, peptides, and hyaluronic acid."
-          options={["HydraFacial", "Deep Vortex Extraction", "Antioxidant Infusion"]}
+          img="/images/skin&aethetics/scars.png"
+          tag="Fractional Ablative Resurfacing"
+          title="Fractional CO₂ Laser"
+          description="Fractional CO₂ Laser creates controlled microscopic thermal treatment columns deep into the dermis while preserving surrounding healthy tissue for rapid healing. This stimulates vigorous collagen renewal, structural dermal remodeling, and tissue contraction, making it the clinical gold standard for scar revision, enlarged pores, and deep textural rejuvenation."
+          optionsTitle="Technology Treatment:"
+          options={[
+            "Acne Scars (Icepick, Boxcar, Rolling)",
+            "Enlarged Pores & Rough Texture",
+            "Surgical & Traumatic Scars",
+            "Deep Facial Lines & Wrinkles",
+            "Intensive Skin Resurfacing",
+          ]}
         />
 
-        {/* 08 — Overall Facial Rejuvenation */}
+        {/* 04 — HydraFacial MD */}
         <CardRight
+          img="/images/skin&aethetics/hydroFacial.png"
+          tag="Clinical Cleanse &amp; Hydration"
+          title="HydraFacial MD"
+          description="HydraFacial delivers comprehensive, non-invasive clinical facial rejuvenation utilizing patented Vortex-Fusion technology. Through a simultaneous multi-step procedure, it gently exfoliates dull dead skin cells, suctions out congested pore debris and blackheads painlessly, and infuses the dermis with restorative peptides, hyaluronic acid, and potent antioxidants."
+          optionsTitle="Technology Treatment:"
+          options={[
+            "Dull & Dehydrated Skin",
+            "Enlarged & Congested Pores",
+            "Blackhead & Impurity Extraction",
+            "Skin Texture & Elasticity",
+            "Instant Complexion Glow",
+          ]}
+        />
+
+        {/* 05 — Laser Hair Removal */}
+        <CardLeft
           img="/images/skin&aethetics/rejuvenation.png"
-          tag="Multi-Modality Treatment Plans"
-          title="Overall Facial Rejuvenation"
-          description="For individuals presenting with multiple concurrent concerns — fine lines, laxity, volume loss and uneven texture — our aesthetic doctors craft a cohesive, staged treatment plan combining energy devices and medically supervised injectables aligned with your facial anatomy."
-          options={["Comprehensive Assessment", "Staged Combination Plans", "Natural Aesthetic Balance"]}
+          tag="Permanent Hair Reduction"
+          title="Laser Hair Removal"
+          description="Medical-grade laser hair removal targets follicular melanin with concentrated light energy, disabling active hair follicles and impeding future growth without compromising the surrounding skin barrier. Equipped with integrated contact cooling, treatments are safe, comfortable, and effective across various facial and body zones."
+          optionsTitle="Technology Treatment:"
+          options={[
+            "Unwanted Facial & Body Hair",
+            "Ingrown Hairs & Razor Bumps",
+            "Folliculitis Prevention",
+            "Long-Term Hair Reduction",
+            "Precision Hairline & Beard Shaping",
+          ]}
+        />
+
+        {/* 06 — Injectable Treatments */}
+        <CardRight
+          img="/images/skin&aethetics/fillers.png"
+          tag="Medical Injectables &amp; Bioremodelling"
+          title="Injectable Treatments"
+          description="Our medically supervised injectable suite combines botulinum toxin for dynamic wrinkle relaxation, biocompatible hyaluronic acid dermal fillers for structural contouring and volume restoration, and advanced bioremodelling with Profhilo, PDRN, and skin boosters. Treatments are customized to your individual facial anatomy for subtle, natural-looking results."
+          optionsTitle="Technology Treatment:"
+          options={[
+            "Fine Lines & Wrinkles (Botulinum Toxin)",
+            "Loss of Facial Volume (Dermal Fillers)",
+            "Skin Boosters, Profhilo & PDRN",
+            "Cheek, Lip & Jawline Contouring",
+            "Under-Eye Rejuvenation & Skin Elasticity",
+          ]}
         />
 
         <Testimonial testimonialContent={testimonialContent} />

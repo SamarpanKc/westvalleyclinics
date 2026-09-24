@@ -1,116 +1,115 @@
+import { useState } from "react";
 import Head from "next/head";
-import Image from "next/image";
 import Layout from "../../layout/BaseLayout";
 import AboutUs from "../../components/aboutUs/AboutUs";
 import BookAppointment from "../../components/bookAppointment/BookAppointment";
 import { scrollToContact } from "../../utils/scrollToContact";
+import {
+  ArrowRight,
+  Plus,
+  CheckCircle,
+  Shield,
+  Activity,
+  Heart,
+  Droplet,
+  Sun,
+  Smile,
+  PhoneCall,
+  Calendar,
+  Star,
+} from "react-feather";
 
-const pharmacyDepartments = [
+const serviceCards = [
   {
     id: "skincare",
     num: "01",
-    tag: "Dermatology & Skin Health",
-    title: "Skin Care",
+    title: "Dermatology & Skin Care",
     description:
-      "Discover skincare essentials for cleansing, hydration, acne, pigmentation, sensitive skin, sun protection, anti-ageing and everyday skin health. Every formulation in our clinic dispensary is vetted for clinical efficacy, ingredient integrity, and dermatological safety.",
-    img: "/images/pharmacy/skincare.jpg",
-    imgPosition: "left",
-    focusAreas: [
-      "Cleansing & Deep Hydration",
-      "Acne & Blemish Management",
-      "Pigmentation & Tone Correction",
-      "Sensitive & Barrier Care",
-      "Broad-Spectrum Sun Protection",
-      "Anti-Ageing Therapeutics",
-    ],
-    sourcing: "Japan, Korea, Europe & America",
+      "Cleansing, barrier hydration, acne management, pigmentation correction & broad-spectrum sun care.",
+    highlight: "Japan, Korea & Europe",
+    icon: Droplet,
   },
   {
     id: "haircare",
     num: "02",
-    tag: "Trichology & Scalp Care",
-    title: "Hair Care",
+    title: "Hair Care & Scalp Therapy",
     description:
-      "Explore products for hair and scalp care, including specialized shampoos, conditioners, hair treatments, scalp care and hair-fall support. Formulations are selected by our trichology team to complement medical hair treatments and post-procedure recovery.",
-    img: "/images/pharmacy/haircare.jpg",
-    imgPosition: "right",
-    focusAreas: [
-      "Therapeutic Shampoos",
-      "Nourishing Hair Conditioners",
-      "Clinical Hair Treatments",
-      "Targeted Scalp Therapy",
-      "Hair-Fall & Follicle Support",
-      "Post-Procedure Care",
-    ],
-    sourcing: "Turkey, Europe & India",
+      "Therapeutic shampoos, follicle nourishment, scalp treatments & post-transplant recovery care.",
+    highlight: "Turkey, Europe & India",
+    icon: Star,
   },
   {
     id: "babycare",
     num: "03",
-    tag: "Pediatric Gentle Care",
-    title: "Baby Care",
+    title: "Hypoallergenic Baby Care",
     description:
-      "Gentle everyday essentials for babies and children, including baby skincare, bathing, hygiene, hair care and personal care. Formulated with soothing, hypoallergenic ingredients strictly free from harsh sulfates, parabens, and artificial fragrances.",
-    img: "/images/pharmacy/babycare.jpg",
-    imgPosition: "left",
-    focusAreas: [
-      "Hypoallergenic Baby Skincare",
-      "Tear-Free Bathing Washes",
-      "Daily Gentle Hygiene Care",
-      "Delicate Baby Hair Care",
-      "Soothing Barrier Balms",
-      "Pediatric Safe Formulations",
-    ],
-    sourcing: "Europe, America & Japan",
+      "Gentle tear-free washes, soothing barrier balms, delicate hair care & pediatric-safe essentials.",
+    highlight: "Europe, America & Japan",
+    icon: Heart,
   },
   {
     id: "wellness",
     num: "04",
-    tag: "Everyday Holistic Health",
-    title: "Wellness & Personal Care",
+    title: "Multivitamins & Wellness",
     description:
-      "A range of products selected to support everyday health, wellbeing, personal care and a healthy lifestyle. From restorative body care to daily hygiene essentials, each item meets rigorous pharmaceutical safety benchmarks.",
-    img: "/images/pharmacy/wellness.jpg",
-    imgPosition: "right",
-    focusAreas: [
-      "Everyday Health Support",
-      "Holistic Daily Wellbeing",
-      "Personal & Dermatological Care",
-      "Active Lifestyle Essentials",
-      "Restorative Body Formulations",
-    ],
-    sourcing: "Japan, Europe, America & India",
-  },
-  {
-    id: "supplements",
-    num: "05",
-    tag: "Nutritional Health & Fortification",
-    title: "Multivitamins & Supplements",
-    description:
-      "Explore a range of vitamins, minerals and nutritional supplements to support different nutritional and wellness needs. Batch-verified and sourced directly from certified laboratories to guarantee active ingredient potency and purity.",
-    img: "/images/pharmacy/supplements.jpg",
-    imgPosition: "left",
-    focusAreas: [
-      "Comprehensive Multivitamins",
-      "Essential Minerals & Trace Elements",
-      "Immune & Energy Support",
-      "Targeted Nutritional Fortification",
-      "Bone, Joint & Cellular Health",
-    ],
-    sourcing: "America, Europe, Japan & India",
+      "Bio-active daily vitamins, essential minerals, immune fortification & holistic personal care.",
+    highlight: "America, Europe & Japan",
+    icon: Activity,
   },
 ];
 
-const globalMarkets = [
-  { country: "Japan", highlight: "Precision dermaceuticals & advanced hydration science" },
-  { country: "Korea", highlight: "Innovative soothing botanicals, essences & sun protection" },
-  { country: "Turkey", highlight: "Post-transplant hair therapeutics & clinical formulations" },
-  { country: "Europe", highlight: "EU-certified medical-grade dermatological care" },
-  { country: "India", highlight: "Verified pharmaceutical essentials & nutritional standards" },
-  { country: "America", highlight: "FDA-compliant active formulations & wellness science" },
+const teamSpecialists = [
+  {
+    name: "Dr. Sundar Raj Pandey",
+    role: "Hair Transplant Surgeon",
+    image: "/images/team/team-1.png",
+    status: "Consult",
+  },
+  {
+    name: "Dr. A. Sharma",
+    role: "Chief Pharmacist",
+    image: "/images/pharmacy/doctor-portrait.jpg",
+    status: "Available",
+  },
+  {
+    name: "Dr. Sarah Jensen",
+    role: "Dermatology Specialist",
+    image: "/images/pharmacy/consulting-doctor.jpg",
+    status: "Consult",
+  },
+  {
+    name: "Dr. David Chen",
+    role: "Internal Medicine",
+    image: "/images/pharmacy/hero-doctor.jpg",
+    status: "Available",
+  },
+];
+
+const inquiryCategories = [
+  { id: "skin", label: "Skin", icon: Droplet, dept: "Skin Care & Dermatology" },
+  { id: "hair", label: "Hair", icon: Star, dept: "Hair Care & Scalp Therapy" },
+  { id: "baby", label: "Baby", icon: Heart, dept: "Pediatric & Baby Care" },
+  { id: "wellness", label: "Wellness", icon: Smile, dept: "Wellness & Personal Care" },
+  { id: "vitamins", label: "Vitamins", icon: Activity, dept: "Multivitamins & Supplements" },
+  { id: "prescription", label: "Prescription", icon: Plus, dept: "Prescription Dispensing" },
 ];
 
 function PharmacyPage() {
+  const [activeCategory, setActiveCategory] = useState("skin");
+  const [patientName, setPatientName] = useState("");
+  const [patientPhone, setPatientPhone] = useState("");
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const selectedCategoryObj = inquiryCategories.find((c) => c.id === activeCategory);
+
+  const handleInquirySubmit = (e) => {
+    e.preventDefault();
+    setFormSubmitted(true);
+    setTimeout(() => {
+      scrollToContact();
+    }, 400);
+  };
+
   return (
     <>
       <Head>
@@ -121,407 +120,402 @@ function PharmacyPage() {
         />
       </Head>
 
-      <main className="bg-neutral-50">
-        {/* ── BANNER SECTION ── */}
-        <section
-          className="relative w-full bg-[#EEF4FB] overflow-hidden"
-          style={{ minHeight: "calc(100vh - 88px)" }}
-        >
-          {/* Clean gradient background matching other site banners */}
-          <div className="absolute inset-0 pointer-events-none select-none z-0">
-            <Image
-              src="/images/hairTransplant/clean_blue_gradient_background.png"
-              alt=""
-              fill
-              priority
-              quality={100}
-              className="object-cover object-center"
-            />
-          </div>
+      <main className="bg-neutral-50 min-h-screen py-6 sm:py-10">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-8 lg:px-14 space-y-12 sm:space-y-16 lg:space-y-20">
 
-          {/* Bottom fade blending smoothly into the next section */}
-          <div className="absolute inset-x-0 bottom-0 h-20 sm:h-24 lg:h-28 bg-gradient-to-t from-neutral-50 to-transparent pointer-events-none z-20" />
+          {/* ══════════════════════════════════════════════════════
+              SECTION 1: HERO / BANNER CARD
+             ══════════════════════════════════════════════════════ */}
+          <section className="relative overflow-hidden rounded-[32px] sm:rounded-[44px] bg-[linear-gradient(135deg,#EEF5FB_0%,#F8FAFC_55%,#E7F0F8_100%)] border border-[#DCE7F2] p-8 sm:p-12 lg:p-16">
+            {/* Subtle decorative background stars */}
+            <div className="absolute top-10 right-1/2 text-[#527E9F]/25 text-xl select-none pointer-events-none">
+              ✦
+            </div>
+            <div className="absolute bottom-8 left-1/3 text-[#527E9F]/20 text-lg select-none pointer-events-none">
+              ✦
+            </div>
 
-          {/* Desktop Banner (lg+) */}
-          <div
-            className="hidden lg:flex items-center relative z-30 h-full py-16"
-            style={{ minHeight: "calc(100vh - 88px)" }}
-          >
-            <div className="w-full max-w-[1600px] mx-auto flex items-center justify-between px-10 xl:px-16 2xl:px-20 gap-10">
-              {/* Text column */}
-              <div className="flex-1 max-w-[660px] xl:max-w-[720px]">
+            {/* Top Right Floating Badge */}
+            <div className="absolute top-8 right-8 sm:top-12 sm:right-12 z-20">
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/85 backdrop-blur-md border border-[#D0E0EE] text-[12px] font-semibold text-[#2D4F6F] shadow-xs">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#527E9F]" />
+                Certified Dispensary
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center relative z-10">
+              {/* Left Column: Heading & CTAs */}
+              <div className="lg:col-span-7 xl:col-span-7">
                 {/* Pill Tag */}
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EBF3F8] text-[#2D4F6F] text-[13px] font-semibold tracking-wide mb-6 border border-[#D8E7F1]">
-                  <span>West Valley Pharmacy</span>
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#D0E0EE] text-[12.5px] font-semibold text-[#2D4F6F] shadow-2xs mb-6">
+                  <span className="h-2 w-2 rounded-full bg-[#527E9F]" />
+                  <span>Clinical Pharmacy &amp; Medical Dispensary</span>
                 </div>
 
-                {/* Main Heading */}
                 <h1
-                  className="font-semibold text-[#0E1A2B] leading-[1.14] tracking-[-0.03em]"
-                  style={{ fontSize: "clamp(34px, 3.2vw, 56px)" }}
+                  className="font-semibold text-[#0E1A2B] leading-[1.08] tracking-[-0.04em]"
+                  style={{ fontSize: "clamp(34px, 4.2vw, 58px)" }}
                 >
-                  Healthcare · Wellness · Beauty
-                  <br />
-                  <span
-                    className="font-editorial italic font-normal text-[#2D4F6F]"
-                    style={{ letterSpacing: "0.005em" }}
-                  >
-                    &ldquo;Personal Care&rdquo;
-                  </span>{" "}
-                  for Everyday Life.
+                  Your health is <br />
+                  <span className="text-[#527E9F]">our priority</span>
                 </h1>
 
-                {/* Narrative Intro */}
-                <p className="mt-6 text-[16px] xl:text-[17px] leading-[1.8] text-[#536273] max-w-[640px]">
-                  At West Valley Pharmacy, we bring together a carefully selected range of healthcare,
-                  skincare, haircare, wellness, baby care and personal-care products for your everyday needs.
+                <p className="mt-5 text-[15.5px] sm:text-[16.5px] leading-[1.8] text-[#536273] max-w-[540px]">
+                  At West Valley Pharmacy, we provide verified prescription dispensing,
+                  specialized dermatological therapeutics, premium haircare formulations,
+                  and holistic wellness essentials curated by clinical practitioners.
                 </p>
 
-                <p className="mt-3 text-[15px] text-[#2D4F6F] font-medium leading-relaxed max-w-[640px]">
-                  Explore products from leading markets around the world, including Japan, Korea, Turkey, Europe, India, America and beyond.
-                </p>
-
-                {/* CTA Action */}
-                <div className="mt-8 flex items-center gap-4">
+                {/* Action Buttons */}
+                <div className="mt-8 flex flex-wrap items-center gap-4 sm:gap-5">
                   <button
                     onClick={scrollToContact}
-                    id="pharmacy-banner-inquire-btn"
-                    className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-[linear-gradient(135deg,#2D4F6F_0%,#6A97BC_100%)] text-white text-[15px] font-medium tracking-normal hover:brightness-105 active:scale-[0.98] transition-all duration-200 cursor-pointer"
+                    id="pharmacy-hero-consult-btn"
+                    className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-[linear-gradient(135deg,#2D4F6F_0%,#6A97BC_100%)] text-white text-[14.5px] font-medium shadow-sm hover:brightness-105 active:scale-[0.98] transition-all duration-200 cursor-pointer"
                   >
-                    Inquire or Consult
+                    Consult Pharmacist
                   </button>
 
                   <a
-                    href="#departments"
-                    className="inline-flex items-center justify-center px-6 py-3.5 rounded-full text-[#2D4F6F] text-[14px] font-semibold tracking-tight hover:text-[#0E1A2B] transition-colors"
+                    href="#services-section"
+                    className="inline-flex items-center gap-2 text-[14px] font-semibold text-[#2D4F6F] hover:text-[#0E1A2B] transition-colors"
                   >
-                    Explore Departments ↓
+                    <span>Explore Services</span>
+                    <ArrowRight size={16} />
                   </a>
                 </div>
 
-                {/* Quick origin tags */}
-                <div className="mt-10 pt-6 border-t border-[#D8E7F1] flex flex-wrap items-center gap-2">
+                {/* Sourcing Footprint Bar */}
+                <div className="mt-10 pt-6 border-t border-[#D6E3EF] flex flex-wrap items-center gap-2">
                   <span className="text-[12px] font-semibold text-[#527E9F] uppercase tracking-wider mr-2">
-                    Global Sourcing:
+                    Verified Sourcing:
                   </span>
-                  {["Japan", "Korea", "Turkey", "Europe", "India", "America & Beyond"].map((origin) => (
+                  {["Japan", "Korea", "Turkey", "Europe", "America"].map((country) => (
                     <span
-                      key={origin}
-                      className="px-3 py-1 text-[12.5px] font-medium text-[#2D4F6F] bg-white rounded-full border border-[#D8E7F1]"
+                      key={country}
+                      className="px-2.5 py-0.5 text-[11.5px] font-medium text-[#2D4F6F] bg-white/90 rounded-full border border-[#D4E2EE]"
                     >
-                      {origin}
+                      {country}
                     </span>
                   ))}
                 </div>
               </div>
 
-              {/* Banner Image Column */}
-              <div className="flex-shrink-0 flex items-center justify-center pl-4">
-                <div
-                  className="w-[440px] xl:w-[500px] 2xl:w-[540px] h-[480px] xl:h-[530px] overflow-hidden border border-[#D8E7F1]"
-                  style={{
-                    borderRadius: "24px 32px 32px 120px",
-                  }}
-                >
-                  <img
-                    src="/images/pharmacy/banner.jpg"
-                    alt="West Valley Clinical Pharmacist"
-                    className="w-full h-full object-cover object-center"
+              {/* Right Column: Hero Doctor Image with Soft Arch Backdrop */}
+              <div className="lg:col-span-5 xl:col-span-5 flex justify-center items-end">
+                <div className="relative w-full max-w-[420px] flex justify-center">
+                  {/* Soft Background Arch Backdrop */}
+                  <div
+                    className="absolute bottom-0 w-[88%] h-[92%] bg-[linear-gradient(180deg,#D4E4F5_0%,#E9F2FA_100%)] border border-white/80 shadow-inner"
+                    style={{ borderRadius: "180px 180px 32px 32px" }}
                   />
+
+                  {/* Doctor Image */}
+                  <div
+                    className="relative z-10 w-[84%] h-[380px] sm:h-[440px] overflow-hidden shadow-sm"
+                    style={{ borderRadius: "160px 160px 24px 24px" }}
+                  >
+                    <img
+                      src="/images/pharmacy/hero-doctor.jpg"
+                      alt="West Valley Clinical Doctor"
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </section>
 
-          {/* Mobile & Tablet Banner (< lg) */}
-          <div className="flex lg:hidden flex-col relative z-30 pt-12 sm:pt-16 pb-12 px-6 sm:px-10 text-center items-center">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EBF3F8] text-[#2D4F6F] text-[12px] font-semibold tracking-wide mb-5 border border-[#D8E7F1]">
-              <span>West Valley Pharmacy</span>
-            </div>
+          {/* ══════════════════════════════════════════════════════
+              SECTION 2: SERVICES & 2x2 FEATURE CARDS
+             ══════════════════════════════════════════════════════ */}
+          <section id="services-section" className="scroll-mt-12">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+              {/* Left Column: Heading & Narrative */}
+              <div className="lg:col-span-5">
+                <div className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-wider text-[#527E9F] mb-3">
+                  <span>Pharmacy Care</span>
+                  <ArrowRight size={14} />
+                </div>
 
-            <h1
-              className="font-bold text-[#0E1A2B] leading-[1.15] tracking-[-0.03em]"
-              style={{ fontSize: "clamp(28px, 6vw, 44px)" }}
-            >
-              Healthcare · Wellness · Beauty
-              <br />
-              <span
-                className="font-editorial italic font-normal text-[#2D4F6F]"
-                style={{ letterSpacing: "0.005em" }}
-              >
-                &ldquo;Personal Care&rdquo;
-              </span>
-            </h1>
-
-            <p className="mt-4 text-[14.5px] sm:text-[15.5px] leading-relaxed text-[#536273] max-w-[540px]">
-              At West Valley Pharmacy, we bring together a carefully selected range of healthcare, skincare,
-              haircare, wellness, baby care and personal-care products for your everyday needs.
-            </p>
-
-            <p className="mt-2 text-[13.5px] sm:text-[14.5px] text-[#2D4F6F] font-medium max-w-[500px]">
-              Products from Japan, Korea, Turkey, Europe, India, America and beyond.
-            </p>
-
-            <div className="mt-6 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
-              <button
-                onClick={scrollToContact}
-                id="pharmacy-banner-inquire-btn-mobile"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 rounded-full bg-[linear-gradient(135deg,#2D4F6F_0%,#6A97BC_100%)] text-white text-[14px] font-medium tracking-normal hover:brightness-105 active:scale-[0.98] transition-all duration-200 cursor-pointer"
-              >
-                Inquire or Consult
-              </button>
-
-              <a
-                href="#departments"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-full bg-white text-[#2D4F6F] border border-[#D8E7F1] text-[13.5px] font-medium"
-              >
-                Explore Departments
-              </a>
-            </div>
-
-            {/* Mobile Banner Image */}
-            <div className="mt-8 w-full max-w-[420px] h-[280px] overflow-hidden border border-[#D8E7F1] rounded-3xl">
-              <img
-                src="/images/pharmacy/banner.jpg"
-                alt="West Valley Clinical Pharmacist"
-                className="w-full h-full object-cover object-center"
-              />
-            </div>
-
-            <div className="mt-6 pt-5 border-t border-[#D8E7F1] flex flex-wrap justify-center gap-1.5 max-w-[420px]">
-              {["Japan", "Korea", "Turkey", "Europe", "India", "America"].map((item) => (
-                <span
-                  key={item}
-                  className="px-2.5 py-1 text-[11.5px] font-medium text-[#2D4F6F] bg-white rounded-full border border-[#D8E7F1]"
+                <h2
+                  className="font-semibold text-[#0E1A2B] leading-[1.12] tracking-[-0.035em]"
+                  style={{ fontSize: "clamp(28px, 3.2vw, 44px)" }}
                 >
-                  {item}
-                </span>
+                  Medical healthcare tailored for every prominent need.
+                </h2>
+
+                <p className="mt-5 text-[15px] sm:text-[15.5px] leading-[1.8] text-[#536273]">
+                  Our dispensary provides precision dermaceuticals, trichological formulations,
+                  safe infant essentials, and validated nutritional supplements with complete
+                  chain-of-custody tracking.
+                </p>
+
+                <div className="mt-6">
+                  <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#EBF3F8] text-[#2D4F6F] text-[13px] font-semibold border border-[#D8E7F1]">
+                    <span className="h-2 w-2 rounded-full bg-[#527E9F]" />
+                    <span>100% Verified Clinical Imports</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: 2x2 Cards Grid */}
+              <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                {serviceCards.map((service) => {
+                  return (
+                    <article
+                      key={service.id}
+                      className="rounded-[24px] bg-white border border-[#EAECEF] p-6 shadow-xs hover:border-[#527E9F]/40 transition-all duration-300 flex flex-col justify-between group"
+                    >
+                      <div>
+                        {/* Circular Action Button at Top */}
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="h-9 w-9 rounded-full bg-[#527E9F] text-white flex items-center justify-center shadow-xs group-hover:bg-[#2D4F6F] transition-colors">
+                            <ArrowRight size={16} />
+                          </div>
+                          <span className="text-[11px] font-bold uppercase tracking-wider text-[#527E9F] bg-[#EBF3F8] px-2.5 py-0.5 rounded-full">
+                            {service.num}
+                          </span>
+                        </div>
+
+                        <h3 className="text-[17px] font-bold text-[#0E2236] leading-snug">
+                          {service.title}
+                        </h3>
+
+                        <p className="mt-2 text-[13.5px] text-[#536273] leading-relaxed">
+                          {service.description}
+                        </p>
+                      </div>
+
+                      <div className="mt-5 pt-3.5 border-t border-[#F0F2F5] flex items-center justify-between text-[12px]">
+                        <span className="font-semibold text-[#8A9BA8]">Origin:</span>
+                        <span className="font-medium text-[#2D4F6F]">{service.highlight}</span>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* ── Sub-row: 4 Team Specialists ── */}
+            <div className="mt-12 pt-8 border-t border-[#EAECEF] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {teamSpecialists.map((doc) => (
+                <div
+                  key={doc.name}
+                  className="rounded-[20px] bg-white border border-[#EAECEF] p-4 flex items-center gap-3.5 shadow-2xs hover:border-[#527E9F]/30 transition-all"
+                >
+                  <div className="h-12 w-12 rounded-full overflow-hidden bg-[#EBF3F8] border border-[#D8E7F1] shrink-0">
+                    <img
+                      src={doc.image}
+                      alt={doc.name}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="text-[14px] font-bold text-[#0E2236] truncate leading-tight">
+                      {doc.name}
+                    </h4>
+                    <p className="text-[12px] text-[#536273] truncate mt-0.5">{doc.role}</p>
+                    <span className="inline-block mt-1 text-[11px] font-semibold text-[#2D4F6F] bg-[#EBF3F8] px-2 py-0.2 rounded-full">
+                      {doc.status}
+                    </span>
+                  </div>
+                </div>
               ))}
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* ── SERVICES OVERVIEW INTRO ── */}
-        <section id="departments" className="pt-14 sm:pt-16 pb-6 bg-neutral-50">
-          <div className="app-layout">
-            <div className="mx-auto max-w-[800px] text-center">
-              <span className="text-[13px] font-semibold uppercase tracking-wider text-[#527E9F]">
-                Curated Pharmacy Dispensary
-              </span>
-              <h2
-                className="mt-3 font-semibold leading-[1.12] tracking-[-0.04em] text-[#0E1A2B]"
-                style={{ fontSize: "clamp(28px, 4vw, 44px)" }}
-              >
-                Healthcare · Skincare · Wellness ·{" "}
-                <span className="font-editorial italic font-normal text-[#2D4F6F]">
-                  Personal Care
-                </span>
-              </h2>
-              <p className="mt-4 text-[15.5px] leading-7 text-[#536273]">
-                Every product line at West Valley Pharmacy is carefully chosen by medical professionals to ensure safety, authenticity, and proven clinical benefits for you and your family.
-              </p>
-            </div>
-          </div>
-        </section>
+          {/* ══════════════════════════════════════════════════════
+              SECTION 4: SPLIT FEATURE & DOCTOR IMAGE
+             ══════════════════════════════════════════════════════ */}
+          <section>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+              {/* Left Tinted Information Card */}
+              <div className="rounded-[28px] sm:rounded-[36px] bg-[#DDE8F4]/55 border border-[#CFDFEF] p-8 sm:p-10 lg:p-12 flex flex-col justify-between">
+                <div>
+                  <span className="text-[12.5px] font-semibold uppercase tracking-wider text-[#527E9F]">
+                    Safety &amp; Compliance
+                  </span>
 
-        {/* ── EVERY SECTION WITH IMAGE (CardLeft / CardRight Pattern) ── */}
-        <div className="pb-12">
-          {pharmacyDepartments.map((dept) => {
-            const isLeft = dept.imgPosition === "left";
-
-            return (
-              <div key={dept.id} className="app-layout pt-10 bg-neutral-50">
-                <div className="p-8 lg:p-10 lg:grid lg:grid-cols-2 lg:gap-12 items-center bg-white rounded-3xl border border-[#EAECEF]">
-                  {/* Left Column: Image or Text depending on position */}
-                  {isLeft ? (
-                    <div className="flex justify-center lg:block">
-                      <div
-                        className="w-full h-[280px] sm:h-[340px] lg:h-[380px] overflow-hidden border border-[#EAECEF]"
-                        style={{
-                          borderRadius: "16px 22px 22px 108px",
-                        }}
-                      >
-                        <img
-                          src={dept.img}
-                          alt={dept.title}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    </div>
-                  ) : null}
-
-                  {/* Text Column */}
-                  <div className={`mt-8 lg:mt-0 ${!isLeft ? "order-1" : "order-2"}`}>
-                    <div className="flex items-center gap-2.5 mb-3">
-                      <span className="text-[12px] font-bold text-[#527E9F] uppercase tracking-wider">
-                        {dept.num}
-                      </span>
-                      <span className="h-1 w-1 rounded-full bg-[#527E9F]" />
-                      <span className="inline-block px-3 py-1 rounded-full bg-[#EBF3F8] text-[#2D4F6F] text-[12px] font-semibold">
-                        {dept.tag}
-                      </span>
-                    </div>
-
-                    <h3 className="text-[24px] sm:text-[26px] font-semibold text-[#0E1A2B] tracking-[-0.02em]">
-                      {dept.title}
-                    </h3>
-
-                    <p className="mt-3 text-[15px] sm:text-[15.5px] leading-[1.78] text-[#536273]">
-                      {dept.description}
-                    </p>
-
-                    {/* Included essentials / focus pills */}
-                    <div className="mt-5">
-                      <p className="text-[12px] font-semibold uppercase tracking-wider text-[#8A9BA8] mb-2.5">
-                        Key Categories &amp; Essentials:
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {dept.focusAreas.map((item) => (
-                          <span
-                            key={item}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F7F9FC] border border-[#EAECEF] text-[13px] font-medium text-[#0E2236]"
-                          >
-                            <span className="h-1.5 w-1.5 rounded-full bg-[#527E9F] shrink-0" />
-                            {item}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Sourcing footprint badge */}
-                    <div className="mt-6 pt-4 border-t border-[#F0F2F5] flex items-center gap-2">
-                      <span className="text-[12px] font-semibold text-[#527E9F]">
-                        Sourced From:
-                      </span>
-                      <span className="text-[12.5px] font-medium text-[#0E2236]">
-                        {dept.sourcing}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Right Column: Image if position is right */}
-                  {!isLeft ? (
-                    <div className="mt-8 flex justify-center lg:mt-0 lg:ml-auto items-center w-full order-2">
-                      <div
-                        className="w-full h-[280px] sm:h-[340px] lg:h-[380px] overflow-hidden border border-[#EAECEF]"
-                        style={{
-                          borderRadius: "108px 16px 22px 22px",
-                        }}
-                      >
-                        <img
-                          src={dept.img}
-                          alt={dept.title}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    </div>
-                  ) : null}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* ── GLOBAL MARKETS SOURCING ── */}
-        <section className="bg-neutral-50 py-16 sm:py-20 lg:py-24 border-t border-[#EAECEF]">
-          <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-16 xl:px-20">
-            {/* Section Header */}
-            <div className="mx-auto max-w-[760px] text-center">
-              <span className="text-[13px] font-semibold uppercase tracking-wider text-[#527E9F]">
-                Authenticity &amp; Origin
-              </span>
-              <h2
-                className="mt-3 font-semibold leading-[1.08] tracking-[-0.04em] text-[#0E1A2B]"
-                style={{ fontSize: "clamp(28px, 4vw, 46px)" }}
-              >
-                Global Standards,{" "}
-                <span className="font-editorial italic font-normal text-[#2D4F6F]">
-                  Trusted Markets.
-                </span>
-              </h2>
-              <p className="mx-auto mt-4 max-w-[620px] text-[15px] leading-7 text-[#536273] sm:text-[16px]">
-                We partner with certified distributors and international pharmaceutical laboratories to deliver original, verified formulations to Pokhara.
-              </p>
-            </div>
-
-            {/* Two-Column Info Card */}
-            <div className="mx-auto mt-12 max-w-[1240px]">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center bg-white p-7 sm:p-10 lg:p-12 rounded-3xl border border-[#EAECEF]">
-                {/* Left side: Narrative & Commitments */}
-                <div className="lg:col-span-6">
                   <h3
-                    className="font-semibold text-[#0E2236] leading-[1.25] tracking-[-0.025em]"
-                    style={{ fontSize: "clamp(20px, 2.2vw, 28px)" }}
+                    className="mt-3 font-semibold text-[#0E2236] leading-[1.18] tracking-[-0.03em]"
+                    style={{ fontSize: "clamp(24px, 2.5vw, 34px)" }}
                   >
-                    Direct Access to Leading International Formulations
+                    Direct access to certified international formulations.
                   </h3>
 
-                  <div className="my-5 h-[1px] bg-[#D8E7F1]" />
+                  <div className="my-5 h-px bg-[#C8D9E8]" />
 
-                  <p className="text-[15px] leading-[1.78] text-[#536273]">
-                    Navigating specialty skincare, hair therapeutics, and supplements requires confidence in authenticity. At West Valley, our in-house medical oversight ensures every product in our pharmacy is properly vetted, sealed, and stored under ideal climate conditions.
+                  <p className="text-[15px] sm:text-[15.5px] leading-[1.8] text-[#475569]">
+                    Navigating specialized medical treatments, sensitive skincare, and daily prescriptions
+                    requires complete confidence in authenticity. At West Valley, our in-house medical oversight
+                    ensures every product in our pharmacy is properly sealed, batch-verified, and maintained
+                    under climate-controlled temperature standards with unbroken cold-chain compliance.
                   </p>
 
                   <div className="mt-6 space-y-3">
                     {[
-                      "100% genuine and batch-verified imports",
-                      "Specialized clinical dermatological and trichological formulations",
-                      "Professional guidance from certified clinic pharmacists and practitioners",
-                    ].map((bullet) => (
-                      <div key={bullet} className="flex items-start gap-3">
-                        <span className="mt-1 flex h-2 w-2 rounded-full bg-[#527E9F] shrink-0" />
-                        <span className="text-[14.5px] font-medium text-[#0E2236]">
-                          {bullet}
-                        </span>
+                      "100% genuine batch-verified imports with certified chain of custody",
+                      "Medical-grade dermatological, trichological & pediatric formulations",
+                      "Direct patient counseling from registered clinic pharmacists",
+                    ].map((item) => (
+                      <div key={item} className="flex items-start gap-3">
+                        <CheckCircle size={17} className="text-[#527E9F] mt-0.5 shrink-0" />
+                        <span className="text-[14px] font-medium text-[#1E293B]">{item}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Right side: Countries & Highlights */}
-                <div className="lg:col-span-6 space-y-3">
-                  <p className="text-[12px] font-semibold uppercase tracking-wider text-[#527E9F] mb-4">
-                    Our Sourcing Footprint
+                <div className="mt-8 pt-6 border-t border-[#C8D9E8] flex items-center justify-between">
+                  <span className="text-[13px] font-medium text-[#2D4F6F]">
+                    Need a rare or specific prescription?
+                  </span>
+                  <button
+                    onClick={scrollToContact}
+                    className="text-[13px] font-bold text-[#2D4F6F] underline underline-offset-4 hover:text-[#0E1A2B] cursor-pointer"
+                  >
+                    Inquire Availability →
+                  </button>
+                </div>
+              </div>
+
+              {/* Right: Consulting Doctor Photo */}
+              <div className="rounded-[28px] sm:rounded-[36px] overflow-hidden border border-[#EAECEF] bg-white h-[360px] sm:h-[420px] lg:h-full min-h-[360px] shadow-xs">
+                <img
+                  src="/images/pharmacy/consulting-doctor.jpg"
+                  alt="West Valley Clinical Consultation"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+            </div>
+          </section>
+
+          {/* ══════════════════════════════════════════════════════
+              SECTION 5: DOCTOR PORTRAIT + APPOINTMENT CARD
+             ══════════════════════════════════════════════════════ */}
+          <section>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+              {/* Left Column: Doctor Portrait Photo */}
+              <div className="rounded-[28px] sm:rounded-[36px] overflow-hidden border border-[#EAECEF] bg-white h-[380px] lg:h-full min-h-[380px] shadow-xs">
+                <img
+                  src="/images/pharmacy/doctor-portrait.jpg"
+                  alt="West Valley Specialist Pharmacist"
+                  className="w-full h-full object-cover object-center"
+                />
+              </div>
+
+              {/* Right Column: Appointment & Inquiry Card */}
+              <div className="rounded-[28px] sm:rounded-[36px] bg-white border border-[#EAECEF] p-7 sm:p-10 lg:p-12 shadow-xs flex flex-col justify-between">
+                <div>
+                  <h3
+                    className="font-semibold text-[#0E1A2B] leading-tight tracking-[-0.03em]"
+                    style={{ fontSize: "clamp(22px, 2.2vw, 30px)" }}
+                  >
+                    Appointment &amp; Pharmacy Inquiries
+                  </h3>
+
+                  <p className="mt-2 text-[14px] text-[#536273] leading-relaxed">
+                    Select your area of interest or request prescription confirmation directly from our team.
                   </p>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {globalMarkets.map((market) => (
-                      <div
-                        key={market.country}
-                        className="rounded-xl border border-[#EAECEF] bg-[#F7F9FC] p-4"
-                      >
-                        <span className="text-[15px] font-bold text-[#0E2236] block">
-                          {market.country}
-                        </span>
-                        <span className="text-[12.5px] text-[#536273] leading-snug mt-1 block">
-                          {market.highlight}
-                        </span>
-                      </div>
-                    ))}
+                  {/* Category Pill Icons Row (Matching reference top icon selector) */}
+                  <div className="mt-6 flex flex-wrap items-center gap-2">
+                    {inquiryCategories.map((cat) => {
+                      const IconComp = cat.icon;
+                      const isActive = activeCategory === cat.id;
+
+                      return (
+                        <button
+                          key={cat.id}
+                          type="button"
+                          onClick={() => setActiveCategory(cat.id)}
+                          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12.5px] font-semibold transition-all cursor-pointer ${
+                            isActive
+                              ? "bg-[#2D4F6F] text-white shadow-2xs"
+                              : "bg-[#F0F5FA] text-[#527E9F] hover:bg-[#E2EDF6]"
+                          }`}
+                        >
+                          <IconComp size={13} />
+                          <span>{cat.label}</span>
+                        </button>
+                      );
+                    })}
                   </div>
 
-                  <div className="mt-4 p-4 rounded-xl bg-[#EBF3F8] text-[#2D4F6F] flex items-center justify-between border border-[#D8E7F1]">
-                    <span className="text-[13.5px] font-medium">
-                      Looking for a specific prescription or imported brand?
-                    </span>
+                  {/* Form */}
+                  <form onSubmit={handleInquirySubmit} className="mt-6 space-y-4">
+                    {/* Selected Department Field */}
+                    <div>
+                      <label className="block text-[12px] font-semibold uppercase tracking-wider text-[#8A9BA8] mb-1">
+                        Service Category
+                      </label>
+                      <div className="w-full px-4 py-3 rounded-xl bg-[#F7F9FC] border border-[#EAECEF] text-[14px] text-[#0E2236] font-medium">
+                        {selectedCategoryObj?.dept}
+                      </div>
+                    </div>
+
+                    {/* Patient Name */}
+                    <div>
+                      <label className="block text-[12px] font-semibold uppercase tracking-wider text-[#8A9BA8] mb-1">
+                        Full Name
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={patientName}
+                        onChange={(e) => setPatientName(e.target.value)}
+                        placeholder="e.g. Ramesh Thapa"
+                        className="w-full px-4 py-3 rounded-xl bg-white border border-[#D8E2EC] text-[14px] text-[#0E2236] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#527E9F] transition-colors"
+                      />
+                    </div>
+
+                    {/* Phone & Verification Action */}
+                    <div>
+                      <label className="block text-[12px] font-semibold uppercase tracking-wider text-[#8A9BA8] mb-1">
+                        Phone / WhatsApp
+                      </label>
+                      <div className="relative flex items-center">
+                        <input
+                          type="tel"
+                          required
+                          value={patientPhone}
+                          onChange={(e) => setPatientPhone(e.target.value)}
+                          placeholder="e.g. 9856080095"
+                          className="w-full px-4 py-3 pr-28 rounded-xl bg-white border border-[#D8E2EC] text-[14px] text-[#0E2236] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#527E9F] transition-colors"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (patientPhone) alert(`Inquiry initiated for ${patientPhone}`);
+                          }}
+                          className="absolute right-2 px-3 py-1.5 rounded-lg bg-[#EBF3F8] text-[#2D4F6F] text-[12px] font-bold hover:bg-[#D8E7F1] transition-colors cursor-pointer"
+                        >
+                          Verify
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Submit Button */}
                     <button
-                      onClick={scrollToContact}
-                      className="text-[13px] font-bold text-[#2D4F6F] underline underline-offset-4 hover:text-[#0E1A2B] shrink-0 ml-3 cursor-pointer"
+                      type="submit"
+                      id="pharmacy-appointment-submit-btn"
+                      className="w-full mt-2 py-3.5 px-6 rounded-full bg-[linear-gradient(135deg,#2D4F6F_0%,#6A97BC_100%)] text-white text-[14.5px] font-semibold tracking-wide shadow-sm hover:brightness-105 active:scale-[0.98] transition-all duration-200 cursor-pointer"
                     >
-                      Ask Us →
+                      {formSubmitted ? "Connecting to Specialists..." : "Confirm & Inquire Consultation"}
                     </button>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* ── ABOUT US SECTION ── */}
-        <AboutUs />
+        </div>
 
-        {/* ── BOOK CONSULTATION SECTION ── */}
-        <BookAppointment />
+        {/* ── Standard Clinic AboutUs & Booking Sections ── */}
+        <div className="mt-16 sm:mt-24">
+          <AboutUs />
+        </div>
       </main>
     </>
   );
