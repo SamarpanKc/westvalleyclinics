@@ -1,87 +1,73 @@
 import Image from "next/image";
-import { useState } from "react";
 
 const teamMembers = [
   {
-    id: "dr-sundar",
-    name: "Dr. Sundar Raj Pandey",
-    role: "Hair Transplant Surgeon",
-    specialty: "FUE-DHT & Hair Restoration",
-    image: "/images/team/team-1.png",
-    bio: "Pioneering hair restoration specialist with extensive expertise in FUE-DHT 'No Root Touch' technique. Dr. Pandey has helped hundreds of patients regain their confidence through precise, natural-looking transplants.",
+    id: "dr-pravin",
+    name: "Dr. Pravin Baniya, MD & Team",
+    credential: "",
+    role: "Dermatologist",
+    image: "/images/team/team dr PRAVIN BANIYA.jpg",
+    bio: "Dr. Baniya leads West Valley's dermatology practice with a focus on medical and cosmetic skin care, treating conditions ranging from acne and pigmentation to complex inflammatory skin diseases.",
   },
-  {
-    id: "dr-team-2",
-    name: "West Valley Medical Team",
-    role: "Skin & Aesthetics Specialists",
-    specialty: "Dermatology & Aesthetic Medicine",
-    image: "/images/team/team-2.png",
-    bio: "Our multidisciplinary team of skin and aesthetics professionals brings together cutting-edge techniques in PRP therapy, botox, fillers, carbon peels, and thread lifts — delivering personalized care for every patient.",
-  },
+  
 ];
 
 function OurTeamSection() {
-  const [active, setActive] = useState(0);
-
   return (
-    <section className="bg-[#f7f9fc] py-20 sm:py-24 lg:py-28">
+    <section className="py-20 sm:py-24 lg:py-32" style={{ background: "#f7f9fc" }}>
       <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-16 xl:px-20">
 
-        {/* Section Heading */}
-        <div className="mx-auto max-w-[760px] text-center">
-          <h1
-            className="font-semibold leading-[1.08] tracking-[-0.04em] text-[#0E1A2B]"
-            style={{ fontSize: "clamp(28px, 4vw, 48px)" }}
+        {/* Heading */}
+        <div className="mb-14 sm:mb-16">
+          <p
+            className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#527E9F]"
           >
-            Our{" "}
-            <span className="text-[#527E9F]">Team.</span>
-          </h1>
-          <p className="mx-auto mt-4 max-w-[520px] text-[15px] leading-7 text-[#536273] sm:text-[16px]">
-            Meet the dedicated professionals behind West Valley&apos;s
-            world-class care — experienced, passionate, and committed to your
-            best results.
+            The People Behind Your Care
           </p>
+          <h2
+            className="font-semibold leading-[1.06] tracking-[-0.035em] text-[#0E1A2B]"
+            style={{ fontSize: "clamp(30px, 4vw, 52px)" }}
+          >
+            Our Team
+          </h2>
         </div>
 
-        {/* Team Cards Grid */}
-        <div className="mx-auto mt-14 grid max-w-[1000px] grid-cols-1 gap-8 sm:grid-cols-2">
-          {teamMembers.map((member, idx) => (
-            <article
-              key={member.id}
-              onMouseEnter={() => setActive(idx)}
-              onMouseLeave={() => setActive(0)}
-              className="group flex flex-col overflow-hidden rounded-[24px] bg-white shadow-[0_2px_16px_rgba(82,126,159,0.08)] transition-all duration-300 hover:shadow-[0_8px_32px_rgba(82,126,159,0.16)] hover:-translate-y-1"
-            >
-              {/* Image */}
-              <div className="relative h-[280px] w-full overflow-hidden bg-[#EEF4FB]">
+        {/* Members */}
+        <div className={teamMembers.length > 1 ? "grid grid-cols-1 gap-x-10 gap-y-16 sm:grid-cols-2 lg:grid-cols-3" : "w-full max-w-[1080px]"}>
+          {teamMembers.map((member) => (
+            <article key={member.id} className="flex flex-col">
+              {/* Photo */}
+              <div
+                className="relative mb-6 w-full overflow-hidden"
+                style={{ aspectRatio: teamMembers.length === 1 ? "3 / 2" : "3 / 4" }}
+              >
                 <Image
                   src={member.image}
                   alt={member.name}
                   fill
-                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                  priority={idx === 0}
+                  className="object-cover object-top"
+                  sizes={teamMembers.length === 1 ? "(max-width: 1024px) 100vw, 1080px" : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"} 
+                  priority={member.id === "dr-pravin"}
                 />
-                {/* Bottom fade */}
-                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-transparent pointer-events-none" />
-
-                {/* Specialty pill */}
-                <div className="absolute top-4 right-4">
-                  <span className="inline-flex items-center rounded-full bg-[#527E9F] px-3 py-1 text-[11px] font-semibold tracking-wide text-white shadow-sm">
-                    {member.specialty}
-                  </span>
-                </div>
               </div>
 
-              {/* Content */}
-              <div className="flex flex-1 flex-col p-6 sm:p-7 pt-4">
-                <h2 className="text-[19px] font-bold leading-snug tracking-[-0.02em] text-[#0E2236] transition-colors duration-300 group-hover:text-[#3E7298]">
-                  {member.name}
-                </h2>
-                <p className="mt-1 text-[13px] font-semibold uppercase tracking-widest text-[#527E9F]">
+              {/* Text */}
+              <div className="flex flex-col max-w-[800px]">
+                <p className="mb-1 text-[10.5px] font-semibold uppercase tracking-[0.16em] text-[#527E9F]">
                   {member.role}
                 </p>
-                <div className="my-4 h-[1px] w-full bg-[#D8E7F1]" />
-                <p className="text-[14px] leading-relaxed text-[#536273] text-justify">
+                <h3
+                  className="font-semibold leading-snug tracking-[-0.025em] text-[#0E1A2B]"
+                  style={{ fontSize: "clamp(20px, 2.2vw, 26px)" }}
+                >
+                  {member.name}
+                  {member.credential && (
+                    <span className="ml-1.5 text-[14px] font-normal text-[#536273]">
+                      {member.credential}
+                    </span>
+                  )}
+                </h3>
+                <p className="mt-3 text-[14px] sm:text-[15px] leading-[1.75] text-[#536273]">
                   {member.bio}
                 </p>
               </div>
@@ -89,25 +75,23 @@ function OurTeamSection() {
           ))}
         </div>
 
-        {/* Bottom stat strip */}
-        <div className="mx-auto mt-16 max-w-[1000px]">
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 rounded-[24px] bg-white px-8 py-8 shadow-[0_2px_16px_rgba(82,126,159,0.08)]">
-            {[
-              { value: "20+", label: "Years of Experience" },
-              { value: "2000+", label: "Patients Treated" },
-              { value: "4.8★", label: "Google Rating" },
-            ].map(({ value, label }) => (
-              <div key={label} className="text-center">
-                <p
-                  className="font-semibold text-[#2D4F6F] leading-none tracking-[-0.03em]"
-                  style={{ fontSize: "clamp(26px, 3vw, 38px)" }}
-                >
-                  {value}
-                </p>
-                <p className="mt-2 text-[13px] text-[#536273]">{label}</p>
-              </div>
-            ))}
-          </div>
+        {/* Stats — plain text strip, no container */}
+        <div className="mt-20 grid grid-cols-2 gap-y-10 sm:grid-cols-3 sm:gap-y-0">
+          {[
+            { value: "20+", label: "Years combined experience" },
+            { value: "2,000+", label: "Patients treated" },
+            { value: "4.8", label: "Google rating" },
+          ].map(({ value, label }) => (
+            <div key={label} className="flex flex-col">
+              <span
+                className="font-semibold leading-none tracking-[-0.04em] text-[#2D4F6F]"
+                style={{ fontSize: "clamp(34px, 4vw, 52px)" }}
+              >
+                {value}
+              </span>
+              <span className="mt-2 text-[13px] text-[#6B7E90]">{label}</span>
+            </div>
+          ))}
         </div>
 
       </div>

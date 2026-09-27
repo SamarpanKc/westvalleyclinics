@@ -79,7 +79,6 @@ const formatPhone244 = (rawVal) => {
 
 function BookAppointment() {
   const formRef = useRef(null);
-  const deptDropdownRef = useRef(null);
   const timeDropdownRef = useRef(null);
   const dateInputRef = useRef(null);
 
@@ -87,9 +86,7 @@ function BookAppointment() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [status, setStatus] = useState(null);
 
-  const [isDeptOpen, setIsDeptOpen] = useState(false);
-  const [selectedDept, setSelectedDept] = useState("");
-
+  const [selectedDept, setSelectedDept] = useState("Hair Transplant");
   const [isTimeOpen, setIsTimeOpen] = useState(false);
   const [selectedTime, setSelectedTime] = useState("");
 
@@ -102,20 +99,17 @@ function BookAppointment() {
   } = useForm({
     resolver: yupResolver(schema),
     mode: "onTouched",
+    defaultValues: {
+      department: "Hair Transplant",
+    },
   });
 
   // Minimum selectable date is today
   const todayDate = new Date().toISOString().split("T")[0];
 
-  // Close dropdowns on outside click
+  // Close time dropdown on outside click
   useEffect(() => {
     function handleClickOutside(event) {
-      if (
-        deptDropdownRef.current &&
-        !deptDropdownRef.current.contains(event.target)
-      ) {
-        setIsDeptOpen(false);
-      }
       if (
         timeDropdownRef.current &&
         !timeDropdownRef.current.contains(event.target)
@@ -163,7 +157,6 @@ function BookAppointment() {
       shouldValidate: true,
       shouldDirty: true,
     });
-    setIsDeptOpen(false);
   };
 
   // Time slot selection
@@ -196,22 +189,22 @@ function BookAppointment() {
       setIsSuccess(true);
       setStatus({
         type: "success",
-        text: "Consultatiom request sent successfully! Our team will contact you shortly.",
+        text: "Consultation request sent successfully! Our clinical team will contact you shortly.",
       });
 
       reset();
-      setSelectedDept("");
+      setSelectedDept("Hair Transplant");
+      setValue("department", "Hair Transplant");
       setSelectedTime("");
 
       Swal.fire({
-        title: "Appointment Requested!",
-        text: "Your appointment request has been submitted successfully. We'll get back to you soon!",
+        title: "Appointment Requested",
+        text: "Your consultation request has been submitted successfully. Our team will contact you soon.",
         icon: "success",
         confirmButtonColor: "#2D4F6F",
         timer: 3500,
       });
 
-      // Reset button success state after 4 seconds
       setTimeout(() => {
         setIsSuccess(false);
       }, 4000);
@@ -223,8 +216,8 @@ function BookAppointment() {
       });
 
       Swal.fire({
-        title: "Error!",
-        text: "Something went wrong sending your request. Please try again.",
+        title: "Submission Error",
+        text: "Something went wrong sending your request. Please try again or call us directly.",
         icon: "error",
         confirmButtonColor: "#2D4F6F",
         timer: 3500,
@@ -235,259 +228,240 @@ function BookAppointment() {
   };
 
   return (
-    <section className="bg-[#f7f9fc] py-16 sm:py-20 lg:py-24" id="contact">
-      {/* Remove harsh outline on click completely across all form elements */}
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-        #contact input,
-        #contact textarea,
-        #contact button,
-        #contact select {
-          outline: none !important;
-          -webkit-tap-highlight-color: transparent !important;
-        }
-        #contact input:focus,
-        #contact textarea:focus,
-        #contact button:focus,
-        #contact input:focus-visible,
-        #contact textarea:focus-visible,
-        #contact button:focus-visible {
-          outline: none !important;
-          box-shadow: none !important;
-        }
-        input[type="date"]::-webkit-calendar-picker-indicator {
-          cursor: pointer;
-          opacity: 0.7;
-          filter: invert(36%) sepia(35%) saturate(850%) hue-rotate(168deg) brightness(92%) contrast(92%);
-          padding: 4px;
-          border-radius: 6px;
-          transition: all 0.2s ease;
-        }
-        input[type="date"]::-webkit-calendar-picker-indicator:hover {
-          opacity: 1;
-          transform: scale(1.15);
-        }
-      `,
-        }}
-      />
-
+    <section className="bg-[#FAFBFD] py-16 sm:py-20 lg:py-24 border-t border-[#E8EFF5]" id="contact">
       <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-16 xl:px-20">
         {/* Section Heading */}
-        <div className="mx-auto max-w-[760px] text-center">
+        <div className="mx-auto max-w-[680px] text-center">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#527E9F]">
+            Direct Appointment
+          </p>
           <h2
-            className="font-semibold leading-[1.08] tracking-[-0.04em] text-[#0E1A2B]"
-            style={{ fontSize: "clamp(28px, 4vw, 48px)" }}
+            className="mt-2.5 font-semibold leading-[1.08] tracking-[-0.035em] text-[#0E1A2B]"
+            style={{ fontSize: "clamp(28px, 3.8vw, 46px)" }}
           >
             Book Your <span className="text-[#527E9F]">Consultation</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-[540px] text-[15px] leading-7 text-[#536273] sm:text-[16px]">
-            Schedule your consultation with West Valley experts{" "}
-            <span className="font-medium text-[#2D6A94]">today!</span>
+          <p className="mx-auto mt-4 max-w-[520px] text-[15px] sm:text-[16px] leading-[1.75] text-[#536273]">
+            Schedule a confidential consultation with our medical specialists in Pokhara.
           </p>
         </div>
 
-        {/* Form Container Card */}
-        <div className="mx-auto mt-10 sm:mt-12 max-w-[740px]">
-          <div
-            className="bg-none backdrop-blur-xl p-6 sm:p-10 lg:p-12 rounded-2xl"
-            style={{ position: "relative" }}
-          >
+        {/* Clean Clinical Form Card */}
+        <div className="mx-auto mt-12 max-w-[760px]">
+          <div className="rounded-[24px] p-6 sm:p-10 lg:p-12">
             <form
               ref={formRef}
               onSubmit={handleSubmit(onSubmit)}
               noValidate
-              className="space-y-5"
+              className="space-y-6"
             >
-              {/* Full Name */}
+              {/* Hidden Department input for EmailJS & Yup */}
+              <input
+                type="hidden"
+                id="department"
+                {...register("department")}
+                value={selectedDept}
+              />
+
+              {/* Department Selection */}
               <div>
-                <label
-                  htmlFor="patient_name"
-                  className="block text-[14px] font-semibold text-[#0E2236] mb-1.5"
-                >
-                  Full Name <span className="text-red-500">*</span>
+                <label className="block text-[13px] font-semibold uppercase tracking-wider text-[#0E1A2B] mb-2.5">
+                  Select Department <span className="text-red-500">*</span>
                 </label>
-                <div className="relative">
-                  <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-[#527E9F]">
-                    <svg
-                      width="17"
-                      height="17"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                      <circle cx="12" cy="7" r="4" />
-                    </svg>
-                  </div>
-                  <input
-                    id="patient_name"
-                    type="text"
-                    placeholder="Enter patient full name"
-                    className={`w-full bg-[#f7f9fc] rounded-xl border pl-10 pr-4 py-3 text-[15px] text-[#0E2236] placeholder-[#8A9BA8] transition-colors ${
-                      errors.patient_name
-                        ? "border-red-400 bg-red-50/20"
-                        : "border-[#D8E7F1] focus:border-[#2D6A94]"
-                    }`}
-                    {...register("patient_name")}
-                  />
+
+                <div className="flex flex-wrap gap-2">
+                  {departmentOptions.map((dept) => {
+                    const isSelected = selectedDept === dept.value;
+                    return (
+                      <button
+                        key={dept.value}
+                        type="button"
+                        onClick={() => handleSelectDepartment(dept.value)}
+                        className={`px-4 py-2.5 rounded-full text-[13.5px] font-medium transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-[#2D4F6F] ${
+                          isSelected
+                            ? "bg-[#2D4F6F] text-white"
+                            : "bg-[#EEF3F8] text-[#475569] hover:bg-[#E2ECF4] hover:text-[#0E1A2B]"
+                        }`}
+                      >
+                        {dept.label}
+                      </button>
+                    );
+                  })}
                 </div>
-                {errors.patient_name && (
-                  <p className="mt-1.5 text-[12.5px] font-medium text-red-600 flex items-center gap-1">
-                    <span>•</span> {errors.patient_name?.message}
+
+                {errors.department && (
+                  <p className="mt-1.5 text-[12.5px] font-medium text-red-600">
+                    {errors.department?.message}
                   </p>
                 )}
               </div>
 
-              {/* Email Address & Phone Number */}
-              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                {/* Email Address */}
+              {/* 2. Patient Full Name */}
+              <div>
+                <label
+                  htmlFor="patient_name"
+                  className="block text-[13px] font-semibold uppercase tracking-wider text-[#0E1A2B] mb-2"
+                >
+                  Full Name <span className="text-red-500">*</span>
+                </label>
+                <input
+                  id="patient_name"
+                  type="text"
+                  placeholder="e.g. Ramesh Thapa"
+                  className={`w-full rounded-xl border px-4 py-3.5 text-[14.5px] text-[#0E1A2B] placeholder-[#94A3B8] transition-all bg-[#FAFBFD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#2D4F6F]/15 focus:border-[#2D4F6F] ${
+                    errors.patient_name
+                      ? "border-red-400 bg-red-50/20"
+                      : "border-[#D8E2EC]"
+                  }`}
+                  {...register("patient_name")}
+                />
+                {errors.patient_name && (
+                  <p className="mt-1.5 text-[12.5px] font-medium text-red-600">
+                    {errors.patient_name?.message}
+                  </p>
+                )}
+              </div>
+
+              {/* 3. Phone & Email (2-Column Grid) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {/* Phone */}
                 <div>
                   <label
-                    htmlFor="patient_email"
-                    className="block text-[14px] font-semibold text-[#0E2236] mb-1.5"
+                    htmlFor="patient_phone"
+                    className="block text-[13px] font-semibold uppercase tracking-wider text-[#0E1A2B] mb-2"
                   >
-                    Email 
+                    Phone Number <span className="text-red-500">*</span>
                   </label>
-                  <div className="relative">
-                    <div className=" pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-[#527E9F]">
-                      <svg
-                        width="17"
-                        height="17"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                        <polyline points="22,6 12,13 2,6" />
-                      </svg>
-                    </div>
-                    <input
-                      id="patient_email"
-                      type="email"
-                      placeholder="name@example.com"
-                      className={`w-full bg-[#f7f9fc] rounded-xl border pl-10 pr-4 py-3 text-[15px] text-[#0E2236] placeholder-[#8A9BA8] transition-colors ${
-                        errors.patient_email
-                          ? "border-red-400 bg-red-50/20"
-                          : "border-[#D8E7F1] focus:border-[#2D6A94] focus:bg-white"
-                      }`}
-                      {...register("patient_email")}
-                    />
-                  </div>
-                  {errors.patient_email && (
-                    <p className="mt-1.5 text-[12.5px] font-medium text-red-600 flex items-center gap-1">
-                      <span>•</span> {errors.patient_email?.message}
+                  <input
+                    id="patient_phone"
+                    type="tel"
+                    inputMode="numeric"
+                    maxLength={12}
+                    placeholder="98 0000 0000"
+                    onKeyDown={handlePhoneKeyDown}
+                    className={`w-full rounded-xl border px-4 py-3.5 text-[14.5px] text-[#0E1A2B] placeholder-[#94A3B8] tracking-wide transition-all bg-[#FAFBFD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#2D4F6F]/15 focus:border-[#2D4F6F] ${
+                      errors.patient_phone
+                        ? "border-red-400 bg-red-50/20"
+                        : "border-[#D8E2EC]"
+                    }`}
+                    {...register("patient_phone", {
+                      onChange: handlePhoneInputChange,
+                    })}
+                  />
+                  {errors.patient_phone && (
+                    <p className="mt-1.5 text-[12.5px] font-medium text-red-600">
+                      {errors.patient_phone?.message}
                     </p>
                   )}
                 </div>
 
-                {/* Phone Number (2-4-4: 98 0000 0000) */}
+                {/* Email Address */}
                 <div>
                   <label
-                    htmlFor="patient_phone"
-                    className="block text-[14px] font-semibold text-[#0E2236] mb-1.5"
+                    htmlFor="patient_email"
+                    className="block text-[13px] font-semibold uppercase tracking-wider text-[#0E1A2B] mb-2"
                   >
-                    Phone Number <span className="text-red-500">*</span>
+                    Email Address <span className="text-[12px] font-normal lowercase text-[#64748B]">(optional)</span>
                   </label>
-                  <div className="relative">
-                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-[#527E9F]">
-                      <svg
-                        width="17"
-                        height="17"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.36 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6.06 6.06l.96-.96a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                      </svg>
-                    </div>
-                    <input
-                      id="patient_phone"
-                      type="tel"
-                      inputMode="numeric"
-                      maxLength={12}
-                      placeholder="98 0000 0000"
-                      onKeyDown={handlePhoneKeyDown}
-                      className={`w-full bg-[#f7f9fc] rounded-xl border pl-10 pr-4 py-3 text-[15px] text-[#0E2236] placeholder-[#8A9BA8] tracking-wide transition-colors ${
-                        errors.patient_phone
-                          ? "border-red-400 bg-red-50/20"
-                          : "border-[#D8E7F1] focus:border-[#2D6A94] focus:bg-white"
-                      }`}
-                      {...register("patient_phone", {
-                        onChange: handlePhoneInputChange,
-                      })}
-                    />
-                  </div>
-                  {errors.patient_phone && (
-                    <p className="mt-1.5 text-[12.5px] font-medium text-red-600 flex items-center gap-1">
-                      <span>•</span> {errors.patient_phone?.message}
+                  <input
+                    id="patient_email"
+                    type="email"
+                    placeholder="name@example.com"
+                    className={`w-full rounded-xl border px-4 py-3.5 text-[14.5px] text-[#0E1A2B] placeholder-[#94A3B8] transition-all bg-[#FAFBFD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#2D4F6F]/15 focus:border-[#2D4F6F] ${
+                      errors.patient_email
+                        ? "border-red-400 bg-red-50/20"
+                        : "border-[#D8E2EC]"
+                    }`}
+                    {...register("patient_email")}
+                  />
+                  {errors.patient_email && (
+                    <p className="mt-1.5 text-[12.5px] font-medium text-red-600">
+                      {errors.patient_email?.message}
                     </p>
                   )}
                 </div>
               </div>
 
-              {/* Department Custom Dropdown (No Sub-description) */}
-              <div className="relative" ref={deptDropdownRef}>
-                <label
-                  htmlFor="department"
-                  className="block text-[14px] font-semibold text-[#0E2236] mb-1.5"
-                >
-                  Department <span className="text-red-500">*</span>
-                </label>
-
-                <input
-                  type="hidden"
-                  id="department"
-                  {...register("department")}
-                  value={selectedDept}
-                />
-
-                <div className="relative">
-                  <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-[#527E9F] z-10">
-                    <svg
-                      width="17"
-                      height="17"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-                    </svg>
+              {/* 4. Appointment Date & Time Slot (2-Column Grid) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {/* Date Input */}
+                <div>
+                  <label
+                    htmlFor="appointment_date"
+                    className="block text-[13px] font-semibold uppercase tracking-wider text-[#0E1A2B] mb-2"
+                  >
+                    Preferred Date <span className="text-red-500">*</span>
+                  </label>
+                  <div
+                    className={`relative w-full rounded-xl border transition-all cursor-pointer bg-[#FAFBFD] focus-within:bg-white focus-within:ring-2 focus-within:ring-[#2D4F6F]/15 focus-within:border-[#2D4F6F] ${
+                      errors.appointment_date
+                        ? "border-red-400 bg-red-50/20"
+                        : "border-[#D8E2EC] hover:border-[#CBD5E1]"
+                    }`}
+                    onClick={() => {
+                      try {
+                        dateInputRef.current?.showPicker?.();
+                      } catch {
+                        dateInputRef.current?.focus();
+                      }
+                    }}
+                  >
+                    <input
+                      id="appointment_date"
+                      type="date"
+                      min={todayDate}
+                      ref={(e) => {
+                        register("appointment_date").ref(e);
+                        dateInputRef.current = e;
+                      }}
+                      className="w-full bg-transparent px-4 py-3.5 text-[14.5px] font-medium text-[#0E1A2B] cursor-pointer focus:outline-none"
+                      {...register("appointment_date")}
+                    />
                   </div>
+                  {errors.appointment_date && (
+                    <p className="mt-1.5 text-[12.5px] font-medium text-red-600">
+                      {errors.appointment_date?.message}
+                    </p>
+                  )}
+                </div>
+
+                {/* Time Slot Dropdown */}
+                <div className="relative" ref={timeDropdownRef}>
+                  <label
+                    htmlFor="appointment_time"
+                    className="block text-[13px] font-semibold uppercase tracking-wider text-[#0E1A2B] mb-2"
+                  >
+                    Time Slot <span className="text-red-500">*</span>
+                  </label>
+
+                  <input
+                    type="hidden"
+                    id="appointment_time"
+                    {...register("appointment_time")}
+                    value={selectedTime}
+                  />
 
                   <button
                     type="button"
-                    onClick={() => setIsDeptOpen((prev) => !prev)}
+                    onClick={() => setIsTimeOpen((prev) => !prev)}
                     aria-haspopup="listbox"
-                    aria-expanded={isDeptOpen}
-                    className={`w-full flex items-center justify-between rounded-xl border pl-10 pr-4 py-3 text-[15px] text-left transition-colors cursor-pointer ${
-                      isDeptOpen
-                        ? "border-[#2D6A94] bg-white"
-                        : errors.department
+                    aria-expanded={isTimeOpen}
+                    className={`w-full flex items-center justify-between rounded-xl border px-4 py-3.5 text-[14.5px] text-left transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#2D4F6F]/15 ${
+                      isTimeOpen
+                        ? "border-[#2D4F6F] bg-white ring-2 ring-[#2D4F6F]/15"
+                        : errors.appointment_time
                         ? "border-red-400 bg-red-50/20"
-                        : "border-[#D8E7F1] hover:border-[#527E9F]"
+                        : "border-[#D8E2EC] bg-[#FAFBFD] hover:border-[#CBD5E1]"
                     }`}
                   >
                     <span
                       className={
-                        selectedDept
-                          ? "text-[#0E2236] font-medium"
-                          : "text-[#8A9BA8]"
+                        selectedTime
+                          ? "text-[#0E1A2B] font-medium"
+                          : "text-[#94A3B8]"
                       }
                     >
-                      {selectedDept || "Select Department"}
+                      {selectedTime || "Select Preferred Slot"}
                     </span>
                     <svg
                       width="16"
@@ -498,34 +472,34 @@ function BookAppointment() {
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className={`text-[#527E9F] transition-transform duration-200 ${
-                        isDeptOpen ? "rotate-180" : ""
+                      className={`text-[#64748B] transition-transform duration-200 ${
+                        isTimeOpen ? "rotate-180" : ""
                       }`}
                     >
                       <polyline points="6 9 12 15 18 9" />
                     </svg>
                   </button>
 
-                  {/* Dropdown Menu Panel (Clean Labels Only) */}
-                  {isDeptOpen && (
+                  {/* Dropdown Menu */}
+                  {isTimeOpen && (
                     <div
                       role="listbox"
-                      className="absolute left-0 right-0 top-full mt-1.5 z-50 rounded-xl border border-[#D8E7F1] bg-white p-1.5 shadow-[0_12px_32px_rgba(82,126,159,0.16)]"
+                      className="absolute left-0 right-0 top-full mt-1.5 z-50 rounded-xl border border-[#D8E2EC] bg-white p-1.5 shadow-[0_12px_28px_rgba(14,26,43,0.1)]"
                     >
                       <div className="space-y-0.5">
-                        {departmentOptions.map((item) => {
-                          const isSelected = selectedDept === item.value;
+                        {timeSlotOptions.map((item) => {
+                          const isSelected = selectedTime === item.value;
                           return (
                             <button
                               key={item.value}
                               type="button"
                               role="option"
                               aria-selected={isSelected}
-                              onClick={() => handleSelectDepartment(item.value)}
-                              className={`w-full flex items-center justify-between rounded-lg px-3.5 py-2.5 text-left text-[14.5px] transition-colors cursor-pointer ${
+                              onClick={() => handleSelectTimeSlot(item.value)}
+                              className={`w-full flex items-center justify-between rounded-lg px-3.5 py-2.5 text-left text-[14px] transition-colors cursor-pointer ${
                                 isSelected
-                                  ? "bg-[#EEF5FC] text-[#2D6A94] font-semibold"
-                                  : "hover:bg-[#F4F8FC] text-[#0E2236] font-medium"
+                                  ? "bg-[#EEF5FC] text-[#2D4F6F] font-semibold"
+                                  : "hover:bg-[#F8FAFC] text-[#0E1A2B]"
                               }`}
                             >
                               <span>{item.label}</span>
@@ -535,7 +509,7 @@ function BookAppointment() {
                                   height="16"
                                   viewBox="0 0 24 24"
                                   fill="none"
-                                  stroke="#2D6A94"
+                                  stroke="#2D4F6F"
                                   strokeWidth="2.5"
                                   strokeLinecap="round"
                                   strokeLinejoin="round"
@@ -549,272 +523,71 @@ function BookAppointment() {
                       </div>
                     </div>
                   )}
-                </div>
-
-                {errors.department && (
-                  <p className="mt-1.5 text-[12.5px] font-medium text-red-600 flex items-center gap-1">
-                    <span>•</span> {errors.department?.message}
-                  </p>
-                )}
-              </div>
-
-              {/* Schedule: Stylish Calendar Date & Custom Dropdown Time Slot */}
-              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                {/* Stylish Appointment Date Input */}
-                <div>
-                  <label
-                    htmlFor="appointment_date"
-                    className="block text-[14px] font-semibold text-[#0E2236] mb-1.5"
-                  >
-                    Appointment Date <span className="text-red-500">*</span>
-                  </label>
-                  <div
-                    className={`relative w-full rounded-xl border transition-colors cursor-pointer flex items-center ${
-                      errors.appointment_date
-                        ? "border-red-400 bg-red-50/20"
-                        : "border-[#D8E7F1] hover:border-[#527E9F] focus-within:border-[#2D6A94] focus-within:bg-white"
-                    }`}
-                    onClick={() => {
-                      try {
-                        dateInputRef.current?.showPicker?.();
-                      } catch {
-                        dateInputRef.current?.focus();
-                      }
-                    }}
-                  >
-                    <div className="pointer-events-none pl-3.5 text-[#527E9F] flex items-center">
-                      <svg
-                        width="17"
-                        height="17"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <rect
-                          x="3"
-                          y="4"
-                          width="18"
-                          height="18"
-                          rx="2"
-                          ry="2"
-                        />
-                        <line x1="16" y1="2" x2="16" y2="6" />
-                        <line x1="8" y1="2" x2="8" y2="6" />
-                        <line x1="3" y1="10" x2="21" y2="10" />
-                      </svg>
-                    </div>
-                    <input
-                      id="appointment_date"
-                      type="date"
-                      min={todayDate}
-                      ref={(e) => {
-                        register("appointment_date").ref(e);
-                        dateInputRef.current = e;
-                      }}
-                      className="w-full bg-transparent pl-2.5 pr-3.5 py-3 text-[15px] font-medium text-[#0E2236] cursor-pointer"
-                      {...register("appointment_date")}
-                    />
-                  </div>
-                  {errors.appointment_date && (
-                    <p className="mt-1.5 text-[12.5px] font-medium text-red-600 flex items-center gap-1">
-                      <span>•</span> {errors.appointment_date?.message}
-                    </p>
-                  )}
-                </div>
-
-                {/* Time Slot Custom Dropdown Menu */}
-                <div className="relative" ref={timeDropdownRef}>
-                  <label
-                    htmlFor="appointment_time"
-                    className="block text-[14px] font-semibold text-[#0E2236] mb-1.5"
-                  >
-                    Time Slot <span className="text-red-500">*</span>
-                  </label>
-
-                  <input
-                    type="hidden"
-                    id="appointment_time"
-                    {...register("appointment_time")}
-                    value={selectedTime}
-                  />
-
-                  <div className="relative">
-                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-[#527E9F] z-10">
-                      <svg
-                        width="17"
-                        height="17"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <circle cx="12" cy="12" r="10" />
-                        <polyline points="12 6 12 12 16 14" />
-                      </svg>
-                    </div>
-
-                    <button
-                      type="button"
-                      onClick={() => setIsTimeOpen((prev) => !prev)}
-                      aria-haspopup="listbox"
-                      aria-expanded={isTimeOpen}
-                      className={`w-full flex items-center justify-between rounded-xl border pl-10 pr-4 py-3 text-[15px] text-left transition-colors cursor-pointer ${
-                        isTimeOpen
-                          ? "border-[#2D6A94] bg-white"
-                          : errors.appointment_time
-                          ? "border-red-400 bg-red-50/20"
-                          : "border-[#D8E7F1] hover:border-[#527E9F]"
-                      }`}
-                    >
-                      <span
-                        className={
-                          selectedTime
-                            ? "text-[#0E2236] font-medium"
-                            : "text-[#8A9BA8]"
-                        }
-                      >
-                        {selectedTime || "Select Time Slot"}
-                      </span>
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className={`text-[#527E9F] transition-transform duration-200 ${
-                          isTimeOpen ? "rotate-180" : ""
-                        }`}
-                      >
-                        <polyline points="6 9 12 15 18 9" />
-                      </svg>
-                    </button>
-
-                    {/* Time Slot Options Panel */}
-                    {isTimeOpen && (
-                      <div
-                        role="listbox"
-                        className="absolute left-0 right-0 top-full mt-1.5 z-50 rounded-xl border border-[#D8E7F1] bg-white p-1.5 shadow-[0_12px_32px_rgba(82,126,159,0.16)]"
-                      >
-                        <div className="space-y-0.5">
-                          {timeSlotOptions.map((item) => {
-                            const isSelected = selectedTime === item.value;
-                            return (
-                              <button
-                                key={item.value}
-                                type="button"
-                                role="option"
-                                aria-selected={isSelected}
-                                onClick={() => handleSelectTimeSlot(item.value)}
-                                className={`w-full flex items-center justify-between rounded-lg px-3.5 py-2.5 text-left text-[14.5px] transition-colors cursor-pointer ${
-                                  isSelected
-                                    ? "bg-[#EEF5FC] text-[#2D6A94] font-semibold"
-                                    : "hover:bg-[#F4F8FC] text-[#0E2236] font-medium"
-                                }`}
-                              >
-                                <span>{item.label}</span>
-                                {isSelected && (
-                                  <svg
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="#2D6A94"
-                                    strokeWidth="2.5"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  >
-                                    <polyline points="20 6 9 17 4 12" />
-                                  </svg>
-                                )}
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    )}
-                  </div>
 
                   {errors.appointment_time && (
-                    <p className="mt-1.5 text-[12.5px] font-medium text-red-600 flex items-center gap-1">
-                      <span>•</span> {errors.appointment_time?.message}
+                    <p className="mt-1.5 text-[12.5px] font-medium text-red-600">
+                      {errors.appointment_time?.message}
                     </p>
                   )}
                 </div>
               </div>
 
-              {/* Symptoms / Notes */}
+              {/* 5. Clinical Symptoms / Notes */}
               <div>
                 <label
                   htmlFor="notes"
-                  className="block text-[14px] font-semibold text-[#0E2236] mb-1.5"
+                  className="block text-[13px] font-semibold uppercase tracking-wider text-[#0E1A2B] mb-2"
                 >
-                  Symptoms / Reason for visit{" "}
-                  <span className="text-[12px] font-normal text-[#8A9BA8]">
-                    (Optional)
+                  Reason for Consultation{" "}
+                  <span className="text-[12px] font-normal lowercase text-[#64748B]">
+                    (optional)
                   </span>
                 </label>
-                <div className="relative">
-                  <div className="pointer-events-none absolute top-3.5 left-0 flex items-start pl-3.5 text-[#527E9F]">
-                    <svg
-                      width="17"
-                      height="17"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                    </svg>
-                  </div>
-                  <textarea
-                    id="notes"
-                    rows={3}
-                    placeholder="Briefly describe your symptoms or reason for visit..."
-                    className="w-full bg-[#f7f9fc] rounded-xl border border-[#D8E7F1] pl-10 pr-4 py-3 text-[15px] text-[#0E2236] placeholder-[#8A9BA8] transition-colors focus:border-[#2D6A94] focus:bg-white resize-y"
-                    {...register("notes")}
-                  />
-                </div>
+                <textarea
+                  id="notes"
+                  rows={3}
+                  placeholder="Briefly describe your symptoms, condition, or question..."
+                  className="w-full rounded-xl border border-[#D8E2EC] px-4 py-3.5 text-[14.5px] text-[#0E1A2B] placeholder-[#94A3B8] transition-all bg-[#FAFBFD] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#2D4F6F]/15 focus:border-[#2D4F6F] resize-y"
+                  {...register("notes")}
+                />
+              </div>
+
+              {/* Clinical Assurance Note */}
+              <div className="pt-1 text-center">
+                <p className="text-[12.5px] text-[#64748B]">
+                  Confidential medical consultation • New Road, Pokhara • Verified appointment confirmation
+                </p>
               </div>
 
               {/* Inline Status Message */}
               {status && (
                 <div
-                  className={`rounded-xl px-4 py-3 text-[14px] font-medium flex items-center gap-2 ${
+                  className={`rounded-xl px-4 py-3 text-[13.5px] font-medium flex items-center gap-2 ${
                     status.type === "success"
                       ? "bg-emerald-50 text-emerald-800 border border-emerald-200"
                       : "bg-red-50 text-red-800 border border-red-200"
                   }`}
                 >
-                  <span>{status.type === "success" ? "✓" : "⚠"}</span>
+                  <span>{status.type === "success" ? "✓" : "!"}</span>
                   <span>{status.text}</span>
                 </div>
               )}
 
-              {/* Submit CTA with Processing & Success Toggle Animation */}
-              <div className="pt-3 text-center">
+              {/* Submit CTA */}
+              <div className="pt-2 text-center">
                 <button
                   type="submit"
                   disabled={isProcessing || isSuccess}
-                  className={`relative inline-flex items-center justify-center px-8 py-3.5 rounded-full text-white text-[15px] font-medium tracking-normal transition-all duration-300 shadow-md hover:brightness-105 active:scale-[0.98] cursor-pointer disabled:cursor-not-allowed gap-2.5 ${
+                  className={`w-full sm:w-auto inline-flex items-center justify-center px-9 py-4 rounded-full text-white text-[14.5px] font-medium tracking-normal transition-all duration-200 hover:brightness-105 active:scale-[0.98] cursor-pointer disabled:cursor-not-allowed shadow-xs gap-2.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2D4F6F] ${
                     isSuccess
-                      ? "bg-[linear-gradient(135deg,#1E7E51_0%,#34B27B_100%)] shadow-[0_4px_18px_rgba(30,126,81,0.35)] scale-105"
-                      : "bg-[linear-gradient(135deg,#2D4F6F_0%,#6A97BC_100%)] hover:shadow-lg"
+                      ? "bg-[linear-gradient(135deg,#1E7E51_0%,#34B27B_100%)]"
+                      : "bg-[linear-gradient(135deg,#2D4F6F_0%,#527E9F_100%)]"
                   }`}
                 >
                   {isProcessing ? (
                     <>
                       <Loader />
-                      <span>Processing Request...</span>
+                      <span>Sending Request...</span>
                     </>
                   ) : isSuccess ? (
                     <>
@@ -824,17 +597,16 @@ function BookAppointment() {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        strokeWidth="3"
+                        strokeWidth="2.5"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="animate-pulse"
                       >
                         <polyline points="20 6 9 17 4 12" />
                       </svg>
-                      <span>Request Sent Successfully!</span>
+                      <span>Consultation Request Sent</span>
                     </>
                   ) : (
-                    <span>Book Your Consultation</span>
+                    <span>Confirm Consultation Request</span>
                   )}
                 </button>
               </div>

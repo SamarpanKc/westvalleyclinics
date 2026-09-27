@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { scrollToContact } from "../../utils/scrollToContact";
 
 const treatments = [
@@ -25,7 +26,7 @@ const stats = [
   { value: "4", label: "Specialised care disciplines" },
 ];
 
-function AboutUs() {
+function AboutUs({ bookingHref = "/#contact" }) {
   return (
     <section className="relative overflow-hidden bg-[#f7f9fc] py-16 sm:py-20 lg:py-28" id="aboutUs">
       {/* Ambient background accent */}
@@ -128,13 +129,20 @@ function AboutUs() {
               Book a one-on-one consultation with our specialists today.
             </p>
           </div>
-          <button
-            onClick={scrollToContact}
+          <Link
+            href={bookingHref}
+            onClick={(e) => {
+              const element = document.getElementById("contact");
+              if (element && (bookingHref === "/#contact" || bookingHref === "#contact")) {
+                e.preventDefault();
+                element.scrollIntoView({ behavior: "smooth", block: "start" });
+              }
+            }}
             id="about-us-book-btn"
             className="inline-flex shrink-0 items-center justify-center rounded-full bg-white px-7 py-3 text-[15px] font-medium tracking-normal text-[#0E2236] transition-all duration-200 hover:brightness-95 active:scale-[0.98] cursor-pointer"
           >
             Book your consultation today
-          </button>
+          </Link>
         </div>
 
       </div>
