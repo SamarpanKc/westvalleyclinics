@@ -170,11 +170,11 @@ function PharmacyPage() {
             </div>
 
             {/* Editorial Category Index */}
-            <div className="divide-y divide-[#E3E8EE] border-t border-b border-[#E3E8EE]">
+            <div className="-mx-6 sm:-mx-10 lg:-mx-16 xl:-mx-20 border-t border-b border-[#E3E8EE] divide-y divide-[#E3E8EE]">
               {categories.map((cat) => (
                 <article
                   key={cat.num}
-                  className="group py-8 sm:py-10 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start md:items-center hover:bg-[#F2F6FA] -mx-6 sm:-mx-10 lg:-mx-16 xl:-mx-20 px-6 sm:px-10 lg:px-16 xl:px-20 transition-colors duration-200"
+                  className="group py-8 sm:py-10 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start md:items-center hover:bg-[#F2F6FA] px-6 sm:px-10 lg:px-16 xl:px-20 transition-colors duration-200"
                 >
                   <div className="md:col-span-1">
                     <span className="text-[12px] font-bold tracking-[0.14em] text-[#7E95A8]">

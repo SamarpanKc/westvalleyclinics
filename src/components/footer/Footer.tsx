@@ -9,14 +9,18 @@ function Footer() {
 
         {/* ── Brand column ───────────────────────────────────────────── */}
         <div className="md:col-span-full lg:col-span-2">
-          <Link href="/" aria-label="West Valley Medical Clinic — Home">
+          <Link
+            href="/"
+            aria-label="West Valley Medical Clinic — Home"
+            className="inline-block"
+          >
             <Image
               src="/rebranding/logoSVGs/westvalleywhite_logo_nobg.svg"
               alt="West Valley Medical Clinic"
-              width={200}
-              height={64}
+              width={160}
+              height={51}
               priority
-              className="h-16 w-auto"
+              className="h-11 w-auto"
             />
           </Link>
           <p className="mt-4 text-sm text-white/70 leading-relaxed max-w-xs">

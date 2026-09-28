@@ -61,19 +61,20 @@ function Banner() {
           </div>
 
           {/* Image block */}
-          <div className="flex-shrink-0 flex items-end justify-center pl-8">
+          <div className="flex-shrink-0 flex items-end justify-center pl-8 xl:pl-12">
             <Image
-              src="/images/skin&aethetics/banner.png"
+              src="/images/skin&aethetics/SkinBanner.png"
               alt="West Valley Skin Specialist"
-              width={1086}
-              height={1206}
+              width={1100}
+              height={1466}
               priority
               className="select-none pointer-events-none"
               style={{
-                height: "clamp(480px, 42vw, 760px)",
+                height: "clamp(560px, 52vw, 880px)",
                 width: "auto",
                 maxWidth: "100%",
                 objectFit: "contain",
+                objectPosition: "top center",
               }}
             />
           </div>
@@ -111,12 +112,12 @@ function Banner() {
           </button>
         </div>
 
-        <div className="w-full max-w-[340px] sm:max-w-[420px] md:max-w-[520px] mt-6 sm:mt-4">
+        <div className="w-full max-w-[380px] sm:max-w-[460px] md:max-w-[560px] mt-6 sm:mt-4">
           <Image
-            src="/images/skin&aethetics/banner.png"
+            src="/images/skin&aethetics/SkinBanner.png"
             alt="West Valley Skin Specialist"
-            width={1086}
-            height={1206}
+            width={1100}
+            height={1466}
             priority
             className="w-full h-auto object-contain object-top select-none pointer-events-none"
           />
