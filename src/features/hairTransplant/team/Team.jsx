@@ -6,7 +6,7 @@ const teamMembers = [
     name: "Dr. Pravin Baniya, MD & Team",
     credential: "",
     role: "Dermatologist",
-    image: "/images/team/team dr PRAVIN BANIYA.jpg",
+    image: "/images/team/team dr PRAVIN BANIYA.png",
     bio: "Dr. Baniya leads West Valley's dermatology practice with a focus on medical and cosmetic skin care, treating conditions ranging from acne and pigmentation to complex inflammatory skin diseases.",
   },
   

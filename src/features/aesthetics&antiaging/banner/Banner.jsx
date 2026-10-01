@@ -7,15 +7,18 @@ function Banner() {
       {/* Top divider */}
       <div className="w-full h-[1px] bg-[#EAECEF]" />
 
-      {/* Desktop (lg+) */}
-      <div className="hidden lg:block relative z-30 max-w-[1440px] mx-auto px-8 xl:px-12 pt-14 pb-0">
-        <div className="flex items-center justify-between min-h-[540px]">
+      {/* ── Desktop (lg+) ── */}
+      <div
+        className="hidden lg:flex items-center relative z-30 w-full"
+        style={{ minHeight: "calc(100vh - 88px)", maxHeight: "780px" }}
+      >
+        <div className="w-full max-w-[1440px] mx-auto flex items-center justify-center px-10 xl:px-16 2xl:px-20 gap-10 xl:gap-14">
 
-          {/* Text block */}
-          <div className="flex-1 max-w-[620px] xl:max-w-[680px]">
+          {/* Text block — 40% */}
+          <div className="w-[40%] xl:w-[38%] flex-shrink-0">
             <h1
               className="font-semibold text-[#0E1A2B] leading-[1.12] tracking-[-0.03em]"
-              style={{ fontSize: "clamp(32px, 2.6vw, 58px)" }}
+              style={{ fontSize: "clamp(34px, 2.8vw, 62px)" }}
             >
               Aesthetic &amp; Anti-Ageing
               <br />
@@ -29,12 +32,12 @@ function Banner() {
 
             <p
               className="mt-5 text-[#1D2C40]/65 leading-relaxed"
-              style={{ fontSize: "clamp(15px, 1.1vw, 17px)", maxWidth: "520px" }}
+              style={{ fontSize: "clamp(15px, 1.1vw, 17px)", maxWidth: "480px" }}
             >
               Treatments are designed around your individual skin and facial concerns — using advanced technologies and medically supervised injectable treatments to achieve natural results.
             </p>
 
-            <div className="mt-8 flex items-center gap-4">
+            <div className="mt-8 flex items-center gap-5">
               <button
                 onClick={scrollToContact}
                 id="aesthetics-banner-book-appointment-btn"
@@ -52,19 +55,19 @@ function Banner() {
             </div>
           </div>
 
-          {/* Image block */}
-          <div className="flex-shrink-0 flex items-end justify-center pl-8">
+          {/* Image block — natural cutout, width-controlled for landscape */}
+          <div className="w-[52%] xl:w-[54%] flex-shrink-0 flex items-end justify-center">
             <Image
-              src="/images/endocrine&nutrition/banner.png"
+              src="/images/endocrine&nutrition/banner-v2.png"
               alt="West Valley Aesthetics & Anti-Ageing Specialist"
-              width={1086}
-              height={1206}
+              width={900}
+              height={700}
               priority
               className="select-none pointer-events-none"
               style={{
-                height: "clamp(480px, 42vw, 760px)",
-                width: "auto",
-                maxWidth: "100%",
+                width: "100%",
+                height: "auto",
+                maxHeight: "620px",
                 objectFit: "contain",
               }}
             />
@@ -73,8 +76,8 @@ function Banner() {
         </div>
       </div>
 
-      {/* Tablet + Mobile (< lg) */}
-      <div className="flex lg:hidden flex-col items-center relative z-30 pt-12 sm:pt-14 md:pt-16 pb-6 px-6 sm:px-10 md:px-16 text-center">
+      {/* ── Tablet + Mobile (<lg) ── */}
+      <div className="flex lg:hidden flex-col items-center relative z-30 pt-12 sm:pt-14 md:pt-16 pb-0 px-6 sm:px-10 md:px-16 text-center">
         <h1
           className="font-bold text-[#0E1A2B] leading-[1.15] tracking-[-0.03em]"
           style={{ fontSize: "clamp(28px, 6vw, 46px)" }}
@@ -109,14 +112,15 @@ function Banner() {
           </a>
         </div>
 
-        <div className="w-full max-w-[340px] sm:max-w-[420px] md:max-w-[520px] mt-6 sm:mt-4">
+        {/* Natural cutout image */}
+        <div className="w-full max-w-[400px] sm:max-w-[480px] md:max-w-[560px] mt-4">
           <Image
-            src="/images/endocrine&nutrition/banner.png"
+            src="/images/endocrine&nutrition/banner-v2.png"
             alt="West Valley Aesthetics & Anti-Ageing Specialist"
-            width={1086}
-            height={1206}
+            width={900}
+            height={700}
             priority
-            className="w-full h-auto object-contain object-top select-none pointer-events-none"
+            className="w-full h-auto object-contain select-none pointer-events-none"
           />
         </div>
       </div>
