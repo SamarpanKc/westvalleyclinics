@@ -10,8 +10,8 @@ function CardLeft({
 }) {
   return (
     <div className="app-layout pt-10 bg-neutral-50">
-      <div className="p-8 lg:p-10 lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center bg-white rounded-3xl ">
-        <div className="flex justify-center lg:block">
+      <div className="p-5 sm:p-8 lg:p-10 md:grid md:grid-cols-2 gap-6 md:gap-10 lg:gap-12 items-center bg-white rounded-3xl">
+        <div className="flex justify-center md:block">
           <div
             className="relative w-full max-w-[500px] h-[280px] sm:h-[340px] lg:h-[360px]"
             style={{
@@ -30,7 +30,7 @@ function CardLeft({
           </div>
         </div>
 
-        <div className="mt-8 lg:mt-0">
+        <div className="mt-6 md:mt-0">
           <h3 className="text-[24px] sm:text-[26px] font-semibold text-[#0E1A2B] tracking-[-0.02em]">
             {title}
           </h3>

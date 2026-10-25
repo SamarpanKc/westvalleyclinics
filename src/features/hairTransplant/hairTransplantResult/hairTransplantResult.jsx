@@ -62,7 +62,7 @@ function HairTransplantResult() {
           >
             <ReactCompareImage
               leftImage="/images/hairTransplant/before.png"
-              rightImage="/images/hairTransplant/after.jpg"
+              rightImage="/images/hairTransplant/FullerTexturedHairFromAbove.png"
               aspectRatio="taller"
             />
           </div>

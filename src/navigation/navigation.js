@@ -1,6 +1,9 @@
 /**
  * Primary site navigation links.
- * Order: Hair Transplant · Skin · Plastic Surgery · Aesthetics & Antiaging · Pharmacy · Our Team · Contact
+ * Order: Hair Transplant · Skin (Skin, Plastic Surgery, Aesthetics & Antiaging) · Pharmacy · Our Team · Contact
+ *
+ * Items with `children` open a menu on desktop and an expandable group
+ * in the mobile drawer, so the parent label itself does not navigate.
  *
  * NOTE: The CTA button is rendered separately in the header
  * and is NOT included in this array.
@@ -15,16 +18,23 @@ const navigation = [
     id: "skin",
     name: "Skin",
     path: "/skin",
-  },
-  {
-    id: "plastic-surgery",
-    name: "Plastic Surgery",
-    path: "/plastic-surgery",
-  },
-  {
-    id: "aesthetics&antiaging",
-    name: "Aesthetics & Antiaging",
-    path: "/aesthetics&antiaging",
+    children: [
+      {
+        id: "skin-main",
+        name: "Skin",
+        path: "/skin",
+      },
+      {
+        id: "plastic-surgery",
+        name: "Plastic Surgery",
+        path: "/plastic-surgery",
+      },
+      {
+        id: "aesthetics&antiaging",
+        name: "Aesthetics & Antiaging",
+        path: "/aesthetics&antiaging",
+      },
+    ],
   },
   {
     id: "pharmacy",
@@ -42,5 +52,11 @@ const navigation = [
     path: "/contact",
   },
 ];
+
+/** True when `pathname` is the item's page, or one of its children's pages. */
+export const isItemActive = (item, pathname) =>
+  item.children
+    ? item.children.some((child) => child.path === pathname)
+    : item.path === pathname;
 
 export default navigation;

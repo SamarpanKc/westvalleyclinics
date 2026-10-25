@@ -13,7 +13,7 @@ function CardRight({
 }) {
   return (
     <div className="app-layout pt-10 bg-neutral-50">
-      <div className="p-8 lg:p-10 lg:grid lg:grid-cols-2 lg:gap-12 items-center bg-white rounded-3xl ">
+      <div className="p-5 sm:p-8 lg:p-10 flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-10 lg:gap-12 items-center bg-white rounded-3xl">
         <div>
           <h3 className="text-[24px] sm:text-[26px] font-semibold text-[#0E1A2B] tracking-[-0.02em]">
             {title}
@@ -56,7 +56,8 @@ function CardRight({
           )}
         </div>
 
-        <div className="mt-8 flex justify-center lg:mt-0 lg:ml-auto items-center w-full">
+        {/* Image — on mobile: order-first so it appears above text; md+: right column via grid */}
+        <div className="order-first md:order-none mt-0 mb-6 md:mb-0 flex justify-center md:mt-0 md:ml-auto items-center w-full">
           <div
             className="relative border border-[#EAECEF] w-full max-w-[500px] h-[280px] sm:h-[340px] lg:h-[360px]"
             style={{

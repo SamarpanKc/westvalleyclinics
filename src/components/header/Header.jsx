@@ -1,140 +1,112 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { useRouter } from "next/router";
 import cn from "classnames";
-import navigation from "../../navigation/navigation";
-import MobileHeader from "./MobileHeader";
+import { Menu } from "react-feather";
+import BrandLogo from "./BrandLogo";
+import DesktopNav from "./DesktopNav";
+import NavigationDrawer from "./NavigationDrawer";
 import { scrollToContact } from "../../utils/scrollToContact";
 
-function Header() {
-  const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
+// Auto-hide thresholds, in px of scroll.
+const ALWAYS_SHOW_WITHIN = 80;
+const SCROLL_JITTER = 10;
 
-  const closeDrawer = () => setIsOpen(false);
-  const openDrawer  = () => setIsOpen(true);
+function Header() {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const menuButtonRef = useRef(null);
+
+  const closeDrawer = useCallback(() => setIsDrawerOpen(false), []);
 
   useEffect(() => {
-    let lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
+    let lastScrollY = window.scrollY;
 
     const handleScroll = () => {
-      // Keep navbar visible if mobile drawer is currently open
-      if (isOpen) {
-        setIsVisible(true);
-        return;
-      }
-
       const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 8);
 
-      // Always show navbar near top of the page
-      if (currentScrollY <= 80) {
+      // Keep the bar in place near the top and while the drawer is open
+      if (isDrawerOpen || currentScrollY <= ALWAYS_SHOW_WITHIN) {
         setIsVisible(true);
         lastScrollY = currentScrollY;
         return;
       }
 
-      // Ignore jitter / small scroll amounts
-      if (Math.abs(currentScrollY - lastScrollY) < 10) {
-        return;
-      }
+      if (Math.abs(currentScrollY - lastScrollY) < SCROLL_JITTER) return;
 
-      // Scroll down -> hide navbar; Scroll up -> show navbar
-      if (currentScrollY > lastScrollY) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
-      }
-
+      // Scroll down -> hide; scroll up -> show
+      setIsVisible(currentScrollY < lastScrollY);
       lastScrollY = currentScrollY;
     };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isOpen]);
+  }, [isDrawerOpen]);
 
   return (
     <>
-      {/* ── Desktop header ─────────────────────────────────────────────── */}
+      {/* Holds the bar's space in the page flow, since the bar itself is fixed */}
+      <div aria-hidden="true" className="h-16 lg:h-[72px] xl:h-20" />
+
+      {/* Fixed rather than sticky: when focus lands in the hidden bar, a sticky
+          header makes the browser scroll the page back up to the bar's place */}
       <header
+        // A keyboard user tabbing into a hidden bar should see where focus went
+        onFocus={() => setIsVisible(true)}
         className={cn(
-          "hidden lg:flex items-center justify-between",
-          "sticky top-0 z-40 w-full",
-          "px-8 xl:px-14 2xl:px-20 py-4",
-          "bg-white/90 backdrop-blur-md",
-          "transition-transform duration-300 ease-in-out",
-          isVisible ? "translate-y-0 shadow-none" : "-translate-y-full shadow-none"
+          "fixed inset-x-0 top-0 z-40 h-16 border-b bg-white/90 backdrop-blur-md lg:h-[72px] xl:h-20",
+          "transition-[transform,border-color] duration-300 ease-in-out",
+          isScrolled ? "border-[#1D2C40]/10" : "border-transparent",
+          isVisible ? "translate-y-0" : "-translate-y-full"
         )}
-        role="banner"
       >
-        <div className="w-full max-w-[1440px] mx-auto flex items-center justify-between">
-          {/* Logo */}
-          <Link
-            href="/"
-            aria-label="West Valley Medical Clinic — Home"
-            className="shrink-0 transition-opacity hover:opacity-90"
-          >
-            <Image
-              src="/rebranding/logoSVGs/westvalleyBlack_logo_no_bg.svg"
-              alt="West Valley — Hair & Skin Clinic"
-              width={230}
-              height={90}
-              priority
-              className="h-20 w-auto object-contain"
-            />
+        <div className="mx-auto flex h-full w-full max-w-[1440px] items-center gap-4 px-6 sm:px-10 lg:px-16 xl:px-20">
+          <Link href="/" className="block shrink-0 transition-opacity duration-150 hover:opacity-80">
+            <BrandLogo className="h-8 lg:h-10 xl:h-11" />
           </Link>
 
-          {/* Navigation links */}
-          <nav aria-label="Primary navigation" className="mx-8">
-            <ul className="flex items-center gap-8 xl:gap-11" role="list">
-              {navigation.map((item) => {
-                const isActive = item.path === router.pathname;
-                return (
-                  <li key={item.id}>
-                    <Link
-                      href={item.path}
-                      className={cn(
-                        "text-[15px] font-medium transition-colors duration-150 py-1 inline-block",
-                        "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary",
-                        isActive
-                          ? "text-[#1D2C40]"
-                          : "text-[#1D2C40]/55 hover:text-[#1D2C40]"
-                      )}
-                      aria-current={isActive ? "page" : undefined}
-                    >
-                      {item.name}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
+          <DesktopNav isHeaderVisible={isVisible} className="hidden flex-1 justify-center lg:flex" />
 
-          {/* Primary CTA with exact Figma button gradient angle & radius */}
-          <button
-            onClick={scrollToContact}
-            className={cn(
-              "shrink-0 inline-flex items-center justify-center",
-              "px-7 py-2.5 rounded-xl",
-              "bg-[linear-gradient(145deg,#305472_0%,#7AA2C2_100%)]",
-              "text-white text-[16px] font-medium tracking-normal",
-              "hover:brightness-105 active:scale-[0.98]",
-              "transition-all duration-200 cursor-pointer",
-              "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-            )}
-            id="header-cta-desktop"
-          >
-            Book Your Consultation
-          </button>
+          <div className="ml-auto flex items-center gap-2 lg:ml-0">
+            {/* Primary CTA: Figma gradient angle & radius. The light end is deepened
+                from Figma's #7AA2C2 so white text stays above 4.5:1 contrast */}
+            <button
+              type="button"
+              onClick={scrollToContact}
+              id="header-cta-desktop"
+              className={cn(
+                "hidden h-11 shrink-0 items-center justify-center rounded-xl px-5 sm:inline-flex xl:px-6",
+                "bg-[linear-gradient(145deg,#305472_0%,#4F7A9E_100%)]",
+                "whitespace-nowrap text-[15px] font-medium text-white",
+                "transition-[filter,transform] duration-200 hover:brightness-95 active:scale-[0.98]"
+              )}
+            >
+              Book Your Consultation
+            </button>
+
+            <button
+              ref={menuButtonRef}
+              type="button"
+              onClick={() => setIsDrawerOpen(true)}
+              aria-expanded={isDrawerOpen}
+              aria-controls="mobile-nav-drawer"
+              aria-haspopup="dialog"
+              aria-label="Open navigation menu"
+              id="mobile-menu-toggle"
+              className="-mr-[11px] inline-flex h-11 w-11 items-center justify-center rounded-control text-ink transition-colors duration-150 hover:bg-sage lg:hidden"
+            >
+              <Menu size={22} aria-hidden="true" />
+            </button>
+          </div>
         </div>
       </header>
 
-      {/* ── Mobile header ──────────────────────────────────────────────── */}
-      <MobileHeader
-        isOpen={isOpen}
+      <NavigationDrawer
+        isOpen={isDrawerOpen}
         closeDrawer={closeDrawer}
-        openDrawer={openDrawer}
-        isVisible={isVisible}
+        returnFocusRef={menuButtonRef}
       />
     </>
   );

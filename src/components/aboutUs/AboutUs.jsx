@@ -60,11 +60,11 @@ function AboutUs({ bookingHref = "/#contact" }) {
                   className="h-[420px] w-full object-cover sm:h-[480px]"
                 />
               </div>
-              {/* 20-year badge — half inside, half outside bottom-right */}
+              {/* 20-year badge — tucked inside on mobile, half-outside from sm+ */}
               <img
                 src="/images/about/20yearsExperienceBatch.png"
                 alt="20 years of experience"
-                className="absolute bottom-0 right-0 h-[110px] w-[110px] translate-x-1/2 translate-y-1/2 sm:h-[128px] sm:w-[128px]"
+                className="absolute bottom-1 right-1 h-[90px] w-[90px] translate-x-0 translate-y-0 sm:bottom-0 sm:right-0 sm:h-[128px] sm:w-[128px] sm:translate-x-1/2 sm:translate-y-1/2"
               />
             </div>
           </div>
@@ -139,7 +139,7 @@ function AboutUs({ bookingHref = "/#contact" }) {
               }
             }}
             id="about-us-book-btn"
-            className="inline-flex shrink-0 items-center justify-center rounded-full bg-white px-7 py-3 text-[15px] font-medium tracking-normal text-[#0E2236] transition-all duration-200 hover:brightness-95 active:scale-[0.98] cursor-pointer"
+            className="inline-flex shrink-0 items-center justify-center rounded-full bg-white px-5 py-3 sm:px-7 text-[14px] sm:text-[15px] font-medium tracking-normal text-[#0E2236] whitespace-nowrap transition-all duration-200 hover:brightness-95 active:scale-[0.98] cursor-pointer"
           >
             Book your consultation today
           </Link>

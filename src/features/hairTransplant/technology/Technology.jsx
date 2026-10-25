@@ -20,41 +20,17 @@ function Technology() {
 
         {/* Card */}
         <div className="mx-auto mt-14 max-w-[1240px] lg:mt-16">
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "48px",
-            alignItems: "center",
-          }}
-            className="grid-cols-1-to-2"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
 
             {/* Left: text */}
-            <div style={{ minWidth: 0 }}>
-              <h3 style={{
-                fontSize: "clamp(18px, 2.2vw, 26px)",
-                fontWeight: 650,
-                letterSpacing: "-0.025em",
-                color: "#0E2236",
-                lineHeight: "1.3",
-                margin: 0,
-              }}>
+            <div className="min-w-0">
+              <h3 className="text-[clamp(18px,2.2vw,26px)] font-[650] tracking-[-0.025em] text-[#0E2236] leading-[1.3]">
                 FUE-DHT — Follicular Unit Extraction with Direct Hair Transplant
               </h3>
 
-              <div style={{
-                margin: "18px 0 14px",
-                height: "1px",
-                background: "#D8E7F1",
-              }} />
+              <div className="my-[18px] h-[1px] bg-[#D8E7F1]" />
 
-              <p style={{
-                fontSize: "14px",
-                lineHeight: "1.78",
-                color: "#536273",
-                margin: 0,
-                textAlign: "justify",
-              }}>
+              <p className="text-[14px] leading-[1.78] text-[#536273] text-justify">
                 FUE-DHT, or Follicular Unit Extraction with &ldquo;No Root Touch,&rdquo; represents a
                 significant advancement in hair transplantation. This technique focuses on preserving
                 the integrity of hair follicles during the procedure. Grafts are extracted from the
@@ -62,13 +38,7 @@ function Technology() {
                 exposure time and maximizing graft survival rates, often reaching 99–100%.
               </p>
 
-              <p style={{
-                fontSize: "14px",
-                lineHeight: "1.78",
-                color: "#536273",
-                marginTop: "12px",
-                textAlign: "justify",
-              }}>
+              <p className="mt-3 text-[14px] leading-[1.78] text-[#536273] text-justify">
                 This meticulous approach minimizes graft damage, ensuring precise, one-at-a-time
                 extraction, leading to a more natural and denser hair restoration outcome. FUE-DHT
                 with &ldquo;No Root Touch&rdquo; offers precision and exceptional results, making it
@@ -76,14 +46,16 @@ function Technology() {
               </p>
             </div>
 
-            {/* Right: image masked with asymmetric shape filling container */}
-            <div style={{
-              borderRadius: "16px 22px 22px 108px",
-              overflow: "hidden",
-              position: "relative",
-              width: "100%",
-              aspectRatio: "4/3",
-            }}>
+            {/* Right: image masked with asymmetric shape */}
+            <div
+              style={{
+                borderRadius: "16px 22px 22px 108px",
+                overflow: "hidden",
+                position: "relative",
+                width: "100%",
+                aspectRatio: "4/3",
+              }}
+            >
               <img
                 src="/images/hairTransplant/transplant1.png"
                 alt="FUE-DHT Hair Transplant Technology"
@@ -100,19 +72,6 @@ function Technology() {
         </div>
 
       </div>
-
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-        @media (max-width: 767px) {
-          .grid-cols-1-to-2 {
-            grid-template-columns: 1fr !important;
-            gap: 32px !important;
-          }
-        }
-      `,
-        }}
-      />
     </section>
   );
 }

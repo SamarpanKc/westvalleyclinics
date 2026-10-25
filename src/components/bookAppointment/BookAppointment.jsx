@@ -578,7 +578,7 @@ function BookAppointment() {
                 <button
                   type="submit"
                   disabled={isProcessing || isSuccess}
-                  className={`w-full sm:w-auto inline-flex items-center justify-center px-9 py-4 rounded-full text-white text-[14.5px] font-medium tracking-normal transition-all duration-200 hover:brightness-105 active:scale-[0.98] cursor-pointer disabled:cursor-not-allowed shadow-xs gap-2.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2D4F6F] ${
+                  className={`w-full inline-flex items-center justify-center px-6 py-4 rounded-full text-white text-[14px] sm:text-[14.5px] font-medium tracking-normal whitespace-nowrap transition-all duration-200 hover:brightness-105 active:scale-[0.98] cursor-pointer disabled:cursor-not-allowed shadow-xs gap-2.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2D4F6F] ${
                     isSuccess
                       ? "bg-[linear-gradient(135deg,#1E7E51_0%,#34B27B_100%)]"
                       : "bg-[linear-gradient(135deg,#2D4F6F_0%,#527E9F_100%)]"

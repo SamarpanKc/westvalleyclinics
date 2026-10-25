@@ -89,7 +89,7 @@ function Banner() {
       <div className="flex lg:hidden flex-col items-center relative z-30 pt-12 sm:pt-14 md:pt-16 pb-6 px-6 sm:px-10 md:px-16 text-center">
         <h1
           className="font-bold text-[#0E1A2B] leading-[1.15] tracking-[-0.03em]"
-          style={{ fontSize: "clamp(28px, 6vw, 46px)" }}
+          style={{ fontSize: "clamp(22px, 5.5vw, 46px)" }}
         >
           Enhance the{" "}
           <span

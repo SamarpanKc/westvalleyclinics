@@ -55,6 +55,14 @@ function Footer() {
             </li>
             <li>
               <Link
+                href="/plastic-surgery"
+                className="text-sm text-white/70 hover:text-white transition-colors duration-[150ms]"
+              >
+                Plastic Surgery
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/aesthetics&antiaging"
                 className="text-sm text-white/70 hover:text-white transition-colors duration-[150ms]"
               >

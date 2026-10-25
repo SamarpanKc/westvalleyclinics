@@ -1,11 +1,11 @@
 function Services() {
   return (
-    <div className="pt-10 bg-neutral-50">
+    <div className="pt-10 sm:pt-14 pb-2 bg-neutral-50">
       <div className="app-layout">
         <h3 className="text-large text-center text-primary">
           Skin Care Services
         </h3>
-        <p className="mt-2 text-center text-neutral-600">
+        <p className="mt-2 text-center text-[15px] leading-[1.75] text-neutral-600 max-w-2xl mx-auto">
           At West Valley, we believe that everyone should feel confident in
           their own skin. Our team of experienced and highly trained
           professionals is passionate about helping you reach your aesthetic
